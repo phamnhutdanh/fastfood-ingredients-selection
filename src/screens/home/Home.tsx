@@ -1,11 +1,15 @@
-import {Text} from '@rneui/themed';
 import {View} from 'react-native';
-import colors from '../../styles/colors';
+
+import {GenericText} from '../../components/texts/GenericText';
+import {ItemTitleText} from '../../components/texts/ItemTitleText';
+import {ItemSubtitleText} from '../../components/texts/ItemSubtitleText';
 
 export default function Home(): JSX.Element {
   return (
     <View>
-      <Text>Home Screen</Text>
+      <GenericText>Title</GenericText>
+      <ItemTitleText>Already have an account, login</ItemTitleText>
+      <ItemSubtitleText>Already ha</ItemSubtitleText>
     </View>
   );
 }

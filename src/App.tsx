@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {ThemeProvider} from '@rneui/themed';
@@ -14,7 +13,6 @@ type RootStackParams = {
   SignUp: undefined;
   MainStack: undefined;
 };
-
 const RootStackNavigator = createNativeStackNavigator<RootStackParams>();
 
 export default function App(): JSX.Element {
