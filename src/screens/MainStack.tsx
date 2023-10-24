@@ -1,8 +1,6 @@
 import React from 'react';
-
 import {Icon} from '@rneui/themed';
 import colors from '../styles/colors';
-
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from './home/Home';
 import Cart from './cart/Cart';

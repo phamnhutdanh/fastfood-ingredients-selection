@@ -2,7 +2,7 @@ import {TextProps} from '@rneui/themed';
 import React from 'react';
 import {Pressable, StyleSheet} from 'react-native';
 import colors from '../../styles/colors';
-import {GenericText} from './GenericText';
+import {GenericText} from './generics/GenericText';
 import {pressableRippleConfig} from '../../styles/pressable_config';
 import {OnPressItem} from '../../types/GenericType';
 

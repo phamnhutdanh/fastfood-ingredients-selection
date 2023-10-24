@@ -1,13 +1,12 @@
 import {Pressable, StyleSheet, View} from 'react-native';
-
 import {ItemTitleText} from '../../components/texts/ItemTitleText';
 import {ItemSubtitleText} from '../../components/texts/ItemSubtitleText';
 import colors from '../../styles/colors';
-import {Button} from '@rneui/themed';
 import ItemImageFood from './ItemImageFood';
 import {OnPressItem} from '../../types/GenericType';
 import {pressableRippleConfig} from '../../styles/pressable_config';
 import {PriceText} from '../texts/PriceText';
+import AddButton from '../buttons/AddButton';
 
 type ThisProps = {
   imageUri?: string;
@@ -15,6 +14,7 @@ type ThisProps = {
   vendorName: string;
   priceValue: number;
   onPressItem: OnPressItem;
+  onPressAddButton: OnPressItem;
 };
 
 export default function ItemFoodHorizontal(props: ThisProps): JSX.Element {
@@ -34,15 +34,7 @@ export default function ItemFoodHorizontal(props: ThisProps): JSX.Element {
         <ItemSubtitleText>{props.vendorName}</ItemSubtitleText>
         <View style={styles.price_and_button}>
           <PriceText priceValue={props.priceValue} />
-          <Button
-            buttonStyle={styles.add_button}
-            icon={{
-              size: 12,
-              color: colors.white,
-              type: 'font-awesome-5',
-              name: 'plus',
-            }}
-          />
+          <AddButton onPressItem={props.onPressAddButton} />
         </View>
       </View>
     </Pressable>
@@ -66,10 +58,6 @@ const styles = StyleSheet.create({
     width: 160,
     height: 120,
     borderRadius: 20,
-  },
-  add_button: {
-    backgroundColor: colors.primary,
-    borderRadius: 12,
   },
   price_and_button: {
     flexDirection: 'row',

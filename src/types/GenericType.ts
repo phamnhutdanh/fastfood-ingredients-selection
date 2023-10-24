@@ -1,4 +1,4 @@
-import {StyleProp, ViewStyle} from 'react-native';
+import {ColorValue, StyleProp, ViewStyle} from 'react-native';
 
 export type OnPressItem = (item: any) => void;
 
@@ -12,3 +12,5 @@ export type ItemComponent =
 export type ActionType = () => void;
 
 export type ComponentStyle = StyleProp<ViewStyle> | any | undefined;
+
+export type ColorType = number | ColorValue;

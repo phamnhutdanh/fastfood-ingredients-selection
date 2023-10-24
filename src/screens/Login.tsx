@@ -1,11 +1,11 @@
-import {Button, Input} from '@rneui/themed';
+import {Input} from '@rneui/themed';
 import {View} from 'react-native';
 import {BigTitleText} from '../components/texts/BigTitleText';
-
-import {GenericText} from '../components/texts/GenericText';
+import {GenericText} from '../components/texts/generics/GenericText';
 import {TextLink} from '../components/texts/TextLink';
 import {StyleSheet} from 'react-native';
 import {useState} from 'react';
+import GenericButton from '../components/buttons/generics/GenericButton';
 
 export default function Login({navigation, route}: any): JSX.Element {
   const [email, setEmail] = useState('');
@@ -36,13 +36,7 @@ export default function Login({navigation, route}: any): JSX.Element {
         value={password}
         onChangeText={setPassword}></Input>
 
-      <Button
-        containerStyle={styles.button_containerStyle}
-        buttonStyle={styles.button_buttonStyle}
-        titleStyle={styles.button_titleStyle}
-        onPress={onPressButtonLogin}>
-        LOGIN
-      </Button>
+      <GenericButton onPressItem={onPressButtonLogin}>LOGIN</GenericButton>
 
       <View style={styles.textContainer}>
         <GenericText>Didn't have an account, </GenericText>
@@ -64,9 +58,4 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
   },
-  button_containerStyle: {
-    width: '100%',
-  },
-  button_buttonStyle: {height: 60},
-  button_titleStyle: {fontSize: 16, fontWeight: 'bold'},
 });

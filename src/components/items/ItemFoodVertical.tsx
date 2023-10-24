@@ -1,13 +1,12 @@
 import {Pressable, StyleSheet, View} from 'react-native';
-
 import {ItemTitleText} from '../../components/texts/ItemTitleText';
 import {ItemSubtitleText} from '../../components/texts/ItemSubtitleText';
 import colors from '../../styles/colors';
-import {Button} from '@rneui/themed';
 import ItemImageFood from './ItemImageFood';
 import {OnPressItem} from '../../types/GenericType';
 import {pressableRippleConfig} from '../../styles/pressable_config';
 import {PriceText} from '../texts/PriceText';
+import AddButton from '../buttons/AddButton';
 
 type ThisProps = {
   imageUri?: string;
@@ -15,6 +14,7 @@ type ThisProps = {
   vendorName: string;
   priceValue: number;
   onPressItem: OnPressItem;
+  onPressAddButton: OnPressItem;
 };
 
 export default function ItemFoodVertical(props: ThisProps): JSX.Element {
@@ -35,15 +35,7 @@ export default function ItemFoodVertical(props: ThisProps): JSX.Element {
         <PriceText priceValue={props.priceValue} />
       </View>
 
-      <Button
-        buttonStyle={styles.add_button}
-        icon={{
-          size: 12,
-          color: colors.white,
-          type: 'font-awesome-5',
-          name: 'plus',
-        }}
-      />
+      <AddButton onPressItem={props.onPressAddButton} />
     </Pressable>
   );
 }

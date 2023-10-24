@@ -15,6 +15,7 @@ export const theme = createTheme({
       buttonStyle: {
         backgroundColor: colors.primary,
         borderRadius: 12,
+        padding: 0,
       },
       titleStyle: {
         color: colors.white,

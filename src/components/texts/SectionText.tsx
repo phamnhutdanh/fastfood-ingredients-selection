@@ -1,7 +1,7 @@
 import {TextProps} from '@rneui/themed';
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {GenericText} from './GenericText';
+import {GenericText} from './generics/GenericText';
 
 type ThisProps = TextProps;
 
