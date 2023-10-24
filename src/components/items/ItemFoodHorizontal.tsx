@@ -7,6 +7,7 @@ import {Button} from '@rneui/themed';
 import ItemImageFood from './ItemImageFood';
 import {OnPressItem} from '../../types/GenericType';
 import {pressableRippleConfig} from '../../styles/pressable_config';
+import {PriceText} from '../texts/PriceText';
 
 type ThisProps = {
   imageUri?: string;
@@ -32,12 +33,7 @@ export default function ItemFoodHorizontal(props: ThisProps): JSX.Element {
         <ItemTitleText>{props.foodName}</ItemTitleText>
         <ItemSubtitleText>{props.vendorName}</ItemSubtitleText>
         <View style={styles.price_and_button}>
-          <View style={styles.price_container}>
-            <ItemTitleText style={styles.price_value}>
-              {props.priceValue}
-            </ItemTitleText>
-            <ItemTitleText style={styles.price_currency}> VND</ItemTitleText>
-          </View>
+          <PriceText priceValue={props.priceValue} />
           <Button
             buttonStyle={styles.add_button}
             icon={{
