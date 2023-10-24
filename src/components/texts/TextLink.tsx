@@ -4,17 +4,17 @@ import {Pressable, StyleSheet} from 'react-native';
 import colors from '../../styles/colors';
 import {GenericText} from './GenericText';
 import {pressableRippleConfig} from '../../styles/pressable_config';
-import {OnClickItem} from '../../types/GenericType';
+import {OnPressItem} from '../../types/GenericType';
 
 type ThisProps = TextProps & {
-  onClickItem?: OnClickItem;
+  onPressItem?: OnPressItem;
 };
 
 export function TextLink(props: ThisProps): JSX.Element {
   return (
     <Pressable
       android_ripple={pressableRippleConfig}
-      onPress={props.onClickItem}>
+      onPress={props.onPressItem}>
       <GenericText {...props} style={[styles.text, props.style]}>
         {props.children}
       </GenericText>

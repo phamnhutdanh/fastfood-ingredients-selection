@@ -1,10 +1,11 @@
 export default {
   primary: '#B0578D',
   secondary: '#FBA1B7',
-  third: '#FBA1B7',
+  third: '#FFF0F5',
   fourth: '#FFF0F5',
   heart_color: '#FF9B9B',
   white: '#FFFFFF',
+  yellowStar: '#D17842',
   darkBlack: '#33363F',
   mediumBlack: '#2A2C36',
   darkGrey: '#89848D',

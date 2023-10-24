@@ -15,7 +15,7 @@ export function ItemTitleText(props: ThisProps): JSX.Element {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 12,
+    fontSize: 16,
     fontWeight: 'bold',
   },
 });

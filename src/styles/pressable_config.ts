@@ -1,5 +1,6 @@
 import {PressableAndroidRippleConfig} from 'react-native';
+import colors from './colors';
 
 export const pressableRippleConfig: PressableAndroidRippleConfig = {
-  color: '#4a4a4a',
+  color: colors.lightGrey,
 };
