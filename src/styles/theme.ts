@@ -10,6 +10,40 @@ export const theme = createTheme({
   },
   mode: 'light',
   components: {
+    Button: {
+      containerStyle: {},
+      buttonStyle: {
+        backgroundColor: colors.primary,
+        borderRadius: 12,
+      },
+      titleStyle: {
+        color: colors.white,
+      },
+    },
+    Input: {
+      style: {},
+      containerStyle: {
+        backgroundColor: colors.mediumGrey,
+        paddingHorizontal: 20,
+        paddingTop: 4,
+        borderRadius: 20,
+      },
+      errorStyle: {},
+      inputContainerStyle: {
+        borderColor: 'transparent',
+      },
+      inputStyle: {
+        color: colors.darkBlack,
+        fontSize: 16,
+      },
+      labelStyle: {
+        fontWeight: 'normal',
+        color: colors.lightGrey,
+        fontSize: 12,
+      },
+      placeholderTextColor: colors.darkGrey,
+      renderErrorMessage: false,
+    },
     Tab: {
       indicatorStyle: {
         backgroundColor: colors.secondary,
