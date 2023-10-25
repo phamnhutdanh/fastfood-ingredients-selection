@@ -10,7 +10,7 @@ const imageUri =
 type ThisProps = {
   imageWidth?: number;
   imageHeight?: number;
-  imageUri?: string;
+  imageUri: string;
 };
 
 export default function ItemImageFood(props: ThisProps): JSX.Element {

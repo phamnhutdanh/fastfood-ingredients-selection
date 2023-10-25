@@ -8,7 +8,12 @@ import {StyleSheet} from 'react-native';
 import {useState} from 'react';
 import GenericButton from '../components/buttons/generics/GenericButton';
 
-export default function SignUp({navigation, route}: any): JSX.Element {
+type ThisProps = {
+  navigation: any;
+  route: any;
+};
+
+export default function SignUp(props: ThisProps): JSX.Element {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,7 +28,7 @@ export default function SignUp({navigation, route}: any): JSX.Element {
   };
 
   const onPressLogInLink = () => {
-    navigation.navigate('Login');
+    props.navigation.navigate('Login');
   };
 
   return (

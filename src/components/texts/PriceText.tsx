@@ -2,15 +2,17 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import colors from '../../styles/colors';
 import {ItemTitleText} from './ItemTitleText';
+import {ComponentStyle} from '../../types/GenericType';
 
 type ThisProps = {
   priceValue: number;
   textSize?: number;
+  containerStyle?: ComponentStyle;
 };
 
 export function PriceText(props: ThisProps): JSX.Element {
   return (
-    <View style={styles.price_container}>
+    <View style={[styles.price_container, props.containerStyle]}>
       <ItemTitleText
         style={[
           styles.price_value,
