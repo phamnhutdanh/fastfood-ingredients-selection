@@ -7,13 +7,9 @@ import {OnPressItem} from '../../types/GenericType';
 import {pressableRippleConfig} from '../../styles/pressable_config';
 import {PriceText} from '../texts/PriceText';
 import AddButton from '../buttons/AddButton';
+import {ItemFoodForHorizontalList} from '../../types/ItemType';
 
-type ThisProps = {
-  imageUri?: string;
-  foodName: string;
-  vendorName: string;
-  priceValue: number;
-  onPressItem: OnPressItem;
+type ThisProps = ItemFoodForHorizontalList & {
   onPressAddButton: OnPressItem;
 };
 

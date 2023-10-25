@@ -1,3 +1,5 @@
+import {OnPressItem} from './GenericType';
+
 export type ItemOrderSizeType = {
   id: number;
   size: string;
@@ -16,4 +18,20 @@ export type ItemOrderInfoType = {
 export type ItemFoodType = {
   id: number;
   type: string;
+};
+
+export type ItemFoodForVerticalList = {
+  imageUri: string;
+  foodName: string;
+  vendorName: string;
+  priceValue: number;
+  onPressItem: OnPressItem;
+};
+
+export type ItemFoodForHorizontalList = {
+  imageUri: string;
+  foodName: string;
+  vendorName: string;
+  priceValue: number;
+  onPressItem: OnPressItem;
 };

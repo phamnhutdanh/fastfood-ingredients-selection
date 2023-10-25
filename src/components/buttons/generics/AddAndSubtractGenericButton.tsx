@@ -7,6 +7,7 @@ type ThisProps = ButtonProps & {
   name: string;
   iconSize?: number;
   iconColor?: ColorType;
+  iconType?: string;
 };
 
 export default function AddAndSubtractGenericButton(
@@ -19,7 +20,7 @@ export default function AddAndSubtractGenericButton(
       icon={{
         size: props.iconSize ? props.iconSize : 12,
         color: props.iconColor ? props.iconColor : colors.white,
-        type: 'font-awesome-5',
+        type: props.iconType ? props.iconType : 'font-awesome-5',
         name: props.name,
       }}
     />

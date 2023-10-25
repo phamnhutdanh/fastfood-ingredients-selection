@@ -1,13 +1,13 @@
 import {OnPressItem} from '../../types/GenericType';
 import {ItemFoodForVerticalList} from '../../types/ItemType';
-import AddButton from '../buttons/AddButton';
+import FavoriteButton from '../buttons/FavoriteButton';
 import GenericItemFoodVertical from './generics/GenericItemFoodVertical';
 
 type ThisProps = ItemFoodForVerticalList & {
-  onPressAddButton: OnPressItem;
+  onPressFavoriteButton: OnPressItem;
 };
 
-export default function ItemFoodVertical(props: ThisProps): JSX.Element {
+export default function ItemFavoriteFood(props: ThisProps): JSX.Element {
   return (
     <GenericItemFoodVertical
       imageUri={props.imageUri}
@@ -15,7 +15,9 @@ export default function ItemFoodVertical(props: ThisProps): JSX.Element {
       vendorName={props.foodName}
       priceValue={props.priceValue}
       onPressItem={props.onPressItem}
-      buttonRight={<AddButton onPressItem={() => props.onPressAddButton} />}
+      buttonRight={
+        <FavoriteButton onPressItem={() => props.onPressFavoriteButton} />
+      }
     />
   );
 }

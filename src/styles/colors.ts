@@ -3,7 +3,7 @@ export default {
   secondary: '#FBA1B7',
   third: '#FFF0F5',
   fourth: '#FFF0F5',
-  heart_color: '#FF9B9B',
+  heartColor: '#FF9B9B',
   white: '#FFFFFF',
   yellowStar: '#D17842',
   darkBlack: '#33363F',
