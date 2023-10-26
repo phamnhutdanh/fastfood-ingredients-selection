@@ -3,13 +3,15 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {GenericText} from '../texts/generics/GenericText';
 import colors from '../../styles/colors';
-import {OnPressItem} from '../../types/GenericType';
 
 type ThisProps = {
-  onPressItem: OnPressItem;
+  navigation: any;
 };
 
 export function SearchBarButton(props: ThisProps): JSX.Element {
+  const navigateToSearchScreen = () => {
+    props.navigation.navigate('SearchScreen');
+  };
   return (
     <Button
       containerStyle={styles.container}
@@ -20,7 +22,7 @@ export function SearchBarButton(props: ThisProps): JSX.Element {
         color: colors.darkGrey,
         type: 'font-awesome',
       }}
-      onPress={props.onPressItem}>
+      onPress={navigateToSearchScreen}>
       <GenericText>Tap here to search...</GenericText>
     </Button>
   );

@@ -7,7 +7,7 @@ type ThisProps = TextProps;
 
 export function GenericText(props: ThisProps): JSX.Element {
   return (
-    <Text {...props} style={[styles.text, props.style]}>
+    <Text {...props} style={[styles.text, props.style]} ellipsizeMode="tail">
       {props.children}
     </Text>
   );
@@ -18,5 +18,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'normal',
     color: colors.darkBlack,
+    flexWrap: 'wrap',
   },
 });

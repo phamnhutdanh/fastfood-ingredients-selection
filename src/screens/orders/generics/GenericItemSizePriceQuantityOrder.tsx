@@ -1,8 +1,8 @@
 import {StyleSheet, View} from 'react-native';
-import {TagsText} from '../../texts/TagsText';
-import {PriceText} from '../../texts/PriceText';
-import SubtractButton from '../../buttons/SubtractButton';
-import AddButton from '../../buttons/AddButton';
+import {TagsText} from '../../../components/texts/TagsText';
+import {PriceText} from '../../../components/texts/PriceText';
+import SubtractButton from '../../../components/buttons/SubtractButton';
+import AddButton from '../../../components/buttons/AddButton';
 
 type ThisProps = {
   enabledAddButton: boolean;

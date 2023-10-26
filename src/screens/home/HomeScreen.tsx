@@ -1,14 +1,9 @@
-import {Pressable, StyleSheet, View} from 'react-native';
-import {BigTitleText} from '../../components/texts/BigTitleText';
-import {Avatar} from '@rneui/themed';
+import {StyleSheet, View} from 'react-native';
 import {SearchBarButton} from '../../components/buttons/SearchBarButton';
 import {SectionText} from '../../components/texts/SectionText';
-import GenericFlatList from '../../components/displays/generics/GenericFlatList';
-import ItemFoodVertical from '../../components/items/ItemFoodVertical';
-import {FoodListItemType} from '../../types/ItemType';
-import {useCallback} from 'react';
-import ItemFoodHorizontal from '../../components/items/ItemFoodHorizontal';
-import {pressableRippleConfig} from '../../styles/pressable_config';
+import HomeHeaderDisplay from './display/HomeHeaderDisplay';
+import HorizontalListFood from '../../components/displays/HorizontalListFood';
+import VerticalListFood from '../../components/displays/VerticalListFood';
 
 const avatarUri =
   'https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg';
@@ -50,78 +45,23 @@ const popularFastFoodList = [
 ];
 
 export default function HomeScreen(props: ThisProps): JSX.Element {
-  const navigateToFoodDetailsScreen = (item: FoodListItemType) => {
-    props.navigation.navigate('FoodDetailsScreen', {
-      id: item.id,
-      foodName: item.foodName,
-    });
-  };
-
-  const navigateToSearchScreen = () => {
-    props.navigation.navigate('SearchScreen');
-  };
-
-  const navigateToAccountScreen = () => {
-    props.navigation.navigate('AccountScreen');
-  };
-
-  const memorizedValueHorizontalList = useCallback(
-    ({item}: {item: FoodListItemType}) => (
-      <ItemFoodHorizontal
-        imageUri={''}
-        foodName={item.foodName}
-        vendorName={item.vendorName}
-        priceValue={item.priceValue}
-        onPressItem={() => navigateToFoodDetailsScreen(item)}
-        onPressAddButton={() => navigateToFoodDetailsScreen(item)}
-        id={item.id}
-        rating={item.rating}
-      />
-    ),
-    [popularFastFoodList],
-  );
-
-  const memorizedValueVerticalList = useCallback(
-    ({item}: {item: FoodListItemType}) => (
-      <ItemFoodVertical
-        imageUri={''}
-        foodName={item.foodName}
-        vendorName={item.vendorName}
-        priceValue={item.priceValue}
-        onPressItem={() => navigateToFoodDetailsScreen(item)}
-        onPressAddButton={() => navigateToFoodDetailsScreen(item)}
-        id={item.id}
-        rating={item.rating}
-      />
-    ),
-    [popularFastFoodList],
-  );
-
   return (
-    <GenericFlatList
-      contentContainerStyle={styles.mainContainer}
+    <VerticalListFood
       data={popularFastFoodList}
-      renderItem={memorizedValueVerticalList}
-      ListHeaderComponent={
+      navigation={props.navigation}
+      contentContainerStyle={styles.mainContainer}
+      listHeaderComponent={
         <View style={styles.headingContainer}>
-          <View style={styles.titleContainer}>
-            <BigTitleText>Welcome!!!</BigTitleText>
-            <Pressable
-              android_ripple={pressableRippleConfig}
-              onPress={navigateToAccountScreen}>
-              <Avatar source={{uri: avatarUri}} size={48} rounded />
-            </Pressable>
-          </View>
-          <SearchBarButton onPressItem={navigateToSearchScreen} />
-
+          <HomeHeaderDisplay
+            navigation={props.navigation}
+            avatarUri={avatarUri}
+          />
+          <SearchBarButton navigation={props.navigation} />
           {/* TODO: List food by type  */}
-
           <SectionText>Popular fast food</SectionText>
-          <GenericFlatList
+          <HorizontalListFood
             data={popularFastFoodList}
-            renderItem={memorizedValueHorizontalList}
-            horizontal
-            contentContainerStyle={styles.horizontalContainer}
+            navigation={props.navigation}
           />
           <SectionText>Shop near from you</SectionText>
         </View>
@@ -138,13 +78,5 @@ const styles = StyleSheet.create({
   },
   headingContainer: {
     gap: 12,
-  },
-  horizontalContainer: {
-    gap: 20,
-  },
-  titleContainer: {
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    alignItems: 'center',
   },
 });

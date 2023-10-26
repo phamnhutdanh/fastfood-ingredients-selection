@@ -1,8 +1,8 @@
-import {OnPressItem} from '../../types/GenericType';
-import {FoodListItemType} from '../../types/ItemType';
+import {OnPressItem} from '../../../types/GenericType';
+import {FoodListItemType} from '../../../types/ItemType';
 
-import FavoriteButton from '../buttons/FavoriteButton';
-import GenericItemFoodVertical from './generics/GenericItemFoodVertical';
+import FavoriteButton from '../../../components/buttons/FavoriteButton';
+import GenericItemFoodVertical from '../../../components/items/generics/GenericItemFoodVertical';
 
 type ThisProps = FoodListItemType & {
   onPressFavoriteButton: OnPressItem;

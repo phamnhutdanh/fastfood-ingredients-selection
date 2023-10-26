@@ -1,9 +1,9 @@
-import GenericItemFoodOrderContainer from './generics/GenericItemFoodOrderContainer';
-import {ItemOrderInfoType} from '../../types/ItemType';
+import GenericItemFoodOrderContainer from '../generics/GenericItemFoodOrderContainer';
+import {ItemOrderInfoType} from '../../../types/ItemType';
 
 type ThisProps = ItemOrderInfoType & {};
 
-export default function ItemCart(props: ThisProps): JSX.Element {
+export default function ItemOrder(props: ThisProps): JSX.Element {
   return (
     <GenericItemFoodOrderContainer
       listSizeData={props.listSizeData}
@@ -11,7 +11,7 @@ export default function ItemCart(props: ThisProps): JSX.Element {
       foodName={props.foodName}
       vendorName={props.vendorName}
       listFoodTypeData={props.listFoodTypeData}
-      enabledAddButton={true}
+      enabledAddButton={false}
       ratingScore={props.ratingScore}
     />
   );

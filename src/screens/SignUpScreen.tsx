@@ -28,7 +28,7 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
   };
 
   const onPressLogInLink = () => {
-    props.navigation.navigate('Login');
+    props.navigation.navigate('LoginScreen');
   };
 
   return (

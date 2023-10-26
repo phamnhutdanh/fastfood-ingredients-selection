@@ -1,16 +1,22 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import FoodDetailsScreen from '../food_details/FoodDetailsScreen';
 import VendorDetailsScreen from '../vendor_details/VendorDetailsScreen';
-import AccountScreen from '../account/AccountScreen';
 import HomeScreen from './HomeScreen';
 import SearchScreen from '../search/SearchScreen';
 import colors from '../../styles/colors';
+import AccountScreen from '../account/AccountScreen';
+import FavoriteScreen from '../account/FavoriteScreen';
+import EditAccountScreen from '../account/EditAccountScreen';
+import ChangePasswordScreen from '../account/ChangePasswordScreen';
 
 type HomeStackParams = {
   HomeScreen: undefined;
   FoodDetailsScreen: undefined;
   VendorDetailsScreen: undefined;
   AccountScreen: undefined;
+  FavoriteScreen: undefined;
+  EditAccountScreen: undefined;
+  ChangePasswordScreen: undefined;
   SearchScreen: undefined;
 };
 
@@ -35,7 +41,31 @@ export default function HomeStacks(): JSX.Element {
         name="VendorDetailsScreen"
         component={VendorDetailsScreen}
       />
-      <HomeNavigators.Screen name="AccountScreen" component={AccountScreen} />
+      <HomeNavigators.Screen
+        name="AccountScreen"
+        component={AccountScreen}
+        options={{
+          contentStyle: {
+            backgroundColor: colors.lightGrey,
+          },
+        }}
+      />
+      <HomeNavigators.Screen
+        name="FavoriteScreen"
+        component={FavoriteScreen}
+        options={{
+          headerShown: true,
+          headerTitle: 'My favorites',
+        }}
+      />
+      <HomeNavigators.Screen
+        name="EditAccountScreen"
+        component={EditAccountScreen}
+      />
+      <HomeNavigators.Screen
+        name="ChangePasswordScreen"
+        component={ChangePasswordScreen}
+      />
       <HomeNavigators.Screen name="SearchScreen" component={SearchScreen} />
     </HomeNavigators.Navigator>
   );
