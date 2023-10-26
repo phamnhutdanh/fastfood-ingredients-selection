@@ -48,6 +48,9 @@ export default function HomeStacks(): JSX.Element {
           contentStyle: {
             backgroundColor: colors.lightGrey,
           },
+          headerTransparent: true,
+          headerShown: true,
+          headerTitle: '',
         }}
       />
       <HomeNavigators.Screen
@@ -61,10 +64,24 @@ export default function HomeStacks(): JSX.Element {
       <HomeNavigators.Screen
         name="EditAccountScreen"
         component={EditAccountScreen}
+        options={{
+          contentStyle: {
+            backgroundColor: colors.lightGrey,
+          },
+          headerShown: true,
+          headerTitle: 'Edit account',
+        }}
       />
       <HomeNavigators.Screen
         name="ChangePasswordScreen"
         component={ChangePasswordScreen}
+        options={{
+          contentStyle: {
+            backgroundColor: colors.lightGrey,
+          },
+          headerShown: true,
+          headerTitle: 'Change password',
+        }}
       />
       <HomeNavigators.Screen name="SearchScreen" component={SearchScreen} />
     </HomeNavigators.Navigator>
