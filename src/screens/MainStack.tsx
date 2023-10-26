@@ -2,13 +2,13 @@ import React from 'react';
 import {Icon} from '@rneui/themed';
 import colors from '../styles/colors';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Home from './home/Home';
 import Cart from './cart/Cart';
 import Orders from './orders/Orders';
 import Notification from './notification/Notification';
+import HomeStacks from './home/HomeStacks';
 
 type MainTabStackParams = {
-  Home: undefined;
+  HomeStacks: undefined;
   Cart: undefined;
   Orders: undefined;
   Notification: undefined;
@@ -19,13 +19,13 @@ const MainTabStackNavigator = createBottomTabNavigator<MainTabStackParams>();
 export function MainStack(): JSX.Element {
   return (
     <MainTabStackNavigator.Navigator
-      initialRouteName="Home"
+      initialRouteName="HomeStacks"
       sceneContainerStyle={{backgroundColor: colors.white}}
       screenOptions={MainTabScreenOptions}>
       <MainTabStackNavigator.Screen
-        name="Home"
+        name="HomeStacks"
         options={{title: 'Home'}}
-        component={Home}
+        component={HomeStacks}
       />
       <MainTabStackNavigator.Screen
         name="Cart"
@@ -48,7 +48,7 @@ export function MainStack(): JSX.Element {
 const MainTabScreenOptions = ({route}: any) => ({
   tabBarIcon: ({focused, color, size}: any) => {
     let icon;
-    if (route.name === 'Home') {
+    if (route.name === 'HomeStacks') {
       icon = focused
         ? (icon = (
             <Icon

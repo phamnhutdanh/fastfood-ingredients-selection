@@ -1,6 +1,7 @@
 import {Input} from '@rneui/themed';
 import {View} from 'react-native';
 import {BigTitleText} from '../components/texts/BigTitleText';
+
 import {GenericText} from '../components/texts/generics/GenericText';
 import {TextLink} from '../components/texts/TextLink';
 import {StyleSheet} from 'react-native';
@@ -12,23 +13,32 @@ type ThisProps = {
   route: any;
 };
 
-export default function Login(props: ThisProps): JSX.Element {
+export default function SignUpScreen(props: ThisProps): JSX.Element {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [reEnterPassword, setReEnterPassword] = useState('');
 
-  /** @TODO login with email, password */
-  const onPressButtonLogin = () => {
+  /** @TODO sign up with email, password */
+  const onPressButtonSignUp = () => {
+    console.log('name: ' + name);
     console.log('email: ' + email);
     console.log('password: ' + password);
+    console.log('re enter password: ' + reEnterPassword);
   };
 
-  const onPressSignUpLink = () => {
-    props.navigation.navigate('SignUp');
+  const onPressLogInLink = () => {
+    props.navigation.navigate('Login');
   };
 
   return (
     <View style={styles.container}>
-      <BigTitleText>Login</BigTitleText>
+      <BigTitleText>Sign up</BigTitleText>
+      <Input
+        label="Name"
+        placeholder="Enter your name..."
+        value={name}
+        onChangeText={setName}></Input>
       <Input
         label="Email"
         placeholder="Enter your email..."
@@ -40,12 +50,18 @@ export default function Login(props: ThisProps): JSX.Element {
         secureTextEntry
         value={password}
         onChangeText={setPassword}></Input>
+      <Input
+        label="Re-enter password"
+        placeholder="Re-enter password..."
+        secureTextEntry
+        value={reEnterPassword}
+        onChangeText={setReEnterPassword}></Input>
 
-      <GenericButton onPressItem={onPressButtonLogin}>LOGIN</GenericButton>
+      <GenericButton onPressItem={onPressButtonSignUp}>SIGN UP</GenericButton>
 
       <View style={styles.textContainer}>
-        <GenericText>Didn't have an account, </GenericText>
-        <TextLink onPressItem={onPressSignUpLink}>sign up</TextLink>
+        <GenericText>Already have an account, </GenericText>
+        <TextLink onPressItem={onPressLogInLink}>log in</TextLink>
       </View>
     </View>
   );

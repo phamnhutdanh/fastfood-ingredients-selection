@@ -9,7 +9,7 @@ export default {
   darkBlack: '#33363F',
   mediumBlack: '#2A2C36',
   darkGrey: '#89848D',
-  mediumGrey: '#DEDEDE',
-  lightGrey: '#909090',
+  lightGrey: '#DEDEDE',
+  mediumGrey: '#909090',
   darkBlue: '#0D1282',
 };

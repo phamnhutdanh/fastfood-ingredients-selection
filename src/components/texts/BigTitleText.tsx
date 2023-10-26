@@ -15,7 +15,7 @@ export function BigTitleText(props: ThisProps): JSX.Element {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 36,
+    fontSize: 32,
     fontWeight: 'bold',
   },
 });

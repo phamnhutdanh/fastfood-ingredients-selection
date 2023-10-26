@@ -24,7 +24,7 @@ export const theme = createTheme({
     Input: {
       style: {},
       containerStyle: {
-        backgroundColor: colors.mediumGrey,
+        backgroundColor: colors.lightGrey,
         paddingHorizontal: 20,
         paddingTop: 4,
         borderRadius: 20,
@@ -39,7 +39,7 @@ export const theme = createTheme({
       },
       labelStyle: {
         fontWeight: 'normal',
-        color: colors.lightGrey,
+        color: colors.mediumGrey,
         fontSize: 12,
       },
       placeholderTextColor: colors.darkGrey,
@@ -47,7 +47,7 @@ export const theme = createTheme({
     },
     Tab: {
       indicatorStyle: {
-        backgroundColor: colors.secondary,
+        backgroundColor: colors.primary,
         height: 3,
       },
       buttonStyle: {
@@ -58,7 +58,7 @@ export const theme = createTheme({
     TabItem: {
       titleStyle: active => ({
         fontSize: 12,
-        color: active ? colors.secondary : colors.lightGrey,
+        color: active ? colors.primary : colors.darkBlack,
         fontWeight: 'normal',
       }),
     },
