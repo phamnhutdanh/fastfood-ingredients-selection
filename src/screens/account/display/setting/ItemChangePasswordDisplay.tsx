@@ -1,4 +1,4 @@
-import GenericSettingItem from '../generics/GenericSettingItem';
+import GenericSettingItem from '../../generics/GenericSettingItem';
 
 type ThisProps = {
   navigation: any;

@@ -1,8 +1,8 @@
 import {ScrollView, StyleSheet} from 'react-native';
-import BasicInfoDisplay from './display/BasicInfoDisplay';
+import BasicInfoDisplay from './display/basic_info/BasicInfoDisplay';
 import AvatarDisplay from './display/AvatarDisplay';
 import MyFavoriteDisplay from './display/MyFavoriteDisplay';
-import SettingDisplay from './display/SettingDisplay';
+import SettingDisplay from './display/setting/SettingDisplay';
 
 const avatarUri =
   'https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg';
@@ -48,7 +48,7 @@ export default function AccountScreen(props: ThisProps): JSX.Element {
     <ScrollView
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.container}>
-      <AvatarDisplay avatarUri={avatarUri} />
+      <AvatarDisplay avatarUri={avatarUri} name={'Smurf'} />
       <BasicInfoDisplay
         gender={'other'}
         birthday={'01/01/2000'}

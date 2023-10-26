@@ -1,4 +1,4 @@
-import GenericBasicInfoItem from '../generics/GenericBasicInfoItem';
+import GenericBasicInfoItem from '../../generics/GenericBasicInfoItem';
 
 type ThisProps = {
   address: string;

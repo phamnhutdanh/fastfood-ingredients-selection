@@ -1,10 +1,10 @@
 import {StyleSheet, View} from 'react-native';
-import {ItemSectionText} from '../../../components/texts/ItemSectionText';
+import {ItemSectionText} from '../../../../components/texts/ItemSectionText';
 import ItemGenderDisplay from './ItemGenderDisplay';
 import ItemBirthdayDisplay from './ItemBirthdayDisplay';
 import ItemPhoneDisplay from './ItemPhoneDisplay';
 import ItemAddressDisplay from './ItemAddressDisplay';
-import colors from '../../../styles/colors';
+import colors from '../../../../styles/colors';
 
 type ThisProps = {
   gender: string;

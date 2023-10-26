@@ -1,6 +1,6 @@
 import {StyleSheet, View} from 'react-native';
 
-import colors from '../../../styles/colors';
+import colors from '../../../../styles/colors';
 import ItemEditAccountDisplay from './ItemEditAccountDisplay';
 import ItemChangePasswordDisplay from './ItemChangePasswordDisplay';
 import ItemLogoutDisplay from './ItemLogoutDisplay';
