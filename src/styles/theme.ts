@@ -3,10 +3,10 @@ import colors from './colors';
 
 export const theme = createTheme({
   lightColors: {
-    primary: '#899656',
+    primary: '#fff',
   },
   darkColors: {
-    primary: '#344512',
+    primary: '#000',
   },
   mode: 'light',
   components: {

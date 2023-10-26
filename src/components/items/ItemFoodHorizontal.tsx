@@ -7,9 +7,9 @@ import {OnPressItem} from '../../types/GenericType';
 import {pressableRippleConfig} from '../../styles/pressable_config';
 import {PriceText} from '../texts/PriceText';
 import AddButton from '../buttons/AddButton';
-import {ItemFoodForHorizontalList} from '../../types/ItemType';
+import {FoodListItemType} from '../../types/ItemType';
 
-type ThisProps = ItemFoodForHorizontalList & {
+type ThisProps = FoodListItemType & {
   onPressAddButton: OnPressItem;
 };
 
@@ -21,8 +21,9 @@ export default function ItemFoodHorizontal(props: ThisProps): JSX.Element {
       onPress={props.onPressItem}>
       <ItemImageFood
         imageUri={props.imageUri ? props.imageUri : ''}
-        imageWidth={180}
+        imageWidth={150}
         imageHeight={150}
+        ratingScore={props.rating}
       />
 
       <View style={styles.info_container}>

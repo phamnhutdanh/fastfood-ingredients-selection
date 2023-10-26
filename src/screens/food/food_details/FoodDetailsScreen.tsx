@@ -1,10 +1,18 @@
 import {Text} from '@rneui/themed';
 import {View} from 'react-native';
 
-export default function FoodDetailsScreen(): JSX.Element {
+type ThisProps = {
+  navigation: any;
+  route: any;
+};
+
+export default function FoodDetailsScreen(props: ThisProps): JSX.Element {
+  const {id, foodName} = props.route.params;
   return (
     <View>
-      <Text>FoodDetailsScreen</Text>
+      <Text>
+        FoodDetailsScreen {id} - {foodName}
+      </Text>
     </View>
   );
 }

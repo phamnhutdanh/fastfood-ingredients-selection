@@ -1,6 +1,6 @@
 import {ColorValue, StyleProp, ViewStyle} from 'react-native';
 
-export type OnPressItem = (item: any) => void;
+export type OnPressItem = (item: any | null) => void;
 
 export type ItemComponent =
   | React.ReactNode

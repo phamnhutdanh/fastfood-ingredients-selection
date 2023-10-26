@@ -12,6 +12,7 @@ export default function ItemOrder(props: ThisProps): JSX.Element {
       vendorName={props.vendorName}
       listFoodTypeData={props.listFoodTypeData}
       enabledAddButton={false}
+      ratingScore={props.ratingScore}
     />
   );
 }

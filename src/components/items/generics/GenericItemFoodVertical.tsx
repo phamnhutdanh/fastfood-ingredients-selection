@@ -5,10 +5,11 @@ import colors from '../../../styles/colors';
 import ItemImageFood from '../ItemImageFood';
 import {pressableRippleConfig} from '../../../styles/pressable_config';
 import {PriceText} from '../../texts/PriceText';
-import {ItemFoodForVerticalList} from '../../../types/ItemType';
-import {ItemComponent} from '../../../types/GenericType';
 
-type ThisProps = ItemFoodForVerticalList & {
+import {ItemComponent} from '../../../types/GenericType';
+import {FoodListItemType} from '../../../types/ItemType';
+
+type ThisProps = FoodListItemType & {
   buttonRight: ItemComponent | any;
 };
 
@@ -22,6 +23,7 @@ export default function GenericItemFoodVertical(props: ThisProps): JSX.Element {
         imageUri={props.imageUri ? props.imageUri : ''}
         imageWidth={120}
         imageHeight={120}
+        ratingScore={props.rating}
       />
       <View style={styles.info_container}>
         <ItemTitleText>{props.foodName}</ItemTitleText>

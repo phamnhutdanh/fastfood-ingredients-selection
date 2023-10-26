@@ -11,6 +11,7 @@ type ThisProps = {
   imageWidth?: number;
   imageHeight?: number;
   imageUri: string;
+  ratingScore: number;
 };
 
 export default function ItemImageFood(props: ThisProps): JSX.Element {
@@ -29,7 +30,7 @@ export default function ItemImageFood(props: ThisProps): JSX.Element {
           type="antdesign"
           name="star"
         />
-        <ItemScoreText>4.5</ItemScoreText>
+        <ItemScoreText>{props.ratingScore}</ItemScoreText>
       </View>
     </Image>
   );

@@ -26,6 +26,11 @@ export default function GenericFlatList(props: ThisProps): JSX.Element {
           ? props.showsVerticalScrollIndicator
           : false
       }
+      showsHorizontalScrollIndicator={
+        props.showsHorizontalScrollIndicator
+          ? props.showsHorizontalScrollIndicator
+          : false
+      }
       contentContainerStyle={[styles.container, props.contentContainerStyle]}
       // numColumns={3}
       // columnWrapperStyle={styles.row}

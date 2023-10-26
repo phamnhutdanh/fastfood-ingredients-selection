@@ -34,6 +34,7 @@ export default function GenericItemFoodOrderContainer(
           imageUri={props.imageUri}
           imageWidth={90}
           imageHeight={90}
+          ratingScore={props.ratingScore}
         />
         <View style={styles.main_info}>
           <ItemTitleText>{props.foodName}</ItemTitleText>

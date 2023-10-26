@@ -12,6 +12,7 @@ export default function ItemCart(props: ThisProps): JSX.Element {
       vendorName={props.vendorName}
       listFoodTypeData={props.listFoodTypeData}
       enabledAddButton={true}
+      ratingScore={props.ratingScore}
     />
   );
 }

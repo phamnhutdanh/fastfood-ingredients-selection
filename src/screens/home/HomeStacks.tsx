@@ -4,6 +4,7 @@ import VendorDetailsScreen from '../vendor/vendor_details/VendorDetailsScreen';
 import AccountScreen from '../account/AccountScreen';
 import HomeScreen from './HomeScreen';
 import SearchScreen from '../search/SearchScreen';
+import colors from '../../styles/colors';
 
 type HomeStackParams = {
   HomeScreen: undefined;
@@ -19,7 +20,12 @@ export default function HomeStacks(): JSX.Element {
   return (
     <HomeNavigators.Navigator
       initialRouteName="HomeScreen"
-      screenOptions={{headerShown: false}}>
+      screenOptions={{
+        headerShown: false,
+        contentStyle: {
+          backgroundColor: colors.white,
+        },
+      }}>
       <HomeNavigators.Screen name="HomeScreen" component={HomeScreen} />
       <HomeNavigators.Screen
         name="FoodDetailsScreen"
