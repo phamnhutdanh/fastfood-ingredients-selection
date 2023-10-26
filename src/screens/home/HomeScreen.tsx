@@ -1,4 +1,4 @@
-import {StyleSheet, View} from 'react-native';
+import {Pressable, StyleSheet, View} from 'react-native';
 import {BigTitleText} from '../../components/texts/BigTitleText';
 import {Avatar} from '@rneui/themed';
 import {SearchBarButton} from '../../components/buttons/SearchBarButton';
@@ -8,6 +8,7 @@ import ItemFoodVertical from '../../components/items/ItemFoodVertical';
 import {FoodListItemType} from '../../types/ItemType';
 import {useCallback} from 'react';
 import ItemFoodHorizontal from '../../components/items/ItemFoodHorizontal';
+import {pressableRippleConfig} from '../../styles/pressable_config';
 
 const avatarUri =
   'https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg';
@@ -56,6 +57,14 @@ export default function HomeScreen(props: ThisProps): JSX.Element {
     });
   };
 
+  const navigateToSearchScreen = () => {
+    props.navigation.navigate('SearchScreen');
+  };
+
+  const navigateToAccountScreen = () => {
+    props.navigation.navigate('AccountScreen');
+  };
+
   const memorizedValueHorizontalList = useCallback(
     ({item}: {item: FoodListItemType}) => (
       <ItemFoodHorizontal
@@ -97,9 +106,13 @@ export default function HomeScreen(props: ThisProps): JSX.Element {
         <View style={styles.headingContainer}>
           <View style={styles.titleContainer}>
             <BigTitleText>Welcome!!!</BigTitleText>
-            <Avatar source={{uri: avatarUri}} size={48} rounded />
+            <Pressable
+              android_ripple={pressableRippleConfig}
+              onPress={navigateToAccountScreen}>
+              <Avatar source={{uri: avatarUri}} size={48} rounded />
+            </Pressable>
           </View>
-          <SearchBarButton onPressItem={() => console.log('navigation')} />
+          <SearchBarButton onPressItem={navigateToSearchScreen} />
 
           {/* TODO: List food by type  */}
 
