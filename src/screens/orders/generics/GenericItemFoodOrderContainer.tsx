@@ -1,4 +1,4 @@
-import {StyleSheet, View} from 'react-native';
+import {Pressable, StyleSheet, View} from 'react-native';
 import ItemImageFood from '../../../components/items/ItemImageFood';
 import {ItemTitleText} from '../../../components/texts/ItemTitleText';
 import {ItemSubtitleText} from '../../../components/texts/ItemSubtitleText';
@@ -7,9 +7,12 @@ import GenericFlatList from '../../../components/displays/generics/GenericFlatLi
 import {useCallback} from 'react';
 import {ItemOrderInfoType, ItemOrderSizeType} from '../../../types/ItemType';
 import GenericItemSizePriceQuantityOrder from './GenericItemSizePriceQuantityOrder';
+import {pressableRippleConfig} from '../../../styles/pressable_config';
+import {OnPressItem} from '../../../types/GenericType';
 
 type ThisProps = ItemOrderInfoType & {
   enabledAddButton: boolean;
+  onPressItem: OnPressItem;
 };
 
 export default function GenericItemFoodOrderContainer(
@@ -28,7 +31,10 @@ export default function GenericItemFoodOrderContainer(
   );
 
   return (
-    <View style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPress={props.onPressItem}
+      android_ripple={pressableRippleConfig}>
       <View style={styles.info_container}>
         <ItemImageFood
           imageUri={props.imageUri}
@@ -45,8 +51,9 @@ export default function GenericItemFoodOrderContainer(
       <GenericFlatList
         data={props.listSizeData}
         renderItem={memoizedValueListSize}
+        style={styles.size}
       />
-    </View>
+    </Pressable>
   );
 }
 
@@ -60,4 +67,7 @@ const styles = StyleSheet.create({
   },
   info_container: {flexDirection: 'row', gap: 20},
   main_info: {flexDirection: 'column', gap: 4},
+  size: {
+    gap: 12,
+  },
 });

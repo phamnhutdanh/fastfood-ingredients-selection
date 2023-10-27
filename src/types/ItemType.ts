@@ -8,6 +8,7 @@ export type ItemOrderSizeType = {
 };
 
 export type ItemOrderInfoType = {
+  id: number;
   listSizeData: ArrayLike<ItemOrderSizeType>;
   imageUri: string;
   foodName: string;

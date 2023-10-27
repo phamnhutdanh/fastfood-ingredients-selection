@@ -1,10 +1,10 @@
 import {Text} from '@rneui/themed';
 import {View} from 'react-native';
 
-export default function Cart(): JSX.Element {
+export default function OrderHistory(): JSX.Element {
   return (
     <View>
-      <Text>Cart Screen</Text>
+      <Text>Orders Screen</Text>
     </View>
   );
 }

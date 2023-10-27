@@ -34,7 +34,7 @@ const listTypes = [
 ];
 
 export default function FoodDetailsScreen(props: ThisProps): JSX.Element {
-  const {id, foodName} = props.route.params;
+  const {foodName} = props.route.params;
   return (
     <View style={{flex: 1}}>
       <Image

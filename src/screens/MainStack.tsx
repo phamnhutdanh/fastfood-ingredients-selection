@@ -2,15 +2,15 @@ import React from 'react';
 import {Icon} from '@rneui/themed';
 import colors from '../styles/colors';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Cart from './cart/Cart';
-import Orders from './orders/Orders';
+import MyOrderHistory from './orders/MyOrderScreen';
 import Notification from './notification/Notification';
 import HomeStacks from './home/HomeStacks';
+import CartStacks from './cart/CartStacks';
 
 type MainTabStackParams = {
   HomeStacks: undefined;
-  Cart: undefined;
-  Orders: undefined;
+  CartStacks: undefined;
+  OrderHistory: undefined;
   Notification: undefined;
 };
 
@@ -28,14 +28,14 @@ export function MainStack(): JSX.Element {
         component={HomeStacks}
       />
       <MainTabStackNavigator.Screen
-        name="Cart"
+        name="CartStacks"
         options={{title: 'Cart'}}
-        component={Cart}
+        component={CartStacks}
       />
       <MainTabStackNavigator.Screen
-        name="Orders"
-        options={{title: 'Orders'}}
-        component={Orders}
+        name="OrderHistory"
+        options={{title: 'OrderHistory'}}
+        component={MyOrderHistory}
       />
       <MainTabStackNavigator.Screen
         name="Notification"
@@ -66,7 +66,7 @@ const MainTabScreenOptions = ({route}: any) => ({
               color={color}
             />
           ));
-    } else if (route.name === 'Cart') {
+    } else if (route.name === 'CartStacks') {
       icon = focused
         ? (icon = (
             <Icon
@@ -84,7 +84,7 @@ const MainTabScreenOptions = ({route}: any) => ({
               color={color}
             />
           ));
-    } else if (route.name === 'Orders') {
+    } else if (route.name === 'OrderHistory') {
       icon = focused
         ? (icon = (
             <Icon type="ionicon" name="newspaper" size={size} color={color} />
