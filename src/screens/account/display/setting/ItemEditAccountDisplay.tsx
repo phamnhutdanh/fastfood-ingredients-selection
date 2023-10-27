@@ -1,4 +1,4 @@
-import GenericSettingItem from '../../generics/GenericSettingItem';
+import GenericTextNavigationDisplay from '../../../../components/texts/generics/GenericTextNavigationDisplay';
 
 type ThisProps = {
   navigation: any;
@@ -9,7 +9,7 @@ export default function ItemEditAccountDisplay(props: ThisProps): JSX.Element {
     props.navigation.navigate('EditAccountScreen');
   };
   return (
-    <GenericSettingItem
+    <GenericTextNavigationDisplay
       settingName={'Edit info'}
       onPressItem={navigateToEditAccountScreen}
     />

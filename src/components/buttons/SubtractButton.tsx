@@ -1,17 +1,18 @@
 import {StyleSheet} from 'react-native';
-import {OnPressItem} from '../../types/GenericType';
+import {ComponentStyle, OnPressItem} from '../../types/GenericType';
 import AddAndSubtractGenericButton from './generics/AddAndSubtractGenericButton';
 import colors from '../../styles/colors';
 
 type ThisProps = {
   onPressItem: OnPressItem;
+  buttonStyle?: ComponentStyle;
 };
 
 export default function SubtractButton(props: ThisProps): JSX.Element {
   return (
     <AddAndSubtractGenericButton
       onPress={props.onPressItem}
-      buttonStyle={styles.buttonStyle}
+      buttonStyle={[styles.buttonStyle, props.buttonStyle]}
       name={'minus'}
       iconSize={12}
       iconColor={colors.darkBlack}

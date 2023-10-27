@@ -1,4 +1,4 @@
-import GenericSettingItem from '../../generics/GenericSettingItem';
+import GenericTextNavigationDisplay from '../../../../components/texts/generics/GenericTextNavigationDisplay';
 
 type ThisProps = {
   navigation: any;
@@ -11,7 +11,7 @@ export default function ItemChangePasswordDisplay(
     props.navigation.navigate('ChangePasswordScreen');
   };
   return (
-    <GenericSettingItem
+    <GenericTextNavigationDisplay
       settingName={'Change password'}
       onPressItem={navigateToChangePasswordScreen}
     />

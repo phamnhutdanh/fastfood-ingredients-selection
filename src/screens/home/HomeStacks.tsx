@@ -36,6 +36,7 @@ export default function HomeStacks(): JSX.Element {
       <HomeNavigators.Screen
         name="FoodDetailsScreen"
         component={FoodDetailsScreen}
+        options={{headerTransparent: true, headerShown: true, headerTitle: ''}}
       />
       <HomeNavigators.Screen
         name="VendorDetailsScreen"
