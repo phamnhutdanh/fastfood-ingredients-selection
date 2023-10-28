@@ -2,15 +2,15 @@ import React from 'react';
 import {Icon} from '@rneui/themed';
 import colors from '../styles/colors';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import MyOrderHistory from './orders/MyOrderScreen';
 import Notification from './notification/Notification';
 import HomeStacks from './home/HomeStacks';
 import CartStacks from './cart/CartStacks';
+import OrderHistoryScreen from './orders/OrderHistoryScreen';
 
 type MainTabStackParams = {
   HomeStacks: undefined;
   CartStacks: undefined;
-  OrderHistory: undefined;
+  OrderHistoryScreen: undefined;
   Notification: undefined;
 };
 
@@ -33,9 +33,9 @@ export function MainStack(): JSX.Element {
         component={CartStacks}
       />
       <MainTabStackNavigator.Screen
-        name="OrderHistory"
+        name="OrderHistoryScreen"
         options={{title: 'OrderHistory'}}
-        component={MyOrderHistory}
+        component={OrderHistoryScreen}
       />
       <MainTabStackNavigator.Screen
         name="Notification"
@@ -84,7 +84,7 @@ const MainTabScreenOptions = ({route}: any) => ({
               color={color}
             />
           ));
-    } else if (route.name === 'OrderHistory') {
+    } else if (route.name === 'OrderHistoryScreen') {
       icon = focused
         ? (icon = (
             <Icon type="ionicon" name="newspaper" size={size} color={color} />
