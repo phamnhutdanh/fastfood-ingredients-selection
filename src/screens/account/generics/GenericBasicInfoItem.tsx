@@ -21,8 +21,8 @@ export default function GenericBasicInfoItem(props: ThisProps): JSX.Element {
         color={colors.darkBlack}
       />
       <View style={styles.text}>
-        <ItemSubtitleText>{props.label}</ItemSubtitleText>
-        <ItemTitleText>{props.value}</ItemTitleText>
+        <ItemTitleText>{props.label}</ItemTitleText>
+        <ItemSubtitleText>{props.value}</ItemSubtitleText>
       </View>
     </View>
   );
