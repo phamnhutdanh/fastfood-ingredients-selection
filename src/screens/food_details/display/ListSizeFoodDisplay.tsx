@@ -1,5 +1,4 @@
-import {StyleSheet, View} from 'react-native';
-import {SectionText} from '../../../components/texts/SectionText';
+import {StyleSheet} from 'react-native';
 import GenericFlatList from '../../../components/displays/generics/GenericFlatList';
 import {ItemFoodSizeName} from '../../../types/ItemType';
 import {GenericText} from '../../../components/texts/generics/GenericText';
@@ -15,16 +14,13 @@ export default function ListSizeFoodDisplay(props: ThisProps): JSX.Element {
   );
 
   return (
-    <View>
-      <SectionText>Size</SectionText>
-      <GenericFlatList
-        data={props.data}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.contentContainer}
-        renderItem={memorizedValue}
-      />
-    </View>
+    <GenericFlatList
+      data={props.data}
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={styles.contentContainer}
+      renderItem={memorizedValue}
+    />
   );
 }
 

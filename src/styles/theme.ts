@@ -28,6 +28,7 @@ export const theme = createTheme({
         paddingHorizontal: 20,
         paddingTop: 4,
         borderRadius: 20,
+        flex: 1,
       },
       errorStyle: {},
       inputContainerStyle: {

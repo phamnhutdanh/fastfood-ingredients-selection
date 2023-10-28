@@ -85,7 +85,14 @@ export default function HomeStacks(): JSX.Element {
           headerTitle: 'Change password',
         }}
       />
-      <HomeNavigators.Screen name="SearchScreen" component={SearchScreen} />
+      <HomeNavigators.Screen
+        name="SearchScreen"
+        component={SearchScreen}
+        options={{
+          headerShown: true,
+          title: 'Searching',
+        }}
+      />
     </HomeNavigators.Navigator>
   );
 }

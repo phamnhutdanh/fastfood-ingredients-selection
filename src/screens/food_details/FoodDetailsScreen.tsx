@@ -71,7 +71,9 @@ export default function FoodDetailsScreen(props: ThisProps): JSX.Element {
           setAmount={setAmount}
         />
         <ItemVendorDisplay navigation={props.navigation} />
+        <SectionText>Size</SectionText>
         <ListSizeFoodDisplay data={listSizes} />
+        <SectionText>Type</SectionText>
         <ListTypeFoodDisplay data={listTypes} />
 
         <SectionText>Description</SectionText>
