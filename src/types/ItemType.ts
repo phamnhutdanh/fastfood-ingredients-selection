@@ -14,7 +14,7 @@ export type ItemOrderInfoType = {
   foodName: string;
   vendorName: string;
   ratingScore: number;
-  listFoodTypeData: ArrayLike<any>;
+  listFoodTypeData: ArrayLike<ItemFoodTypeName>;
 };
 
 export type FoodListItemType = {
@@ -25,4 +25,14 @@ export type FoodListItemType = {
   priceValue: number;
   onPressItem: OnPressItem;
   rating: number;
+};
+
+export type ItemFoodTypeName = {
+  id: number;
+  type: string;
+};
+
+export type ItemFoodSizeName = {
+  id: number;
+  size: string;
 };

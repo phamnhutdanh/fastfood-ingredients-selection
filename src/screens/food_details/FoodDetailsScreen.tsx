@@ -1,14 +1,15 @@
-import {Button, Image} from '@rneui/themed';
-import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
+import {Button} from '@rneui/themed';
+import {ScrollView, StyleSheet} from 'react-native';
 import {SectionText} from '../../components/texts/SectionText';
-import {PriceText} from '../../components/texts/PriceText';
-import SubtractButton from '../../components/buttons/SubtractButton';
-import AddButton from '../../components/buttons/AddButton';
 import {GenericText} from '../../components/texts/generics/GenericText';
 import colors from '../../styles/colors';
-import FavoriteButton from '../../components/buttons/FavoriteButton';
-import GenericTextNavigationDisplay from '../../components/texts/generics/GenericTextNavigationDisplay';
-import GenericFlatList from '../../components/displays/generics/GenericFlatList';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {useState} from 'react';
+import ImageFoodDetailsDisplay from './display/ImageFoodDetailsDisplay';
+import PriceAndAmountDisplay from './display/PriceAndAmountDisplay';
+import ItemVendorDisplay from './display/ItemVendorDisplay';
+import ListSizeFoodDisplay from './display/ListSizeFoodDisplay';
+import ListTypeFoodDisplay from './display/ListTypeFoodDisplay';
 
 type ThisProps = {
   navigation: any;
@@ -33,106 +34,68 @@ const listTypes = [
   {id: 3, type: 'Hamburger'},
 ];
 
+const description =
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+
 export default function FoodDetailsScreen(props: ThisProps): JSX.Element {
   const {foodName} = props.route.params;
+  const [amount, setAmount] = useState(1);
+  const [isFavorite, setFavorite] = useState<boolean>(true);
+
+  const addToFavoriteFood = () => {
+    console.log('CALL API: add to favorite 3');
+    setFavorite(!isFavorite);
+  };
+
+  const addToCart = () => {
+    console.log('Amount: ', amount);
+  };
+
   return (
-    <View style={{flex: 1}}>
-      <Image
-        source={{uri: imageUri}}
-        containerStyle={{
-          width: '100%',
-          height: 240,
-          alignItems: 'flex-end',
-          paddingEnd: 12,
-          paddingTop: 12,
-        }}
-        PlaceholderContent={<ActivityIndicator />}>
-        <FavoriteButton onPressItem={() => {}} />
-      </Image>
+    <SafeAreaView style={{flex: 1}}>
+      <ImageFoodDetailsDisplay
+        isFavorite={isFavorite}
+        imageUri={imageUri}
+        onPressFavoriteButton={addToFavoriteFood}
+      />
 
       <ScrollView
-        style={{
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-          backgroundColor: colors.white,
-          marginTop: -20,
-          flex: 1,
-        }}
-        contentContainerStyle={{
-          gap: 12,
-          paddingVertical: 32,
-          paddingHorizontal: 28,
-        }}
+        style={styles.mainInfoContainer}
+        contentContainerStyle={styles.contentContainer}
         showsVerticalScrollIndicator={false}
         scrollEnabled={true}>
         <SectionText>Name</SectionText>
-        <View style={{flexDirection: 'row'}}>
-          <PriceText containerStyle={{flex: 1}} priceValue={30000} />
-          <View style={{flexDirection: 'row', gap: 12}}>
-            <SubtractButton
-              buttonStyle={{backgroundColor: colors.lightGrey}}
-              onPressItem={() => {}}
-            />
-            <GenericText>1</GenericText>
-            <AddButton onPressItem={() => {}} />
-          </View>
-        </View>
-        <GenericTextNavigationDisplay
-          settingName={'Vendor'}
-          onPressItem={() => {}}
+        <PriceAndAmountDisplay
+          price={20100}
+          amount={amount}
+          setAmount={setAmount}
         />
-        <SectionText>Size</SectionText>
-        <GenericFlatList
-          data={listSizes}
-          horizontal
-          // style={{}}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{gap: 12}}
-          renderItem={({item}: {item: any}) => (
-            <GenericText
-              style={{
-                backgroundColor: colors.lightGrey,
-                borderRadius: 12,
-                paddingVertical: 4,
-                paddingHorizontal: 20,
-              }}>
-              {item.size}
-            </GenericText>
-          )}
-        />
-        <SectionText>Type</SectionText>
-        <GenericFlatList
-          data={listTypes}
-          horizontal
-          // style={{}}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{gap: 12}}
-          renderItem={({item}: {item: any}) => (
-            <GenericText
-              style={{
-                backgroundColor: colors.lightGrey,
-                borderRadius: 12,
-                paddingVertical: 4,
-                paddingHorizontal: 20,
-              }}>
-              {item.type}
-            </GenericText>
-          )}
-        />
+        <ItemVendorDisplay navigation={props.navigation} />
+        <ListSizeFoodDisplay data={listSizes} />
+        <ListTypeFoodDisplay data={listTypes} />
+
         <SectionText>Description</SectionText>
-        <GenericText>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </GenericText>
-        <Button buttonStyle={{paddingVertical: 12}}>ADD TO CART</Button>
+        <GenericText>{description}</GenericText>
+        <Button buttonStyle={styles.buttonAddToCart} onPress={addToCart}>
+          ADD TO CART
+        </Button>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  mainInfoContainer: {
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    backgroundColor: colors.white,
+    marginTop: -20,
+    flex: 1,
+  },
+  contentContainer: {
+    gap: 12,
+    paddingVertical: 32,
+    paddingHorizontal: 28,
+  },
+  buttonAddToCart: {paddingVertical: 12},
+});

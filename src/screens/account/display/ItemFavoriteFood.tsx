@@ -17,7 +17,10 @@ export default function ItemFavoriteFood(props: ThisProps): JSX.Element {
       priceValue={props.priceValue}
       onPressItem={props.onPressItem}
       buttonRight={
-        <FavoriteButton onPressItem={() => props.onPressFavoriteButton} />
+        <FavoriteButton
+          isFavorite={true}
+          onPressItem={() => props.onPressFavoriteButton}
+        />
       }
       id={props.id}
       rating={props.rating}
