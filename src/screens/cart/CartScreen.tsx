@@ -1,5 +1,5 @@
 import {Button} from '@rneui/themed';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {SectionText} from '../../components/texts/SectionText';
 import {TextLink} from '../../components/texts/TextLink';
 import CartListFood from './display/CartListFood';
@@ -84,21 +84,34 @@ type ThisProps = {
 
 export default function CartScreen(props: ThisProps): JSX.Element {
   return (
-    <View
-      style={{flex: 1, paddingHorizontal: 20, paddingVertical: 12, gap: 12}}>
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+    <View style={styles.container}>
+      <View style={styles.title}>
         <SectionText>All food</SectionText>
         <TextLink>Delete all</TextLink>
       </View>
 
       <CartListFood data={listOrder} navigation={props.navigation} />
 
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+      <View style={styles.title}>
         <SectionText>Total</SectionText>
         <PriceText priceValue={100000} />
       </View>
 
-      <Button buttonStyle={{paddingVertical: 12}}>ORDER</Button>
+      <Button buttonStyle={styles.buttonOrder}>ORDER</Button>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    gap: 12,
+  },
+  title: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  buttonOrder: {paddingVertical: 12},
+});
