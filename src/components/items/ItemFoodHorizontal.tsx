@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 12,
+    flex: 1,
   },
   info_container: {
     width: '100%',
