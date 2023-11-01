@@ -84,8 +84,14 @@ export default function SearchScreen(props: ThisProps): JSX.Element {
           <ListTypeFoodDisplay data={listTypes} />
           <SectionText>Price range</SectionText>
           <View style={styles.minMaxContainer}>
-            <Input label="Min" placeholder="Min price"></Input>
-            <Input label="Max" placeholder="Max price"></Input>
+            <Input
+              containerStyle={styles.input}
+              label="Min"
+              placeholder="Min price"></Input>
+            <Input
+              containerStyle={styles.input}
+              label="Max"
+              placeholder="Max price"></Input>
           </View>
 
           <SectionText>Result</SectionText>
@@ -107,5 +113,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     gap: 12,
+  },
+  input: {
+    flex: 1,
   },
 });
