@@ -7,6 +7,7 @@ import {theme} from './styles/theme';
 import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import {MainStack} from './screens/MainStack';
+import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
 
 type RootStackParams = {
   LoginScreen: undefined;
@@ -15,25 +16,35 @@ type RootStackParams = {
 };
 const RootStackNavigator = createNativeStackNavigator<RootStackParams>();
 
+const client = new ApolloClient({
+  uri: 'https://fast-food-app-server-3f49c46d8b64.herokuapp.com',
+  cache: new InMemoryCache(),
+});
+
 export default function App(): JSX.Element {
   return (
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
-        <NavigationContainer>
-          <RootStackNavigator.Navigator
-            initialRouteName="MainStack"
-            screenOptions={{headerShown: false}}>
-            <RootStackNavigator.Screen
-              name="LoginScreen"
-              component={LoginScreen}
-            />
-            <RootStackNavigator.Screen
-              name="SignUpScreen"
-              component={SignUpScreen}
-            />
-            <RootStackNavigator.Screen name="MainStack" component={MainStack} />
-          </RootStackNavigator.Navigator>
-        </NavigationContainer>
+        <ApolloProvider client={client}>
+          <NavigationContainer>
+            <RootStackNavigator.Navigator
+              initialRouteName="MainStack"
+              screenOptions={{headerShown: false}}>
+              <RootStackNavigator.Screen
+                name="LoginScreen"
+                component={LoginScreen}
+              />
+              <RootStackNavigator.Screen
+                name="SignUpScreen"
+                component={SignUpScreen}
+              />
+              <RootStackNavigator.Screen
+                name="MainStack"
+                component={MainStack}
+              />
+            </RootStackNavigator.Navigator>
+          </NavigationContainer>
+        </ApolloProvider>
       </ThemeProvider>
     </SafeAreaProvider>
   );

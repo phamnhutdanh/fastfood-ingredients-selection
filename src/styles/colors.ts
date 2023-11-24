@@ -12,4 +12,5 @@ export default {
   lightGrey: '#DEDEDE',
   mediumGrey: '#909090',
   darkBlue: '#0D1282',
+  red: '#ED1C24',
 };

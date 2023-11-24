@@ -1,11 +1,14 @@
 import {Input} from '@rneui/themed';
-import {View} from 'react-native';
+import {ActivityIndicator, View} from 'react-native';
 import {BigTitleText} from '../components/texts/BigTitleText';
 import {GenericText} from '../components/texts/generics/GenericText';
 import {TextLink} from '../components/texts/TextLink';
 import {StyleSheet} from 'react-native';
 import {useState} from 'react';
 import GenericButton from '../components/buttons/generics/GenericButton';
+import {ErrorMessageText} from '../components/texts/ErrorMessageText';
+import {signInWithEmailAndPassword} from 'firebase/auth';
+import {FIREBASE_AUTH} from '../auth/firebaseConfig';
 
 type ThisProps = {
   navigation: any;
@@ -15,11 +18,34 @@ type ThisProps = {
 export default function LoginScreen(props: ThisProps): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [displayError, setDisplayError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   /** @TODO login with email, password */
-  const onPressButtonLogin = () => {
-    console.log('email: ' + email);
-    console.log('password: ' + password);
+  const onPressButtonLogin = async () => {
+    if (email.length < 1 || password.length < 1) {
+      setErrorMessage('Fields cannot be empty!');
+      setIsLoading(false);
+      return setDisplayError(true);
+    }
+
+    setIsLoading(true);
+    const auth = FIREBASE_AUTH;
+    try {
+      await signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          props.navigation.navigate('MainStack');
+          setDisplayError(false);
+        })
+        .catch(error => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(`${errorCode} ${errorMessage}`);
+        });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const onPressSignUpLink = () => {
@@ -41,7 +67,17 @@ export default function LoginScreen(props: ThisProps): JSX.Element {
         value={password}
         onChangeText={setPassword}></Input>
 
-      <GenericButton onPressItem={onPressButtonLogin}>LOGIN</GenericButton>
+      {displayError && (
+        <ErrorMessageText style={{alignSelf: 'flex-start'}}>
+          {errorMessage}
+        </ErrorMessageText>
+      )}
+
+      {isLoading ? (
+        <ActivityIndicator size={'large'} />
+      ) : (
+        <GenericButton onPressItem={onPressButtonLogin}>LOGIN</GenericButton>
+      )}
 
       <View style={styles.textContainer}>
         <GenericText>Didn't have an account, </GenericText>
