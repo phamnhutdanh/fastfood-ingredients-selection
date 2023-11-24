@@ -3,6 +3,9 @@ import BasicInfoDisplay from './display/basic_info/BasicInfoDisplay';
 import AvatarDisplay from './display/AvatarDisplay';
 import MyFavoriteDisplay from './display/MyFavoriteDisplay';
 import SettingDisplay from './display/setting/SettingDisplay';
+import {useEffect, useState} from 'react';
+import {FIREBASE_AUTH} from '../../auth/firebaseConfig';
+import {onAuthStateChanged} from 'firebase/auth';
 
 const avatarUri =
   'https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg';
@@ -44,11 +47,25 @@ type ThisProps = {
 };
 
 export default function AccountScreen(props: ThisProps): JSX.Element {
+  //const [authServiceInitialized, setAuthServiceInitialized] = useState(false);
+  const [name, setName] = useState('Smurf cat');
+  // useEffect(() => {
+  //   const auth = FIREBASE_AUTH;
+  //   onAuthStateChanged(auth, user => {
+  //     setAuthServiceInitialized(true);
+  //     if (user) {
+  //       setName(user.uid);
+  //     } else {
+  //       props.navigation.navigate('LoginScreen');
+  //     }
+  //   });
+  // });
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.container}>
-      <AvatarDisplay avatarUri={avatarUri} name={'Smurf'} />
+      <AvatarDisplay avatarUri={avatarUri} name={name} />
       <BasicInfoDisplay
         gender={'other'}
         birthday={'01/01/2000'}
