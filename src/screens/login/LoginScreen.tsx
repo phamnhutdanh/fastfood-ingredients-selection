@@ -1,4 +1,3 @@
-import {Icon, Input} from '@rneui/themed';
 import {ActivityIndicator, StatusBar, View} from 'react-native';
 import {GenericText} from '../../components/texts/generics/GenericText';
 import {TextLink} from '../../components/texts/TextLink';
@@ -11,6 +10,8 @@ import {FIREBASE_AUTH} from '../../auth/firebaseConfig';
 import colors from '../../styles/colors';
 import Separator from '../../components/displays/Separator';
 import IntroductionLogin from './display/IntroductionLogin';
+import EmailTextInput from '../../components/inputs/EmailTextInput';
+import PasswordTextInput from '../../components/inputs/PasswordTextInput';
 
 type ThisProps = {
   navigation: any;
@@ -46,6 +47,7 @@ export default function LoginScreen(props: ThisProps): JSX.Element {
         .catch(error => {
           const errorCode = error.code;
           const errorMessage = error.message;
+          setDisplayError(true);
           setErrorMessage(`${errorCode} ${errorMessage}`);
         });
     } finally {
@@ -68,47 +70,11 @@ export default function LoginScreen(props: ThisProps): JSX.Element {
 
       <IntroductionLogin />
 
-      <Input
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        leftIcon={
-          <Icon
-            name="user"
-            size={20}
-            color={colors.lightGrey2}
-            type="feather"
-          />
-        }
-        leftIconContainerStyle={{marginRight: 10}}
-        selectionColor={colors.lightGrey}
-      />
-
-      <Input
-        placeholder="Password"
-        secureTextEntry={isPasswordShow ? false : true}
+      <EmailTextInput value={email} onChangeText={setEmail} />
+      <PasswordTextInput
         value={password}
         onChangeText={setPassword}
-        leftIcon={
-          <Icon
-            name="lock"
-            size={20}
-            color={colors.lightGrey2}
-            type="feather"
-          />
-        }
-        leftIconContainerStyle={{marginRight: 10}}
-        selectionColor={colors.lightGrey}
-        rightIcon={
-          <Icon
-            name={isPasswordShow ? 'eye' : 'eye-off'}
-            size={22}
-            color={colors.lightGrey2}
-            style={{marginRight: 10}}
-            onPress={() => setPasswordShow(!isPasswordShow)}
-            type="feather"
-          />
-        }
+        placeHolder={'Password'}
       />
 
       {displayError && (

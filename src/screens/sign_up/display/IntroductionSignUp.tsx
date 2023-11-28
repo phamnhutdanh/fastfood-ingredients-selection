@@ -2,12 +2,12 @@ import {StyleSheet, View} from 'react-native';
 import {GenericText} from '../../../components/texts/generics/GenericText';
 import {BigTitleText} from '../../../components/texts/BigTitleText';
 
-export default function IntroductionLogin(): JSX.Element {
+export default function IntroductionSignUp(): JSX.Element {
   return (
     <View style={styles.container}>
-      <BigTitleText style={styles.title}>Welcome</BigTitleText>
+      <BigTitleText style={styles.title}>Create Account</BigTitleText>
       <GenericText style={styles.content}>
-        Enter your email and password, and enjoy ordering food
+        Enter your email and password for sign up.
       </GenericText>
     </View>
   );
@@ -19,10 +19,9 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: 40,
-    marginBottom: 8,
+    marginBottom: 16,
   },
   content: {
     marginTop: 0,
-    marginBottom: 20,
   },
 });

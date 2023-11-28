@@ -1,18 +1,19 @@
-import {Input} from '@rneui/themed';
 import {ActivityIndicator, View} from 'react-native';
-import {BigTitleText} from '../components/texts/BigTitleText';
 
-import {GenericText} from '../components/texts/generics/GenericText';
-import {TextLink} from '../components/texts/TextLink';
+import {GenericText} from '../../components/texts/generics/GenericText';
+import {TextLink} from '../../components/texts/TextLink';
 import {StyleSheet} from 'react-native';
 import {useState} from 'react';
-import GenericButton from '../components/buttons/generics/GenericButton';
+import GenericButton from '../../components/buttons/generics/GenericButton';
 
 import {gql, useMutation} from '@apollo/client';
-import {FIREBASE_AUTH} from '../auth/firebaseConfig';
+import {FIREBASE_AUTH} from '../../auth/firebaseConfig';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
 import Snackbar from 'react-native-snackbar';
-import {ErrorMessageText} from '../components/texts/ErrorMessageText';
+import {ErrorMessageText} from '../../components/texts/ErrorMessageText';
+import EmailTextInput from '../../components/inputs/EmailTextInput';
+import PasswordTextInput from '../../components/inputs/PasswordTextInput';
+import IntroductionSignUp from './display/IntroductionSignUp';
 
 type ThisProps = {
   navigation: any;
@@ -39,6 +40,8 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [reEnterPassword, setReEnterPassword] = useState('');
+  const [isPasswordShow, setPasswordShow] = useState(false);
+  const [isRePasswordShow, setRePasswordShow] = useState(false);
   const [displayError, setDisplayError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [createUserAccount, {loading, error, data}] =
@@ -90,26 +93,21 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
 
   return (
     <View style={styles.container}>
-      <BigTitleText>Sign up</BigTitleText>
-      <Input
-        label="Email"
-        placeholder="Enter your email..."
-        value={email}
-        onChangeText={setEmail}
-      />
-      <Input
-        label="Password"
-        placeholder="Enter your password..."
-        secureTextEntry
+      <IntroductionSignUp />
+      <View style={styles.textContainer}>
+        <GenericText>Already have an account, </GenericText>
+        <TextLink onPressItem={onPressLogInLink}>log in</TextLink>
+      </View>
+      <EmailTextInput value={email} onChangeText={setEmail} />
+      <PasswordTextInput
         value={password}
         onChangeText={setPassword}
+        placeHolder="Password"
       />
-      <Input
-        label="Re-enter password"
-        placeholder="Re-enter password..."
-        secureTextEntry
+      <PasswordTextInput
         value={reEnterPassword}
         onChangeText={setReEnterPassword}
+        placeHolder="Re-enter password"
       />
 
       {displayError && (
@@ -121,13 +119,10 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
       {loading ? (
         <ActivityIndicator size={'large'} />
       ) : (
-        <GenericButton onPressItem={onPressButtonSignUp}>SIGN UP</GenericButton>
+        <GenericButton onPressItem={onPressButtonSignUp}>
+          CREATE ACCOUNT
+        </GenericButton>
       )}
-
-      <View style={styles.textContainer}>
-        <GenericText>Already have an account, </GenericText>
-        <TextLink onPressItem={onPressLogInLink}>log in</TextLink>
-      </View>
     </View>
   );
 }
