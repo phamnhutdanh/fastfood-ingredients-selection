@@ -27,24 +27,24 @@ type MainScreenProps = {
 export function MainStack(props: MainScreenProps) {
   const [authServiceInitialized, setAuthServiceInitialized] = useState(false);
 
-  useEffect(() => {
-    const auth = FIREBASE_AUTH;
-    onAuthStateChanged(auth, user => {
-      setAuthServiceInitialized(true);
-      if (user) {
-      } else {
-        props.navigation.navigate('LoginScreen');
-      }
-    });
-  });
+  // useEffect(() => {
+  //   const auth = FIREBASE_AUTH;
+  //   onAuthStateChanged(auth, user => {
+  //     setAuthServiceInitialized(true);
+  //     if (user) {
+  //     } else {
+  //       props.navigation.navigate('LoginScreen');
+  //     }
+  //   });
+  // });
 
-  if (!authServiceInitialized) {
-    return (
-      <View>
-        <ActivityIndicator size={'large'} />
-      </View>
-    );
-  }
+  // if (!authServiceInitialized) {
+  //   return (
+  //     <View>
+  //       <ActivityIndicator size={'large'} />
+  //     </View>
+  //   );
+  // }
   return <MainScreenAfterLogin />;
 }
 

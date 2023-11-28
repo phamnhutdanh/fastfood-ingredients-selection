@@ -4,7 +4,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {ThemeProvider} from '@rneui/themed';
 import {NavigationContainer} from '@react-navigation/native';
 import {theme} from './styles/theme';
-import LoginScreen from './screens/LoginScreen';
+import LoginScreen from './screens/login/LoginScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import {MainStack} from './screens/MainStack';
 import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
@@ -28,7 +28,7 @@ export default function App(): JSX.Element {
         <ApolloProvider client={client}>
           <NavigationContainer>
             <RootStackNavigator.Navigator
-              initialRouteName="MainStack"
+              initialRouteName="LoginScreen"
               screenOptions={{headerShown: false}}>
               <RootStackNavigator.Screen
                 name="LoginScreen"

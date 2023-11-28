@@ -27,7 +27,7 @@ export const theme = createTheme({
         backgroundColor: colors.lightGrey,
         paddingHorizontal: 20,
         paddingTop: 4,
-        borderRadius: 20,
+        borderRadius: 12,
       },
       errorStyle: {},
       inputContainerStyle: {
