@@ -2,8 +2,8 @@ import {StyleSheet, View} from 'react-native';
 import {SectionText} from '../../components/texts/SectionText';
 import HomeHeaderDisplay from './display/HomeHeaderDisplay';
 import HorizontalListFood from '../../components/displays/HorizontalListFood';
-import VerticalListFood from '../../components/displays/VerticalListFood';
 import colors from '../../styles/colors';
+import VerticalListFood from '../../components/displays/VerticalListFood';
 
 const avatarUri =
   'https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg';
@@ -56,13 +56,45 @@ export default function HomeScreen(props: ThisProps): JSX.Element {
             navigation={props.navigation}
             avatarUri={avatarUri}
           />
-          {/* TODO: List food by type  */}
-          <SectionText>Popular fast food</SectionText>
-          <HorizontalListFood
-            data={popularFastFoodList}
-            navigation={props.navigation}
-          />
-          <SectionText>Shop near from you</SectionText>
+
+          <View>
+            {/* moi them gan day 10 product */}
+            <SectionText>Recent</SectionText>
+            <HorizontalListFood
+              data={popularFastFoodList}
+              navigation={props.navigation}
+            />
+          </View>
+
+          <View>
+            {/* xep theo rating 10 product */}
+            <SectionText>Popular</SectionText>
+            <HorizontalListFood
+              data={popularFastFoodList}
+              navigation={props.navigation}
+            />
+          </View>
+
+          <View>
+            {/* xep theo random favourite 10 product */}
+            <SectionText>Favorite</SectionText>
+            <HorizontalListFood
+              data={popularFastFoodList}
+              navigation={props.navigation}
+            />
+          </View>
+
+          <View>
+            {/* xep theo order gan nhat 10 product */}
+            <SectionText>Order Again</SectionText>
+            <HorizontalListFood
+              data={popularFastFoodList}
+              navigation={props.navigation}
+            />
+          </View>
+
+          {/* random 20 product */}
+          <SectionText>Discovery</SectionText>
         </View>
       }
     />
