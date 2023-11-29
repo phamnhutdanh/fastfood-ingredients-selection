@@ -26,10 +26,11 @@ export default function ListTypeFoodDisplay(props: ThisProps): JSX.Element {
 
 const styles = StyleSheet.create({
   mainInfoContainer: {
-    backgroundColor: colors.lightGrey,
+    backgroundColor: colors.third,
     borderRadius: 12,
-    paddingVertical: 8,
-    paddingHorizontal: 20,
+    paddingVertical: 4,
+    paddingHorizontal: 12,
+    color: colors.darkBlack,
   },
   contentContainer: {gap: 12},
 });

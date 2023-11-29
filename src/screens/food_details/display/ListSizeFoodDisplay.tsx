@@ -3,15 +3,45 @@ import GenericFlatList from '../../../components/displays/generics/GenericFlatLi
 import {ItemFoodSizeName} from '../../../types/ItemType';
 import {GenericText} from '../../../components/texts/generics/GenericText';
 import colors from '../../../styles/colors';
+import React, {useCallback, useEffect, useState} from 'react';
+import {Pressable} from 'react-native';
+import {pressableRippleConfig} from '../../../styles/pressable_config';
+import {OnChangeText} from '../../../types/GenericType';
+import fonts from '../../../styles/fonts';
 
 type ThisProps = {
   data: ArrayLike<ItemFoodSizeName>;
+  chosen: number;
+  setChosen: (item: number) => void;
 };
 
 export default function ListSizeFoodDisplay(props: ThisProps): JSX.Element {
-  const memorizedValue = ({item}: {item: any}) => (
-    <GenericText style={styles.mainInfoContainer}>{item.size}</GenericText>
+  const [indexChosen, setIndexChosen] = useState(-1);
+
+  const memorizedValue = useCallback(
+    ({item, index}: {item: any; index: number}) => (
+      <Pressable
+        android_ripple={pressableRippleConfig}
+        onPress={() => onPressItem(item, index)}>
+        <GenericText
+          style={[
+            styles.mainInfoContainer,
+            indexChosen === index ? styles.chosen : {},
+          ]}>
+          {item.size}
+        </GenericText>
+      </Pressable>
+    ),
+    [indexChosen],
   );
+
+  const onPressItem = (item: ItemFoodSizeName, index: number) => {
+    console.log('PRess size');
+    setIndexChosen(index);
+
+    console.log(item);
+    console.log(index);
+  };
 
   return (
     <GenericFlatList
@@ -26,10 +56,16 @@ export default function ListSizeFoodDisplay(props: ThisProps): JSX.Element {
 
 const styles = StyleSheet.create({
   mainInfoContainer: {
-    backgroundColor: colors.lightGrey,
+    backgroundColor: colors.third,
+    color: colors.darkBlack,
     borderRadius: 12,
     paddingVertical: 4,
     paddingHorizontal: 20,
+  },
+  chosen: {
+    backgroundColor: colors.primary,
+    color: colors.white,
+    fontFamily: fonts.POPPINS_SEMI_BOLD,
   },
   contentContainer: {gap: 12},
 });

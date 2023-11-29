@@ -79,7 +79,13 @@ export default function FoodDetailsScreen(props: ThisProps): JSX.Element {
 
         <View>
           <SectionText style={{fontSize: 16}}>Size</SectionText>
-          <ListSizeFoodDisplay data={listSizes} />
+          <ListSizeFoodDisplay
+            chosen={1}
+            data={listSizes}
+            setChosen={function (text: number): void {
+              throw new Error('Function not implemented.');
+            }}
+          />
         </View>
 
         <View>
