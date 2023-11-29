@@ -26,6 +26,6 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   price_value: {
-    color: colors.primary,
+    color: colors.yellowStar,
   },
 });

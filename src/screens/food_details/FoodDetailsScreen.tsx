@@ -1,5 +1,5 @@
 import {Button} from '@rneui/themed';
-import {ScrollView, StyleSheet} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {SectionText} from '../../components/texts/SectionText';
 import {GenericText} from '../../components/texts/generics/GenericText';
 import colors from '../../styles/colors';
@@ -10,6 +10,8 @@ import PriceAndAmountDisplay from './display/PriceAndAmountDisplay';
 import ItemVendorDisplay from './display/ItemVendorDisplay';
 import ListSizeFoodDisplay from './display/ListSizeFoodDisplay';
 import ListTypeFoodDisplay from './display/ListTypeFoodDisplay';
+import {BigTitleText} from '../../components/texts/BigTitleText';
+import RatingText from '../../components/texts/RatingText';
 
 type ThisProps = {
   navigation: any;
@@ -28,7 +30,7 @@ const listSizes = [
   {id: 7, size: '3XL'},
 ];
 
-const listTypes = [
+const listTags = [
   {id: 1, type: 'Vegetables'},
   {id: 2, type: 'Milk'},
   {id: 3, type: 'Hamburger'},
@@ -64,20 +66,37 @@ export default function FoodDetailsScreen(props: ThisProps): JSX.Element {
         contentContainerStyle={styles.contentContainer}
         showsVerticalScrollIndicator={false}
         scrollEnabled={true}>
-        <SectionText>Name</SectionText>
+        <BigTitleText>Name</BigTitleText>
         <PriceAndAmountDisplay
           price={20100}
           amount={amount}
           setAmount={setAmount}
         />
-        <ItemVendorDisplay navigation={props.navigation} />
-        <SectionText>Size</SectionText>
-        <ListSizeFoodDisplay data={listSizes} />
-        <SectionText>Type</SectionText>
-        <ListTypeFoodDisplay data={listTypes} />
+        <ItemVendorDisplay
+          textStyle={{fontSize: 16}}
+          navigation={props.navigation}
+        />
 
-        <SectionText>Description</SectionText>
-        <GenericText>{description}</GenericText>
+        <View>
+          <SectionText style={{fontSize: 16}}>Size</SectionText>
+          <ListSizeFoodDisplay data={listSizes} />
+        </View>
+
+        <View>
+          <SectionText style={{fontSize: 16}}>Tag</SectionText>
+          <ListTypeFoodDisplay data={listTags} />
+        </View>
+
+        <View style={styles.ratings}>
+          <RatingText ratingScore={4.5} size={16} />
+          <GenericText style={{fontSize: 16}}>1000 ratings</GenericText>
+        </View>
+
+        <View>
+          <SectionText style={{fontSize: 16}}>Description</SectionText>
+          <GenericText>{description}</GenericText>
+        </View>
+
         <Button buttonStyle={styles.buttonAddToCart} onPress={addToCart}>
           ADD TO CART
         </Button>
@@ -100,4 +119,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 28,
   },
   buttonAddToCart: {paddingVertical: 12},
+  ratings: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
 });

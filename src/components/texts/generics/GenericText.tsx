@@ -17,7 +17,6 @@ export function GenericText(props: ThisProps): JSX.Element {
 const styles = StyleSheet.create({
   text: {
     fontSize: 16,
-    fontWeight: 'normal',
     color: colors.darkBlack,
     flexWrap: 'wrap',
     fontFamily: fonts.POPPINS_REGULAR,

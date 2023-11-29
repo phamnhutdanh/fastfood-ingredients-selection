@@ -25,7 +25,7 @@ export default function PriceAndAmountDisplay(props: ThisProps): JSX.Element {
 
   return (
     <View style={styles.container}>
-      <PriceText priceValue={props.price} />
+      <PriceText textSize={16} priceValue={props.price} />
       <View style={styles.amount}>
         <SubtractButton
           buttonStyle={styles.subtractButton}

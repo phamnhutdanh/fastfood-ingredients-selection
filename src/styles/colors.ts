@@ -17,4 +17,5 @@ export default {
   facebookBlue: '#4A61A8',
   googleBlue: '#53A0F4',
   red: '#ED1C24',
+  yellow: '#FBA83C',
 };
