@@ -3,16 +3,15 @@ import GenericFlatList from '../../../components/displays/generics/GenericFlatLi
 import {ItemFoodSizeName} from '../../../types/ItemType';
 import {GenericText} from '../../../components/texts/generics/GenericText';
 import colors from '../../../styles/colors';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {Pressable} from 'react-native';
 import {pressableRippleConfig} from '../../../styles/pressable_config';
-import {OnChangeText} from '../../../types/GenericType';
 import fonts from '../../../styles/fonts';
 
 type ThisProps = {
   data: ArrayLike<ItemFoodSizeName>;
-  chosen: number;
-  setChosen: (item: number) => void;
+  chosen: string;
+  setChosen: (item: string) => void;
 };
 
 export default function ListSizeFoodDisplay(props: ThisProps): JSX.Element {
@@ -36,11 +35,8 @@ export default function ListSizeFoodDisplay(props: ThisProps): JSX.Element {
   );
 
   const onPressItem = (item: ItemFoodSizeName, index: number) => {
-    console.log('PRess size');
     setIndexChosen(index);
-
-    console.log(item);
-    console.log(index);
+    props.setChosen(item.size);
   };
 
   return (

@@ -89,7 +89,7 @@ export default function HomeStacks(): JSX.Element {
         name="SearchScreen"
         component={SearchScreen}
         options={{
-          headerShown: true,
+          headerShown: false,
           title: 'Searching',
         }}
       />

@@ -43,6 +43,7 @@ export default function FoodDetailsScreen(props: ThisProps): JSX.Element {
   const {foodName} = props.route.params;
   const [amount, setAmount] = useState(1);
   const [isFavorite, setFavorite] = useState<boolean>(true);
+  const [chosen, setChosen] = useState('');
 
   const addToFavoriteFood = () => {
     console.log('CALL API: add to favorite 3');
@@ -51,6 +52,7 @@ export default function FoodDetailsScreen(props: ThisProps): JSX.Element {
 
   const addToCart = () => {
     console.log('Amount: ', amount);
+    console.log('Size: ', chosen);
   };
 
   return (
@@ -80,11 +82,9 @@ export default function FoodDetailsScreen(props: ThisProps): JSX.Element {
         <View>
           <SectionText style={{fontSize: 16}}>Size</SectionText>
           <ListSizeFoodDisplay
-            chosen={1}
+            chosen={chosen}
             data={listSizes}
-            setChosen={function (text: number): void {
-              throw new Error('Function not implemented.');
-            }}
+            setChosen={setChosen}
           />
         </View>
 
