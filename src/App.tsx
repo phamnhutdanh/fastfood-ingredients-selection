@@ -28,7 +28,7 @@ export default function App(): JSX.Element {
         <ApolloProvider client={client}>
           <NavigationContainer>
             <RootStackNavigator.Navigator
-              initialRouteName="LoginScreen"
+              initialRouteName="MainStack"
               screenOptions={{headerShown: false}}>
               <RootStackNavigator.Screen
                 name="LoginScreen"

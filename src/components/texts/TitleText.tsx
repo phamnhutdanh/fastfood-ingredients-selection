@@ -17,7 +17,6 @@ export function TitleText(props: ThisProps): JSX.Element {
 const styles = StyleSheet.create({
   text: {
     fontSize: 28,
-    fontWeight: 'bold',
     fontFamily: fonts.POPPINS_BOLD,
   },
 });

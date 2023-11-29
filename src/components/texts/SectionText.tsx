@@ -2,6 +2,7 @@ import {TextProps} from '@rneui/themed';
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {GenericText} from './generics/GenericText';
+import fonts from '../../styles/fonts';
 
 type ThisProps = TextProps;
 
@@ -16,6 +17,6 @@ export function SectionText(props: ThisProps): JSX.Element {
 const styles = StyleSheet.create({
   text: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: fonts.POPPINS_BOLD,
   },
 });
