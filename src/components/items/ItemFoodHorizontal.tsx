@@ -24,7 +24,7 @@ export default function ItemFoodHorizontal(props: ThisProps): JSX.Element {
       <ItemImageFood
         imageUri={props.imageUri ? props.imageUri : ''}
         imageWidth={display.setWidth(45)}
-        imageHeight={display.setWidth(45) / 1.5}
+        imageHeight={display.setHeight(15)}
       />
       <View style={styles.info_container}>
         <View style={styles.name_and_rating}>
@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 8,
+    paddingVertical: 4,
     borderRadius: 12,
   },
 });

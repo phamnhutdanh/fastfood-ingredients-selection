@@ -18,7 +18,7 @@ export function SearchBarButton(props: ThisProps): JSX.Element {
       buttonStyle={styles.buttonStyle}
       icon={{
         name: 'search',
-        size: 12,
+        size: 20,
         color: colors.darkGrey,
         type: 'font-awesome',
       }}
