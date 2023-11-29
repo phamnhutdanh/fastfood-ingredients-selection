@@ -1,9 +1,9 @@
 import {StyleSheet, View} from 'react-native';
-import {SearchBarButton} from '../../components/buttons/SearchBarButton';
 import {SectionText} from '../../components/texts/SectionText';
 import HomeHeaderDisplay from './display/HomeHeaderDisplay';
 import HorizontalListFood from '../../components/displays/HorizontalListFood';
 import VerticalListFood from '../../components/displays/VerticalListFood';
+import colors from '../../styles/colors';
 
 const avatarUri =
   'https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg';
@@ -56,7 +56,6 @@ export default function HomeScreen(props: ThisProps): JSX.Element {
             navigation={props.navigation}
             avatarUri={avatarUri}
           />
-          <SearchBarButton navigation={props.navigation} />
           {/* TODO: List food by type  */}
           <SectionText>Popular fast food</SectionText>
           <HorizontalListFood
@@ -73,10 +72,19 @@ export default function HomeScreen(props: ThisProps): JSX.Element {
 const styles = StyleSheet.create({
   mainContainer: {
     gap: 12,
-    paddingVertical: 32,
+    paddingBottom: 32,
     paddingHorizontal: 20,
   },
   headingContainer: {
     gap: 12,
+  },
+  oval: {
+    alignSelf: 'center',
+    width: '60%',
+    position: 'absolute',
+    height: 200,
+    backgroundColor: colors.third,
+    borderRadius: 50,
+    transform: [{scaleX: 2}],
   },
 });
