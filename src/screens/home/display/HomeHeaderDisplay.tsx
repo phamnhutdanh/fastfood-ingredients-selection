@@ -12,7 +12,7 @@ type ThisProps = {
 
 export default function HomeHeaderDisplay(props: ThisProps): JSX.Element {
   const navigateToAccountScreen = () => {
-    props.navigation.navigate('AccountScreen');
+    props.navigation.navigate('AccountStacks');
   };
 
   return (

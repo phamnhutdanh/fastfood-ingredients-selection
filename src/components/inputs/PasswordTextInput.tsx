@@ -18,14 +18,14 @@ export default function PasswordTextInput(props: ThisProps): JSX.Element {
       value={props.value}
       onChangeText={props.onChangeText}
       leftIcon={
-        <Icon name="lock" size={20} color={colors.lightGrey2} type="feather" />
+        <Icon name="lock" size={20} color={colors.darkBlack} type="feather" />
       }
       leftIconContainerStyle={{marginRight: 10}}
       rightIcon={
         <Icon
           name={isPasswordShow ? 'eye' : 'eye-off'}
           size={22}
-          color={colors.lightGrey2}
+          color={colors.darkBlack}
           style={{marginRight: 10}}
           onPress={() => setPasswordShow(!isPasswordShow)}
           type="feather"

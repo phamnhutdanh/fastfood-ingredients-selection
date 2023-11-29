@@ -14,7 +14,7 @@ export default function EmailTextInput(props: ThisProps): JSX.Element {
       value={props.value}
       onChangeText={props.onChangeText}
       leftIcon={
-        <Icon name="user" size={20} color={colors.lightGrey2} type="feather" />
+        <Icon name="user" size={20} color={colors.darkBlack} type="feather" />
       }
       leftIconContainerStyle={{marginRight: 10}}
     />

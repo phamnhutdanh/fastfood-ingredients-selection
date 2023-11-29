@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   cancel: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.lightGrey,
   },
   title: {
     color: colors.darkBlack,

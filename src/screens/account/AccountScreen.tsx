@@ -6,7 +6,8 @@ import SettingDisplay from './display/setting/SettingDisplay';
 import {useEffect, useState} from 'react';
 import {FIREBASE_AUTH} from '../../auth/firebaseConfig';
 import {onAuthStateChanged} from 'firebase/auth';
-
+import colors from '../../styles/colors';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 const avatarUri =
   'https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg';
 
@@ -85,6 +86,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 40,
     gap: 12,
+    backgroundColor: colors.lightGrey,
   },
   avatar: {
     justifyContent: 'center',
