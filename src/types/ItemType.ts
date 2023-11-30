@@ -17,6 +17,15 @@ export type ItemCartType = {
   amount: number;
 };
 
+export type ItemHistoryOrderType = {
+  id: number;
+  onPressItem: OnPressItem;
+  imageUri?: string;
+  foodName: string;
+  date: string;
+  priceValue: number;
+};
+
 export type FoodListItemType = {
   id: number;
   imageUri: string;

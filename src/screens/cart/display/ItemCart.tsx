@@ -32,7 +32,7 @@ export default function ItemCart(props: ThisProps): JSX.Element {
     }
   };
 
-  const onPress = () => {
+  const onPressSave = () => {
     console.log('On press save cart: Call API update');
   };
 
@@ -93,7 +93,7 @@ export default function ItemCart(props: ThisProps): JSX.Element {
             titleStyle={styles.titleSave}
             buttonStyle={[styles.button]}
             onPress={() => {
-              onPress();
+              onPressSave();
               setChangeAmount(false);
             }}>
             SAVE
@@ -111,12 +111,12 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 12,
+    gap: 8,
   },
   info_container: {
     flex: 1,
   },
-  amount: {flexDirection: 'row', gap: 12},
+  amount: {flexDirection: 'row', gap: 8},
   subtractButton: {backgroundColor: colors.lightGrey},
   text: {
     marginBottom: -8,

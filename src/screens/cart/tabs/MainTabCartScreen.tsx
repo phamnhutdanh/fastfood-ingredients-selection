@@ -1,7 +1,7 @@
 import {Tab, TabView} from '@rneui/themed';
 import React, {useState} from 'react';
 import {GenericText} from '../../../components/texts/generics/GenericText';
-import HistoryOrder from './history/HistoryOrder';
+import HistoryOrderTab from './history/HistoryOrderTab';
 import MyCartTab from './my_cart/MyCartTab';
 
 type ThisProps = {
@@ -27,7 +27,7 @@ export function MainTabCartScreen(props: ThisProps): JSX.Element {
           <GenericText>On going</GenericText>
         </TabView.Item>
         <TabView.Item style={{width: '100%'}}>
-          <HistoryOrder navigation={props.navigation} />
+          <HistoryOrderTab navigation={props.navigation} />
         </TabView.Item>
       </TabView>
     </>

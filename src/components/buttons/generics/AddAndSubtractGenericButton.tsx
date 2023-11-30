@@ -29,7 +29,8 @@ export default function AddAndSubtractGenericButton(
 
 const styles = StyleSheet.create({
   buttonStyle: {
-    paddingHorizontal: 8,
+    paddingHorizontal: 4,
     paddingVertical: 8,
+    borderRadius: 8,
   },
 });
