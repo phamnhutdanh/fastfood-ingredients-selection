@@ -1,5 +1,6 @@
 import {createTheme} from '@rneui/themed';
 import colors from './colors';
+import fonts from './fonts';
 
 export const theme = createTheme({
   lightColors: {
@@ -48,18 +49,21 @@ export const theme = createTheme({
     Tab: {
       indicatorStyle: {
         backgroundColor: colors.primary,
-        height: 3,
+        height: 10,
+        width: 10,
+        borderRadius: 90,
+        start: '16%',
       },
       buttonStyle: {
         paddingHorizontal: 0,
-        paddingBottom: 0,
+        paddingVertical: 4,
       },
     },
     TabItem: {
       titleStyle: active => ({
-        fontSize: 12,
+        fontSize: 16,
         color: active ? colors.primary : colors.darkBlack,
-        fontWeight: 'normal',
+        fontFamily: fonts.POPPINS_MEDIUM,
       }),
     },
   },

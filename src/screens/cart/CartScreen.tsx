@@ -4,6 +4,7 @@ import {SectionText} from '../../components/texts/SectionText';
 import {TextLink} from '../../components/texts/TextLink';
 import CartListFood from './display/CartListFood';
 import {PriceText} from '../../components/texts/PriceText';
+import {MainTabCartScreen} from './tabs/MainTabCartScreen';
 
 const listSize = [
   {
@@ -84,21 +85,9 @@ type ThisProps = {
 
 export default function CartScreen(props: ThisProps): JSX.Element {
   return (
-    <View style={styles.container}>
-      <View style={styles.title}>
-        <SectionText>All food</SectionText>
-        <TextLink>Delete all</TextLink>
-      </View>
-
-      <CartListFood data={listOrder} navigation={props.navigation} />
-
-      <View style={styles.title}>
-        <SectionText>Total</SectionText>
-        <PriceText priceValue={100000} />
-      </View>
-
-      <Button buttonStyle={styles.buttonOrder}>ORDER</Button>
-    </View>
+    <>
+      <MainTabCartScreen navigation={props.navigation} />
+    </>
   );
 }
 

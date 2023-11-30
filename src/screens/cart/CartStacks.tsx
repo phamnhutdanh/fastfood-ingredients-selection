@@ -26,14 +26,7 @@ export default function CartStacks(): JSX.Element {
           backgroundColor: colors.white,
         },
       }}>
-      <CartNavigators.Screen
-        name="CartScreen"
-        options={{
-          headerShown: true,
-          title: 'My cart',
-        }}
-        component={CartScreen}
-      />
+      <CartNavigators.Screen name="CartScreen" component={CartScreen} />
       <CartNavigators.Screen
         name="FoodDetailsScreen"
         component={FoodDetailsScreen}
