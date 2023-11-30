@@ -1,7 +1,7 @@
 import GenericItemFoodOrderContainer from '../generics/GenericItemFoodOrderContainer';
-import {ItemOrderInfoType} from '../../../types/ItemType';
+import {ItemCartType} from '../../../types/ItemType';
 
-type ThisProps = ItemOrderInfoType & {};
+type ThisProps = ItemCartType & {};
 
 export default function ItemOrder(props: ThisProps): JSX.Element {
   return (

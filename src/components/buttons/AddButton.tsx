@@ -10,7 +10,7 @@ export default function AddButton(props: ThisProps): JSX.Element {
     <AddAndSubtractGenericButton
       onPress={props.onPressItem}
       name={'plus'}
-      iconSize={12}
+      iconSize={8}
     />
   );
 }

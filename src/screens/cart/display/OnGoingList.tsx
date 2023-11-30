@@ -1,30 +1,23 @@
 import {StyleSheet} from 'react-native';
 import {useCallback} from 'react';
-import ItemCart from './ItemCart';
-import {ItemCartType} from '../../../types/ItemType';
+import {ItemOngoingType} from '../../../types/ItemType';
 import GenericFlatList from '../../../components/displays/generics/GenericFlatList';
+import ItemOnGoing from './ItemOnGoing';
 
 type ThisProps = {
   data: ArrayLike<any>;
   navigation: any;
 };
 
-export default function CartListFood(props: ThisProps): JSX.Element {
-  const navigateToFoodDetailsScreen = (item: ItemCartType) => {
-    props.navigation.navigate('FoodDetailsScreen', {
-      foodName: item.foodName,
-    });
-  };
-
+export default function OnGoingList(props: ThisProps): JSX.Element {
   const memorizedValue = useCallback(
-    ({item}: {item: ItemCartType}) => (
-      <ItemCart
-        onPressItem={() => navigateToFoodDetailsScreen(item)}
+    ({item}: {item: ItemOngoingType}) => (
+      <ItemOnGoing
         foodName={item.foodName}
         size={item.size}
-        priceValue={item.priceValue}
         amount={item.amount}
         id={item.id}
+        status={item.status}
       />
     ),
     [props.data],

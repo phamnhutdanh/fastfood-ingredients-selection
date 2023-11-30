@@ -14,7 +14,7 @@ export default function SubtractButton(props: ThisProps): JSX.Element {
       onPress={props.onPressItem}
       buttonStyle={[styles.buttonStyle, props.buttonStyle]}
       name={'minus'}
-      iconSize={12}
+      iconSize={8}
       iconColor={colors.darkBlack}
     />
   );
