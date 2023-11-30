@@ -1,8 +1,8 @@
 import {StyleSheet, View} from 'react-native';
-import {SearchBarButton} from '../../components/buttons/SearchBarButton';
 import {SectionText} from '../../components/texts/SectionText';
 import HomeHeaderDisplay from './display/HomeHeaderDisplay';
 import HorizontalListFood from '../../components/displays/HorizontalListFood';
+import colors from '../../styles/colors';
 import VerticalListFood from '../../components/displays/VerticalListFood';
 
 const avatarUri =
@@ -56,14 +56,45 @@ export default function HomeScreen(props: ThisProps): JSX.Element {
             navigation={props.navigation}
             avatarUri={avatarUri}
           />
-          <SearchBarButton navigation={props.navigation} />
-          {/* TODO: List food by type  */}
-          <SectionText>Popular fast food</SectionText>
-          <HorizontalListFood
-            data={popularFastFoodList}
-            navigation={props.navigation}
-          />
-          <SectionText>Shop near from you</SectionText>
+
+          <View>
+            {/* moi them gan day 10 product */}
+            <SectionText>Recent</SectionText>
+            <HorizontalListFood
+              data={popularFastFoodList}
+              navigation={props.navigation}
+            />
+          </View>
+
+          <View>
+            {/* xep theo rating 10 product */}
+            <SectionText>Popular</SectionText>
+            <HorizontalListFood
+              data={popularFastFoodList}
+              navigation={props.navigation}
+            />
+          </View>
+
+          <View>
+            {/* xep theo random favourite 10 product */}
+            <SectionText>Favorite</SectionText>
+            <HorizontalListFood
+              data={popularFastFoodList}
+              navigation={props.navigation}
+            />
+          </View>
+
+          <View>
+            {/* xep theo order gan nhat 10 product */}
+            <SectionText>Order Again</SectionText>
+            <HorizontalListFood
+              data={popularFastFoodList}
+              navigation={props.navigation}
+            />
+          </View>
+
+          {/* random 20 product */}
+          <SectionText>Discovery</SectionText>
         </View>
       }
     />
@@ -73,10 +104,19 @@ export default function HomeScreen(props: ThisProps): JSX.Element {
 const styles = StyleSheet.create({
   mainContainer: {
     gap: 12,
-    paddingVertical: 32,
+    paddingBottom: 32,
     paddingHorizontal: 20,
   },
   headingContainer: {
     gap: 12,
+  },
+  oval: {
+    alignSelf: 'center',
+    width: '60%',
+    position: 'absolute',
+    height: 200,
+    backgroundColor: colors.third,
+    borderRadius: 50,
+    transform: [{scaleX: 2}],
   },
 });

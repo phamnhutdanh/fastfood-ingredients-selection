@@ -17,5 +17,6 @@ export function ErrorMessageText(props: ThisProps): JSX.Element {
 const styles = StyleSheet.create({
   text: {
     color: colors.red,
+    fontSize: 12,
   },
 });

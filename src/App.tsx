@@ -4,8 +4,8 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {ThemeProvider} from '@rneui/themed';
 import {NavigationContainer} from '@react-navigation/native';
 import {theme} from './styles/theme';
-import LoginScreen from './screens/LoginScreen';
-import SignUpScreen from './screens/SignUpScreen';
+import LoginScreen from './screens/login/LoginScreen';
+import SignUpScreen from './screens/sign_up/SignUpScreen';
 import {MainStack} from './screens/MainStack';
 import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
 

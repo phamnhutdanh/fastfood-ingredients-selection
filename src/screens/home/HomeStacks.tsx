@@ -4,16 +4,13 @@ import VendorDetailsScreen from '../vendor_details/VendorDetailsScreen';
 import HomeScreen from './HomeScreen';
 import SearchScreen from '../search/SearchScreen';
 import colors from '../../styles/colors';
-import AccountScreen from '../account/AccountScreen';
-import FavoriteScreen from '../account/FavoriteScreen';
-import EditAccountScreen from '../account/EditAccountScreen';
-import ChangePasswordScreen from '../account/ChangePasswordScreen';
+import AccountStacks from '../account/AccountStacks';
 
 type HomeStackParams = {
   HomeScreen: undefined;
   FoodDetailsScreen: undefined;
   VendorDetailsScreen: undefined;
-  AccountScreen: undefined;
+  AccountStacks: undefined;
   FavoriteScreen: undefined;
   EditAccountScreen: undefined;
   ChangePasswordScreen: undefined;
@@ -44,52 +41,19 @@ export default function HomeStacks(): JSX.Element {
         options={{headerShown: true, title: 'Shop details'}}
       />
       <HomeNavigators.Screen
-        name="AccountScreen"
-        component={AccountScreen}
+        name="AccountStacks"
+        component={AccountStacks}
         options={{
-          contentStyle: {
-            backgroundColor: colors.lightGrey,
-          },
           headerTransparent: true,
           headerShown: true,
           headerTitle: '',
         }}
       />
       <HomeNavigators.Screen
-        name="FavoriteScreen"
-        component={FavoriteScreen}
-        options={{
-          headerShown: true,
-          headerTitle: 'My favorites',
-        }}
-      />
-      <HomeNavigators.Screen
-        name="EditAccountScreen"
-        component={EditAccountScreen}
-        options={{
-          contentStyle: {
-            backgroundColor: colors.lightGrey,
-          },
-          headerShown: true,
-          headerTitle: 'Edit account',
-        }}
-      />
-      <HomeNavigators.Screen
-        name="ChangePasswordScreen"
-        component={ChangePasswordScreen}
-        options={{
-          contentStyle: {
-            backgroundColor: colors.lightGrey,
-          },
-          headerShown: true,
-          headerTitle: 'Change password',
-        }}
-      />
-      <HomeNavigators.Screen
         name="SearchScreen"
         component={SearchScreen}
         options={{
-          headerShown: true,
+          headerShown: false,
           title: 'Searching',
         }}
       />

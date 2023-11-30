@@ -1,8 +1,7 @@
-import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import {ActivityIndicator, StyleSheet} from 'react-native';
 
 import colors from '../../styles/colors';
-import {Icon, Image} from '@rneui/themed';
-import {ItemScoreText} from '../texts/ItemScoreText';
+import {Image} from '@rneui/themed';
 
 const imageUri =
   'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=1780&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
@@ -11,7 +10,6 @@ type ThisProps = {
   imageWidth?: number;
   imageHeight?: number;
   imageUri: string;
-  ratingScore: number;
 };
 
 export default function ItemImageFood(props: ThisProps): JSX.Element {
@@ -22,17 +20,7 @@ export default function ItemImageFood(props: ThisProps): JSX.Element {
         styles.image_item,
         {width: props.imageWidth, height: props.imageHeight},
       ]}
-      PlaceholderContent={<ActivityIndicator />}>
-      <View style={styles.rating_container}>
-        <Icon
-          size={12}
-          color={colors.yellowStar}
-          type="antdesign"
-          name="star"
-        />
-        <ItemScoreText>{props.ratingScore}</ItemScoreText>
-      </View>
-    </Image>
+      PlaceholderContent={<ActivityIndicator />}></Image>
   );
 }
 

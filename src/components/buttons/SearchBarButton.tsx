@@ -18,7 +18,7 @@ export function SearchBarButton(props: ThisProps): JSX.Element {
       buttonStyle={styles.buttonStyle}
       icon={{
         name: 'search',
-        size: 12,
+        size: 20,
         color: colors.darkGrey,
         type: 'font-awesome',
       }}
@@ -38,6 +38,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 12,
     borderRadius: 32,
-    backgroundColor: colors.lightGrey,
+    backgroundColor: colors.white,
   },
 });

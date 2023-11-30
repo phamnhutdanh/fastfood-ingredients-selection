@@ -29,7 +29,6 @@ export default function VerticalListFood(props: ThisProps): JSX.Element {
         vendorName={item.vendorName}
         priceValue={item.priceValue}
         onPressItem={() => navigateToFoodDetailsScreen(item)}
-        onPressAddButton={() => navigateToFoodDetailsScreen(item)}
         id={item.id}
         rating={item.rating}
       />

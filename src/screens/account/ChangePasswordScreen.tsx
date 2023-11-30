@@ -1,8 +1,8 @@
 import {StyleSheet, View} from 'react-native';
-import {Input} from '@rneui/themed';
 import colors from '../../styles/colors';
 import {useState} from 'react';
 import SaveCancelButton from './display/SaveCancelButton';
+import PasswordTextInput from '../../components/inputs/PasswordTextInput';
 
 type ThisProps = {
   navigation: any;
@@ -24,29 +24,20 @@ export default function ChangePasswordScreen(props: ThisProps): JSX.Element {
 
   return (
     <View style={styles.container}>
-      <Input
-        label="Current password"
-        placeholder="Enter your current password..."
-        secureTextEntry
-        containerStyle={styles.input}
+      <PasswordTextInput
         value={currentPassword}
         onChangeText={setCurrentPassword}
+        placeHolder="Enter your current password..."
       />
-      <Input
-        label="New password"
-        placeholder="Enter your new password..."
-        secureTextEntry
-        containerStyle={styles.input}
+      <PasswordTextInput
         value={newPassword}
         onChangeText={setNewPassword}
+        placeHolder="Enter your new password..."
       />
-      <Input
-        label="Re-enter password"
-        placeholder="Re-enter your new password..."
-        secureTextEntry
-        containerStyle={styles.input}
+      <PasswordTextInput
         value={rePassword}
         onChangeText={setRePassword}
+        placeHolder="Re-enter your new password..."
       />
 
       <SaveCancelButton
@@ -65,6 +56,6 @@ const styles = StyleSheet.create({
     paddingVertical: 32,
   },
   input: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.lightGrey,
   },
 });

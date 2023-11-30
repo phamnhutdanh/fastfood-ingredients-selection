@@ -3,6 +3,8 @@ import {StyleSheet, View} from 'react-native';
 import {SectionText} from '../../components/texts/SectionText';
 import ListTypeFoodDisplay from '../food_details/display/ListTypeFoodDisplay';
 import VerticalListFood from '../../components/displays/VerticalListFood';
+import HeaderSearchTextInput from '../../components/inputs/HeaderSearchTextInput';
+import {useState} from 'react';
 
 const listTypes = [
   {id: 1, type: 'Vegetables'},
@@ -73,6 +75,12 @@ type ThisProps = {
 };
 
 export default function SearchScreen(props: ThisProps): JSX.Element {
+  const [searchText, setSearchText] = useState('');
+
+  const goBack = () => {
+    props.navigation.goBack();
+  };
+
   return (
     <VerticalListFood
       data={listResult}
@@ -80,18 +88,30 @@ export default function SearchScreen(props: ThisProps): JSX.Element {
       contentContainerStyle={styles.container}
       listHeaderComponent={
         <View style={styles.head}>
-          <SectionText>Type</SectionText>
-          <ListTypeFoodDisplay data={listTypes} />
-          <SectionText>Price range</SectionText>
-          <View style={styles.minMaxContainer}>
-            <Input
-              containerStyle={styles.input}
-              label="Min"
-              placeholder="Min price"></Input>
-            <Input
-              containerStyle={styles.input}
-              label="Max"
-              placeholder="Max price"></Input>
+          <HeaderSearchTextInput
+            value={searchText}
+            onChangeText={setSearchText}
+            onPressBack={() => goBack()}
+            onPressSearch={function (item: any): void {
+              throw new Error('Function not implemented.');
+            }}
+          />
+
+          <View>
+            <SectionText>Popular tag</SectionText>
+            <ListTypeFoodDisplay data={listTypes} />
+          </View>
+
+          <View>
+            <SectionText>Price range</SectionText>
+            <View style={styles.minMaxContainer}>
+              <Input
+                containerStyle={styles.input}
+                placeholder="Min price"></Input>
+              <Input
+                containerStyle={styles.input}
+                placeholder="Max price"></Input>
+            </View>
           </View>
 
           <SectionText>Result</SectionText>
@@ -107,7 +127,8 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   head: {
-    gap: 12,
+    gap: 20,
+    paddingTop: 20,
   },
   minMaxContainer: {
     flexDirection: 'row',

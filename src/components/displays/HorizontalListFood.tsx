@@ -46,6 +46,6 @@ export default function HorizontalListFood(props: ThisProps): JSX.Element {
 
 const styles = StyleSheet.create({
   container: {
-    gap: 20,
+    gap: 24,
   },
 });

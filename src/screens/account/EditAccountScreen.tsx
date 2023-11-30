@@ -3,6 +3,7 @@ import AvatarDisplay from './display/AvatarDisplay';
 import BasicInfoEditDisplay from './display/edit_info/BasicInfoEditDisplay';
 import {useState} from 'react';
 import SaveCancelButton from './display/SaveCancelButton';
+import colors from '../../styles/colors';
 
 const avatarUri =
   'https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg';
@@ -54,6 +55,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 40,
     gap: 12,
+    backgroundColor: colors.lightGrey,
   },
   avatar: {
     justifyContent: 'center',

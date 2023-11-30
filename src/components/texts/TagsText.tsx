@@ -3,6 +3,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import colors from '../../styles/colors';
 import {GenericText} from './generics/GenericText';
+import fonts from '../../styles/fonts';
 
 type ThisProps = TextProps & {};
 
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.darkBlack,
-    fontWeight: 'bold',
+    fontFamily: fonts.POPPINS_BOLD,
     fontSize: 12,
   },
 });

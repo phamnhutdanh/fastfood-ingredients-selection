@@ -14,3 +14,5 @@ export type ActionType = () => void;
 export type ComponentStyle = StyleProp<ViewStyle> | any | undefined;
 
 export type ColorType = number | ColorValue;
+
+export type OnChangeText = (text: string) => void;

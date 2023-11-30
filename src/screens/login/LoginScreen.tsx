@@ -1,14 +1,17 @@
-import {Input} from '@rneui/themed';
-import {ActivityIndicator, View} from 'react-native';
-import {BigTitleText} from '../components/texts/BigTitleText';
-import {GenericText} from '../components/texts/generics/GenericText';
-import {TextLink} from '../components/texts/TextLink';
+import {ActivityIndicator, StatusBar, View} from 'react-native';
+import {GenericText} from '../../components/texts/generics/GenericText';
+import {TextLink} from '../../components/texts/TextLink';
 import {StyleSheet} from 'react-native';
-import {useState} from 'react';
-import GenericButton from '../components/buttons/generics/GenericButton';
-import {ErrorMessageText} from '../components/texts/ErrorMessageText';
+import React, {useState} from 'react';
+import GenericButton from '../../components/buttons/generics/GenericButton';
+import {ErrorMessageText} from '../../components/texts/ErrorMessageText';
 import {signInWithEmailAndPassword} from 'firebase/auth';
-import {FIREBASE_AUTH} from '../auth/firebaseConfig';
+import {FIREBASE_AUTH} from '../../auth/firebaseConfig';
+import colors from '../../styles/colors';
+import Separator from '../../components/displays/Separator';
+import IntroductionLogin from './display/IntroductionLogin';
+import EmailTextInput from '../../components/inputs/EmailTextInput';
+import PasswordTextInput from '../../components/inputs/PasswordTextInput';
 
 type ThisProps = {
   navigation: any;
@@ -21,8 +24,11 @@ export default function LoginScreen(props: ThisProps): JSX.Element {
   const [isLoading, setIsLoading] = useState(false);
   const [displayError, setDisplayError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isPasswordShow, setPasswordShow] = useState(false);
 
-  /** @TODO login with email, password */
+  // const onPressButtonLogin = () => {
+  //   props.navigation.navigate('MainStack');
+  // };
   const onPressButtonLogin = async () => {
     if (email.length < 1 || password.length < 1) {
       setErrorMessage('Fields cannot be empty!');
@@ -41,6 +47,7 @@ export default function LoginScreen(props: ThisProps): JSX.Element {
         .catch(error => {
           const errorCode = error.code;
           const errorMessage = error.message;
+          setDisplayError(true);
           setErrorMessage(`${errorCode} ${errorMessage}`);
         });
     } finally {
@@ -54,21 +61,24 @@ export default function LoginScreen(props: ThisProps): JSX.Element {
 
   return (
     <View style={styles.container}>
-      <BigTitleText>Login</BigTitleText>
-      <Input
-        label="Email"
-        placeholder="Enter your email..."
-        value={email}
-        onChangeText={setEmail}></Input>
-      <Input
-        label="Password"
-        placeholder="Enter your password..."
-        secureTextEntry
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor={colors.white}
+        translucent
+      />
+      <Separator height={StatusBar.currentHeight} />
+
+      <IntroductionLogin />
+
+      <EmailTextInput value={email} onChangeText={setEmail} />
+      <PasswordTextInput
         value={password}
-        onChangeText={setPassword}></Input>
+        onChangeText={setPassword}
+        placeHolder={'Password'}
+      />
 
       {displayError && (
-        <ErrorMessageText style={{alignSelf: 'flex-start'}}>
+        <ErrorMessageText style={styles.errorMessage}>
           {errorMessage}
         </ErrorMessageText>
       )}
@@ -91,6 +101,7 @@ const styles = StyleSheet.create({
   container: {
     gap: 20,
     paddingHorizontal: 20,
+    backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
     height: '100%',
@@ -98,5 +109,8 @@ const styles = StyleSheet.create({
   textContainer: {
     flexDirection: 'row',
     width: '100%',
+  },
+  errorMessage: {
+    alignSelf: 'flex-start',
   },
 });

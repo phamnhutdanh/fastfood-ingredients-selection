@@ -9,12 +9,15 @@ import OrderHistoryScreen from './orders/OrderHistoryScreen';
 import {ActivityIndicator, View} from 'react-native';
 import {FIREBASE_AUTH} from '../auth/firebaseConfig';
 import {onAuthStateChanged} from 'firebase/auth';
+import AccountScreen from './account/AccountScreen';
+import AccountStacks from './account/AccountStacks';
 
 type MainTabStackParams = {
   HomeStacks: undefined;
   CartStacks: undefined;
   OrderHistoryScreen: undefined;
   Notification: undefined;
+  AccountStacks: undefined;
 };
 
 const MainTabStackNavigator = createBottomTabNavigator<MainTabStackParams>();
@@ -27,24 +30,24 @@ type MainScreenProps = {
 export function MainStack(props: MainScreenProps) {
   const [authServiceInitialized, setAuthServiceInitialized] = useState(false);
 
-  useEffect(() => {
-    const auth = FIREBASE_AUTH;
-    onAuthStateChanged(auth, user => {
-      setAuthServiceInitialized(true);
-      if (user) {
-      } else {
-        props.navigation.navigate('LoginScreen');
-      }
-    });
-  });
+  // useEffect(() => {
+  //   const auth = FIREBASE_AUTH;
+  //   onAuthStateChanged(auth, user => {
+  //     setAuthServiceInitialized(true);
+  //     if (user) {
+  //     } else {
+  //       props.navigation.navigate('LoginScreen');
+  //     }
+  //   });
+  // });
 
-  if (!authServiceInitialized) {
-    return (
-      <View>
-        <ActivityIndicator size={'large'} />
-      </View>
-    );
-  }
+  // if (!authServiceInitialized) {
+  //   return (
+  //     <View>
+  //       <ActivityIndicator size={'large'} />
+  //     </View>
+  //   );
+  // }
   return <MainScreenAfterLogin />;
 }
 
@@ -54,25 +57,15 @@ export function MainScreenAfterLogin(): JSX.Element {
       initialRouteName="HomeStacks"
       sceneContainerStyle={{backgroundColor: colors.white}}
       screenOptions={MainTabScreenOptions}>
-      <MainTabStackNavigator.Screen
-        name="HomeStacks"
-        options={{title: 'Home'}}
-        component={HomeStacks}
-      />
-      <MainTabStackNavigator.Screen
-        name="CartStacks"
-        options={{title: 'Cart'}}
-        component={CartStacks}
-      />
-      <MainTabStackNavigator.Screen
-        name="OrderHistoryScreen"
-        options={{title: 'OrderHistory'}}
-        component={OrderHistoryScreen}
-      />
+      <MainTabStackNavigator.Screen name="HomeStacks" component={HomeStacks} />
+      <MainTabStackNavigator.Screen name="CartStacks" component={CartStacks} />
       <MainTabStackNavigator.Screen
         name="Notification"
-        options={{title: 'Notification'}}
         component={Notification}
+      />
+      <MainTabStackNavigator.Screen
+        name="AccountStacks"
+        component={AccountStacks}
       />
     </MainTabStackNavigator.Navigator>
   );
@@ -116,19 +109,6 @@ const MainTabScreenOptions = ({route}: any) => ({
               color={color}
             />
           ));
-    } else if (route.name === 'OrderHistoryScreen') {
-      icon = focused
-        ? (icon = (
-            <Icon type="ionicon" name="newspaper" size={size} color={color} />
-          ))
-        : (icon = (
-            <Icon
-              type="ionicon"
-              name="newspaper-outline"
-              size={size}
-              color={color}
-            />
-          ));
     } else if (route.name === 'Notification') {
       icon = focused
         ? (icon = (
@@ -147,6 +127,24 @@ const MainTabScreenOptions = ({route}: any) => ({
               color={color}
             />
           ));
+    } else if (route.name === 'AccountStacks') {
+      icon = focused
+        ? (icon = (
+            <Icon
+              type="material-community"
+              name="account-circle"
+              size={size}
+              color={color}
+            />
+          ))
+        : (icon = (
+            <Icon
+              type="material-community"
+              name="account-circle-outline"
+              size={size}
+              color={color}
+            />
+          ));
     }
     // You can return any component that you like here!
     return icon;
@@ -154,10 +152,11 @@ const MainTabScreenOptions = ({route}: any) => ({
   tabBarStyle: {
     backgroundColor: colors.white,
     borderTopWidth: 0,
-    // borderTopLeftRadius: 20,
-    // borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
   tabBarActiveTintColor: colors.primary,
   tabBarInactiveTintColor: colors.darkBlack,
   headerShown: false,
+  tabBarShowLabel: false,
 });
