@@ -18,4 +18,5 @@ export default {
   googleBlue: '#53A0F4',
   red: '#ED1C24',
   yellow: '#FBA83C',
+  green: '#13B051',
 };

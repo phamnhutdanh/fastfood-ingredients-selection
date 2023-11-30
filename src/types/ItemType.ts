@@ -17,6 +17,15 @@ export type ItemCartType = {
   amount: number;
 };
 
+export type ItemOngoingType = {
+  id: number;
+  imageUri?: string;
+  foodName: string;
+  size: string;
+  amount: number;
+  status: string;
+};
+
 export type ItemHistoryOrderType = {
   id: number;
   onPressItem: OnPressItem;
