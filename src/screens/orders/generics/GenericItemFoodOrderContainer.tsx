@@ -5,12 +5,12 @@ import {ItemSubtitleText} from '../../../components/texts/ItemSubtitleText';
 import colors from '../../../styles/colors';
 import GenericFlatList from '../../../components/displays/generics/GenericFlatList';
 import {useCallback} from 'react';
-import {ItemOrderInfoType, ItemOrderSizeType} from '../../../types/ItemType';
+import {ItemCartType, ItemOrderSizeType} from '../../../types/ItemType';
 import GenericItemSizePriceQuantityOrder from './GenericItemSizePriceQuantityOrder';
 import {pressableRippleConfig} from '../../../styles/pressable_config';
 import {OnPressItem} from '../../../types/GenericType';
 
-type ThisProps = ItemOrderInfoType & {
+type ThisProps = ItemCartType & {
   enabledAddButton: boolean;
   onPressItem: OnPressItem;
 };

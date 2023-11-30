@@ -1,6 +1,8 @@
 import {Tab, TabView} from '@rneui/themed';
 import React, {useState} from 'react';
 import {GenericText} from '../../../components/texts/generics/GenericText';
+import HistoryOrder from './history/HistoryOrder';
+import MyCartTab from './my_cart/MyCartTab';
 
 type ThisProps = {
   navigation: any;
@@ -19,13 +21,13 @@ export function MainTabCartScreen(props: ThisProps): JSX.Element {
 
       <TabView value={index} onChange={setIndex} animationType="spring">
         <TabView.Item style={{width: '100%'}}>
-          <GenericText>Cart</GenericText>
+          <MyCartTab navigation={props.navigation} />
         </TabView.Item>
         <TabView.Item style={{width: '100%'}}>
           <GenericText>On going</GenericText>
         </TabView.Item>
         <TabView.Item style={{width: '100%'}}>
-          <GenericText>History</GenericText>
+          <HistoryOrder navigation={props.navigation} />
         </TabView.Item>
       </TabView>
     </>

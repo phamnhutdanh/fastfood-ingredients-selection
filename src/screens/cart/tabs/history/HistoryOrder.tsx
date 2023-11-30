@@ -1,8 +1,8 @@
 import {Text} from '@rneui/themed';
 import {View} from 'react-native';
-import {ItemTitleText} from '../../components/texts/ItemTitleText';
-import {ItemSubtitleText} from '../../components/texts/ItemSubtitleText';
-import CartListFood from '../cart/display/CartListFood';
+import {ItemTitleText} from '../../../../components/texts/ItemTitleText';
+import {ItemSubtitleText} from '../../../../components/texts/ItemSubtitleText';
+import CartListFood from '../../display/CartListFood';
 
 const listSize = [
   {
@@ -78,10 +78,9 @@ const listOrder = [
 
 type ThisProps = {
   navigation: any;
-  route: any;
 };
 
-export default function OrderHistoryScreen(props: ThisProps): JSX.Element {
+export default function HistoryOrder(props: ThisProps): JSX.Element {
   return (
     <View>
       <View>
@@ -89,7 +88,7 @@ export default function OrderHistoryScreen(props: ThisProps): JSX.Element {
         <ItemSubtitleText>20th March 2023 16:20</ItemSubtitleText>
       </View>
 
-      <CartListFood data={listOrder} navigation={props.navigation} />
+      {/* <CartListFood data={listOrder} navigation={props.navigation} /> */}
     </View>
   );
 }

@@ -5,7 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Notification from './notification/Notification';
 import HomeStacks from './home/HomeStacks';
 import CartStacks from './cart/CartStacks';
-import OrderHistoryScreen from './orders/OrderHistoryScreen';
+
 import {ActivityIndicator, View} from 'react-native';
 import {FIREBASE_AUTH} from '../auth/firebaseConfig';
 import {onAuthStateChanged} from 'firebase/auth';

@@ -7,14 +7,14 @@ export type ItemOrderSizeType = {
   price: number;
 };
 
-export type ItemOrderInfoType = {
+export type ItemCartType = {
   id: number;
-  listSizeData: ArrayLike<ItemOrderSizeType>;
-  imageUri: string;
+  onPressItem: OnPressItem;
+  imageUri?: string;
   foodName: string;
-  vendorName: string;
-  ratingScore: number;
-  listFoodTypeData: ArrayLike<ItemFoodTypeName>;
+  size: string;
+  priceValue: number;
+  amount: number;
 };
 
 export type FoodListItemType = {
