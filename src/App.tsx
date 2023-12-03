@@ -23,9 +23,9 @@ const client = new ApolloClient({
 
 export default function App(): JSX.Element {
   return (
-    <SafeAreaProvider>
-      <ThemeProvider theme={theme}>
-        <ApolloProvider client={client}>
+    <ApolloProvider client={client}>
+      <SafeAreaProvider>
+        <ThemeProvider theme={theme}>
           <NavigationContainer>
             <RootStackNavigator.Navigator
               initialRouteName="MainStack"
@@ -44,8 +44,8 @@ export default function App(): JSX.Element {
               />
             </RootStackNavigator.Navigator>
           </NavigationContainer>
-        </ApolloProvider>
-      </ThemeProvider>
-    </SafeAreaProvider>
+        </ThemeProvider>
+      </SafeAreaProvider>
+    </ApolloProvider>
   );
 }

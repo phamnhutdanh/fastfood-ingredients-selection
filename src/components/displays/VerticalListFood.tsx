@@ -7,7 +7,7 @@ import ItemFoodVertical from '../items/ItemFoodVertical';
 import {ComponentStyle, ItemComponent} from '../../types/GenericType';
 
 type ThisProps = {
-  data: ArrayLike<any>;
+  data: any;
   navigation: any;
   listHeaderComponent?: ItemComponent | any;
   contentContainerStyle?: ComponentStyle;
@@ -17,20 +17,21 @@ export default function VerticalListFood(props: ThisProps): JSX.Element {
   const navigateToFoodDetailsScreen = (item: FoodListItemType) => {
     props.navigation.navigate('FoodDetailsScreen', {
       id: item.id,
-      foodName: item.foodName,
+      foodName: item.title,
     });
   };
 
   const memorizedValue = useCallback(
     ({item}: {item: FoodListItemType}) => (
       <ItemFoodVertical
-        imageUri={''}
-        foodName={item.foodName}
-        vendorName={item.vendorName}
-        priceValue={item.priceValue}
+        imageUri={item.imageUri}
         onPressItem={() => navigateToFoodDetailsScreen(item)}
         id={item.id}
-        rating={item.rating}
+        title={item.title}
+        fullPrice={item.fullPrice}
+        description={item.description}
+        averageRatingScores={item.averageRatingScores}
+        shopName={item.productSubcategory.productCategory.shop.shopName}
       />
     ),
     [props.data],

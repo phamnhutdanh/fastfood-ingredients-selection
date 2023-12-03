@@ -38,11 +38,13 @@ export type ItemHistoryOrderType = {
 export type FoodListItemType = {
   id: number;
   imageUri: string;
-  foodName: string;
-  vendorName: string;
-  priceValue: number;
+  title: string;
+  fullPrice: number;
+  description: string;
+  averageRatingScores: number;
+  shopName: any;
+  productSubcategory?: any;
   onPressItem: OnPressItem;
-  rating: number;
 };
 
 export type ItemFoodTypeName = {

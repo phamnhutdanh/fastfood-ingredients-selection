@@ -7,13 +7,14 @@ export default function ItemFoodVertical(props: ThisProps): JSX.Element {
   return (
     <GenericItemFoodVertical
       imageUri={props.imageUri}
-      foodName={props.foodName}
-      vendorName={props.foodName}
-      priceValue={props.priceValue}
+      title={props.title}
+      shopName={props.shopName}
+      averageRatingScores={props.averageRatingScores}
+      description={props.description}
+      fullPrice={props.fullPrice}
       onPressItem={props.onPressItem}
       isFavorite={false}
       id={props.id}
-      rating={props.rating}
     />
   );
 }

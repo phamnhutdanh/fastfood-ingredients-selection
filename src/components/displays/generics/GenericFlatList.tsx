@@ -39,12 +39,14 @@ export default function GenericFlatList(props: ThisProps): JSX.Element {
       initialNumToRender={
         props.initialNumToRender ? props.initialNumToRender : 12
       }
-      windowSize={props.windowSize ? props.windowSize : 5}
+      windowSize={props.windowSize ? props.windowSize : 12}
       maxToRenderPerBatch={
-        props.maxToRenderPerBatch ? props.maxToRenderPerBatch : 15
+        props.maxToRenderPerBatch ? props.maxToRenderPerBatch : 20
       }
       //  updateCellsBatchingPeriod={30}
-      //  removeClippedSubviews={false}
+      removeClippedSubviews={
+        props.removeClippedSubviews ? props.removeClippedSubviews : true
+      }
       //  onEndReachedThreshold={0.1}
       // ListFooterComponent={FooterComponent}
       {...props}

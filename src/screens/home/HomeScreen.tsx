@@ -1,9 +1,11 @@
-import {StyleSheet, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {SectionText} from '../../components/texts/SectionText';
 import HomeHeaderDisplay from './display/HomeHeaderDisplay';
 import HorizontalListFood from '../../components/displays/HorizontalListFood';
 import colors from '../../styles/colors';
 import VerticalListFood from '../../components/displays/VerticalListFood';
+import {gql, useQuery} from '@apollo/client';
+import React, {useEffect} from 'react';
 
 const avatarUri =
   'https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg';
@@ -44,61 +46,85 @@ const popularFastFoodList = [
   },
 ];
 
-export default function HomeScreen(props: ThisProps): JSX.Element {
-  return (
-    <VerticalListFood
-      data={popularFastFoodList}
-      navigation={props.navigation}
-      contentContainerStyle={styles.mainContainer}
-      listHeaderComponent={
-        <View style={styles.headingContainer}>
-          <HomeHeaderDisplay
-            navigation={props.navigation}
-            avatarUri={avatarUri}
-          />
-
-          <View>
-            {/* moi them gan day 10 product */}
-            <SectionText>Recent</SectionText>
-            <HorizontalListFood
-              data={popularFastFoodList}
-              navigation={props.navigation}
-            />
-          </View>
-
-          <View>
-            {/* xep theo rating 10 product */}
-            <SectionText>Popular</SectionText>
-            <HorizontalListFood
-              data={popularFastFoodList}
-              navigation={props.navigation}
-            />
-          </View>
-
-          <View>
-            {/* xep theo random favourite 10 product */}
-            <SectionText>Favorite</SectionText>
-            <HorizontalListFood
-              data={popularFastFoodList}
-              navigation={props.navigation}
-            />
-          </View>
-
-          <View>
-            {/* xep theo order gan nhat 10 product */}
-            <SectionText>Order Again</SectionText>
-            <HorizontalListFood
-              data={popularFastFoodList}
-              navigation={props.navigation}
-            />
-          </View>
-
-          {/* random 20 product */}
-          <SectionText>Discovery</SectionText>
-        </View>
+const GET_ALL_PRODUCT = gql`
+  query GetAllProducts {
+    getAllProducts {
+      id
+      imageUri
+      title
+      fullPrice
+      description
+      averageRatingScores
+      productSubcategory {
+        productCategory {
+          shop {
+            shopName
+          }
+        }
       }
-    />
-  );
+    }
+  }
+`;
+
+export default function HomeScreen(props: ThisProps): JSX.Element {
+  const {data, loading} = useQuery(GET_ALL_PRODUCT);
+
+  if (!loading)
+    return (
+      <VerticalListFood
+        data={data.getAllProducts}
+        navigation={props.navigation}
+        contentContainerStyle={styles.mainContainer}
+        listHeaderComponent={
+          <View style={styles.headingContainer}>
+            <HomeHeaderDisplay
+              navigation={props.navigation}
+              avatarUri={avatarUri}
+            />
+
+            <View>
+              {/* moi them gan day 10 product */}
+              <SectionText>Recent</SectionText>
+              <HorizontalListFood
+                data={popularFastFoodList}
+                navigation={props.navigation}
+              />
+            </View>
+
+            <View>
+              {/* xep theo rating 10 product */}
+              <SectionText>Popular</SectionText>
+              <HorizontalListFood
+                data={popularFastFoodList}
+                navigation={props.navigation}
+              />
+            </View>
+
+            <View>
+              {/* xep theo random favourite 10 product */}
+              <SectionText>Favorite</SectionText>
+              <HorizontalListFood
+                data={popularFastFoodList}
+                navigation={props.navigation}
+              />
+            </View>
+
+            <View>
+              {/* xep theo order gan nhat 10 product */}
+              <SectionText>Order Again</SectionText>
+              <HorizontalListFood
+                data={popularFastFoodList}
+                navigation={props.navigation}
+              />
+            </View>
+
+            {/* random 20 product */}
+            <SectionText>Discovery</SectionText>
+          </View>
+        }
+      />
+    );
+  else return <ActivityIndicator size={'large'} />;
 }
 
 const styles = StyleSheet.create({
