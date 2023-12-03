@@ -70,11 +70,11 @@ export default function ItemCart(props: ThisProps): JSX.Element {
             <Icon
               type="font-awesome"
               name="trash"
-              size={28}
+              size={24}
               color={colors.red}
             />
           }
-          buttonStyle={{backgroundColor: 'transparent'}}
+          buttonStyle={{backgroundColor: 'transparent', marginBottom: 4}}
         />
       </View>
 

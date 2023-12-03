@@ -27,6 +27,54 @@ const listCart = [
     priceValue: 2.3,
     amount: 7,
   },
+  {
+    id: 4,
+    imageUri: '',
+    foodName: 'Food 3 ',
+    size: 'Large',
+    priceValue: 2.3,
+    amount: 7,
+  },
+  {
+    id: 5,
+    imageUri: '',
+    foodName: 'Food 3 ',
+    size: 'Large',
+    priceValue: 2.3,
+    amount: 7,
+  },
+  {
+    id: 6,
+    imageUri: '',
+    foodName: 'Food 3 ',
+    size: 'Large',
+    priceValue: 2.3,
+    amount: 7,
+  },
+  {
+    id: 7,
+    imageUri: '',
+    foodName: 'Food 3 ',
+    size: 'Large',
+    priceValue: 2.3,
+    amount: 7,
+  },
+  {
+    id: 8,
+    imageUri: '',
+    foodName: 'Food 3 ',
+    size: 'Large',
+    priceValue: 2.3,
+    amount: 7,
+  },
+  {
+    id: 9,
+    imageUri: '',
+    foodName: 'Food 3 ',
+    size: 'Large',
+    priceValue: 2.3,
+    amount: 7,
+  },
 ];
 
 type ThisProps = {
@@ -43,7 +91,7 @@ export default function MyCartTab(props: ThisProps): JSX.Element {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 32,
+    paddingVertical: 12,
     paddingHorizontal: 20,
   },
 });
