@@ -80,6 +80,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 12,
+    borderWidth: 1,
+    borderColor: colors.lightGrey,
   },
   buttonAddToCart: {
     backgroundColor: colors.primary,

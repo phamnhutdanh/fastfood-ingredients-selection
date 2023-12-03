@@ -61,6 +61,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 4,
     flex: 1,
+    borderWidth: 1,
+    borderColor: colors.lightGrey,
   },
   name_and_rating: {
     flexDirection: 'row',

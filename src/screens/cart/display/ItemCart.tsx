@@ -108,10 +108,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     paddingEnd: 20,
-    borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
     gap: 8,
+    borderWidth: 1,
+    borderRadius: 20,
+    borderColor: colors.lightGrey,
   },
   info_container: {
     flex: 1,
