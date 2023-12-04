@@ -19,7 +19,7 @@ export default function PopularProducts(props: ThisProps): JSX.Element {
         <SectionText>Popular</SectionText>
         <Suspense fallback={<ActivityIndicator size={'small'} />}>
           <HorizontalListFood
-            data={data.getPopularProducts}
+            data={data?.getPopularProducts}
             navigation={props.navigation}
           />
         </Suspense>

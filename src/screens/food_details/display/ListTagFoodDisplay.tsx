@@ -1,16 +1,18 @@
 import {StyleSheet} from 'react-native';
 import GenericFlatList from '../../../components/displays/generics/GenericFlatList';
-import {ItemFoodTypeName} from '../../../types/ItemType';
+import {ItemFoodTagName} from '../../../types/ItemType';
 import {GenericText} from '../../../components/texts/generics/GenericText';
 import colors from '../../../styles/colors';
 
 type ThisProps = {
-  data: ArrayLike<ItemFoodTypeName>;
+  data: ArrayLike<ItemFoodTagName>;
 };
 
-export default function ListTypeFoodDisplay(props: ThisProps): JSX.Element {
-  const memorizedValue = ({item}: {item: any}) => (
-    <GenericText style={styles.mainInfoContainer}>{item.type}</GenericText>
+export default function ListTagFoodDisplay(props: ThisProps): JSX.Element {
+  const memorizedValue = ({item, index}: {item: any; index: number}) => (
+    <GenericText key={index} style={styles.mainInfoContainer}>
+      {item.title}
+    </GenericText>
   );
 
   return (

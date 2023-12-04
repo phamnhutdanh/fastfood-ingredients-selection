@@ -11,8 +11,7 @@ type ThisProps = {
 export default function HorizontalListFood(props: ThisProps): JSX.Element {
   const navigateToFoodDetailsScreen = (item: any) => {
     props.navigation.navigate('FoodDetailsScreen', {
-      id: item.id,
-      foodName: item.title,
+      foodId: item.id,
     });
   };
 

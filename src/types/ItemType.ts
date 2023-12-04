@@ -46,12 +46,13 @@ export type FoodListItemType = {
   onPressItem: OnPressItem;
 };
 
-export type ItemFoodTypeName = {
+export type ItemFoodTagName = {
   id: number;
-  type: string;
+  title: string;
 };
 
 export type ItemFoodSizeName = {
   id: number;
-  size: string;
+  title: string;
+  fullPrice: number;
 };

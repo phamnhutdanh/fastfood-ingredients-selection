@@ -12,6 +12,7 @@ type ThisProps = {
   data: ArrayLike<ItemFoodSizeName>;
   chosen: string;
   setChosen: (item: string) => void;
+  setFullPrice: (item: number) => void;
 };
 
 export default function ListSizeFoodDisplay(props: ThisProps): JSX.Element {
@@ -20,6 +21,7 @@ export default function ListSizeFoodDisplay(props: ThisProps): JSX.Element {
   const memorizedValue = useCallback(
     ({item, index}: {item: any; index: number}) => (
       <Pressable
+        key={index}
         android_ripple={pressableRippleConfig}
         onPress={() => onPressItem(item, index)}>
         <GenericText
@@ -27,7 +29,7 @@ export default function ListSizeFoodDisplay(props: ThisProps): JSX.Element {
             styles.mainInfoContainer,
             indexChosen === index ? styles.chosen : {},
           ]}>
-          {item.size}
+          {item.title}
         </GenericText>
       </Pressable>
     ),
@@ -36,7 +38,8 @@ export default function ListSizeFoodDisplay(props: ThisProps): JSX.Element {
 
   const onPressItem = (item: ItemFoodSizeName, index: number) => {
     setIndexChosen(index);
-    props.setChosen(item.size);
+    props.setFullPrice(item.fullPrice);
+    props.setChosen(item.title);
   };
 
   return (

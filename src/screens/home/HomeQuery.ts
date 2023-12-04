@@ -9,7 +9,6 @@ export const GET_ALL_PRODUCT = gql`
       fullPrice
       description
       averageRatingScores
-      subcategoryId
       productSubcategory {
         productCategory {
           shop {

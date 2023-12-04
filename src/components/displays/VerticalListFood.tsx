@@ -3,9 +3,11 @@ import {useCallback} from 'react';
 import GenericFlatList from './generics/GenericFlatList';
 import ItemFoodVertical from '../items/ItemFoodVertical';
 import {ComponentStyle, ItemComponent} from '../../types/GenericType';
+import {GET_FOOD_BY_ID} from '../../screens/food_details/FoodDetailsQuery';
+import {useQuery} from '@apollo/client';
 
 type ThisProps = {
-  data: any;
+  data: ArrayLike<any>;
   navigation: any;
   listHeaderComponent?: ItemComponent | any;
   contentContainerStyle?: ComponentStyle;
@@ -14,8 +16,7 @@ type ThisProps = {
 export default function VerticalListFood(props: ThisProps): JSX.Element {
   const navigateToFoodDetailsScreen = (item: any) => {
     props.navigation.navigate('FoodDetailsScreen', {
-      id: item.id,
-      foodName: item.title,
+      foodId: item.id,
     });
   };
 

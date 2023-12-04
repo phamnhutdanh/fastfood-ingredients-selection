@@ -5,6 +5,7 @@ import SubtractButton from '../../../components/buttons/SubtractButton';
 import {GenericText} from '../../../components/texts/generics/GenericText';
 import AddButton from '../../../components/buttons/AddButton';
 import colors from '../../../styles/colors';
+import {ItemTitleText} from '../../../components/texts/ItemTitleText';
 
 type ThisProps = {
   price: number;
@@ -25,7 +26,11 @@ export default function PriceAndAmountDisplay(props: ThisProps): JSX.Element {
 
   return (
     <View style={styles.container}>
-      <PriceText textSize={16} priceValue={props.price} />
+      <View style={{flexDirection: 'row'}}>
+        <ItemTitleText>Price: </ItemTitleText>
+        <PriceText textSize={16} priceValue={props.price} />
+      </View>
+
       <View style={styles.amount}>
         <SubtractButton
           buttonStyle={styles.subtractButton}

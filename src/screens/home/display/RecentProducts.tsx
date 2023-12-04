@@ -19,7 +19,7 @@ export default function RecentProducts(props: ThisProps): JSX.Element {
         <SectionText>Recent</SectionText>
         <Suspense fallback={<ActivityIndicator size={'small'} />}>
           <HorizontalListFood
-            data={data.getRecentProducts}
+            data={data?.getRecentProducts}
             navigation={props.navigation}
           />
         </Suspense>

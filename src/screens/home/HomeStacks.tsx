@@ -11,9 +11,6 @@ type HomeStackParams = {
   FoodDetailsScreen: undefined;
   VendorDetailsScreen: undefined;
   AccountStacks: undefined;
-  FavoriteScreen: undefined;
-  EditAccountScreen: undefined;
-  ChangePasswordScreen: undefined;
   SearchScreen: undefined;
 };
 
