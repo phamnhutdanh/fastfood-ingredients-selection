@@ -7,8 +7,10 @@ import colors from '../../../styles/colors';
 
 type ThisProps = {
   navigation: any;
-  avatarUri: string;
 };
+
+const avatarUri =
+  'https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg';
 
 export default function HomeHeaderDisplay(props: ThisProps): JSX.Element {
   const navigateToAccountScreen = () => {
@@ -25,7 +27,7 @@ export default function HomeHeaderDisplay(props: ThisProps): JSX.Element {
             android_ripple={pressableRippleConfig}
             onPress={navigateToAccountScreen}>
             <View style={styles.avatarContainer}>
-              <Avatar source={{uri: props.avatarUri}} size={48} rounded />
+              <Avatar source={{uri: avatarUri}} size={48} rounded />
             </View>
           </Pressable>
         </View>

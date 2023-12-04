@@ -3,7 +3,6 @@ import {ItemTitleText} from '../../components/texts/ItemTitleText';
 import {ItemSubtitleText} from '../../components/texts/ItemSubtitleText';
 import colors from '../../styles/colors';
 import ItemImageFood from './ItemImageFood';
-import {OnPressItem} from '../../types/GenericType';
 import {pressableRippleConfig} from '../../styles/pressable_config';
 import {PriceText} from '../texts/PriceText';
 import {FoodListItemType} from '../../types/ItemType';
@@ -11,9 +10,7 @@ import display from '../../utils/display';
 import {Icon} from '@rneui/themed';
 import RatingText from '../texts/RatingText';
 
-type ThisProps = FoodListItemType & {
-  onPressAddButton: OnPressItem;
-};
+type ThisProps = FoodListItemType & {};
 
 export default function ItemFoodHorizontal(props: ThisProps): JSX.Element {
   return (
@@ -28,15 +25,15 @@ export default function ItemFoodHorizontal(props: ThisProps): JSX.Element {
       />
       <View style={styles.info_container}>
         <View style={styles.name_and_rating}>
-          <ItemTitleText style={styles.text}>{props.foodName}</ItemTitleText>
-          <RatingText ratingScore={4.5} />
+          <ItemTitleText style={styles.text}>{props.title}</ItemTitleText>
+          <RatingText ratingScore={props.averageRatingScores} />
         </View>
 
         <ItemSubtitleText style={styles.text}>
-          {props.vendorName}
+          {props.shopName}
         </ItemSubtitleText>
         <View style={styles.price_and_button}>
-          <PriceText textSize={12} priceValue={props.priceValue} />
+          <PriceText textSize={12} priceValue={props.fullPrice} />
           <View style={styles.buttonAddToCart}>
             <Icon
               type="material-community"

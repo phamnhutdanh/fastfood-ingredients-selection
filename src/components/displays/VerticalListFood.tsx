@@ -1,7 +1,5 @@
 import {StyleSheet} from 'react-native';
 import {useCallback} from 'react';
-
-import {FoodListItemType} from '../../types/ItemType';
 import GenericFlatList from './generics/GenericFlatList';
 import ItemFoodVertical from '../items/ItemFoodVertical';
 import {ComponentStyle, ItemComponent} from '../../types/GenericType';
@@ -14,7 +12,7 @@ type ThisProps = {
 };
 
 export default function VerticalListFood(props: ThisProps): JSX.Element {
-  const navigateToFoodDetailsScreen = (item: FoodListItemType) => {
+  const navigateToFoodDetailsScreen = (item: any) => {
     props.navigation.navigate('FoodDetailsScreen', {
       id: item.id,
       foodName: item.title,
@@ -22,7 +20,7 @@ export default function VerticalListFood(props: ThisProps): JSX.Element {
   };
 
   const memorizedValue = useCallback(
-    ({item}: {item: FoodListItemType}) => (
+    ({item}: {item: any}) => (
       <ItemFoodVertical
         imageUri={item.imageUri}
         onPressItem={() => navigateToFoodDetailsScreen(item)}
@@ -31,7 +29,7 @@ export default function VerticalListFood(props: ThisProps): JSX.Element {
         fullPrice={item.fullPrice}
         description={item.description}
         averageRatingScores={item.averageRatingScores}
-        shopName={item.productSubcategory.productCategory.shop.shopName}
+        shopName={item.productSubcategory?.productCategory?.shop?.shopName}
       />
     ),
     [props.data],

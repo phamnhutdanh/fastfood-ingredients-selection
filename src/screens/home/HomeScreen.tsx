@@ -1,75 +1,23 @@
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {SectionText} from '../../components/texts/SectionText';
 import HomeHeaderDisplay from './display/HomeHeaderDisplay';
-import HorizontalListFood from '../../components/displays/HorizontalListFood';
 import colors from '../../styles/colors';
 import VerticalListFood from '../../components/displays/VerticalListFood';
-import {gql, useQuery} from '@apollo/client';
-import React, {useEffect} from 'react';
-
-const avatarUri =
-  'https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg';
+import {useQuery} from '@apollo/client';
+import React, {Suspense} from 'react';
+import {GET_ALL_PRODUCT} from './HomeQuery';
+import PopularProducts from './display/PopularProducts';
+import RecentProducts from './display/RecentProducts';
 
 type ThisProps = {
   navigation: any;
   route: any;
 };
 
-const popularFastFoodList = [
-  {
-    id: 1,
-    foodName: 'Name',
-    vendorName: 'Vendor',
-    priceValue: 30000,
-    rating: 3.4,
-  },
-  {
-    id: 2,
-    foodName: 'Name 2',
-    vendorName: 'Vendor 2',
-    priceValue: 20000,
-    rating: 3.1,
-  },
-  {
-    id: 3,
-    foodName: 'Name 3',
-    vendorName: 'Vendor 3',
-    priceValue: 10000,
-    rating: 4.4,
-  },
-  {
-    id: 4,
-    foodName: 'Name 4',
-    vendorName: 'Vendor 4',
-    priceValue: 3000,
-    rating: 2.4,
-  },
-];
-
-const GET_ALL_PRODUCT = gql`
-  query GetAllProducts {
-    getAllProducts {
-      id
-      imageUri
-      title
-      fullPrice
-      description
-      averageRatingScores
-      productSubcategory {
-        productCategory {
-          shop {
-            shopName
-          }
-        }
-      }
-    }
-  }
-`;
-
 export default function HomeScreen(props: ThisProps): JSX.Element {
   const {data, loading} = useQuery(GET_ALL_PRODUCT);
 
-  if (!loading)
+  if (!loading) {
     return (
       <VerticalListFood
         data={data.getAllProducts}
@@ -77,31 +25,17 @@ export default function HomeScreen(props: ThisProps): JSX.Element {
         contentContainerStyle={styles.mainContainer}
         listHeaderComponent={
           <View style={styles.headingContainer}>
-            <HomeHeaderDisplay
+            <HomeHeaderDisplay navigation={props.navigation} />
+
+            <RecentProducts navigation={props.navigation} route={props.route} />
+
+            <PopularProducts
               navigation={props.navigation}
-              avatarUri={avatarUri}
+              route={props.route}
             />
 
-            <View>
-              {/* moi them gan day 10 product */}
-              <SectionText>Recent</SectionText>
-              <HorizontalListFood
-                data={popularFastFoodList}
-                navigation={props.navigation}
-              />
-            </View>
-
-            <View>
-              {/* xep theo rating 10 product */}
-              <SectionText>Popular</SectionText>
-              <HorizontalListFood
-                data={popularFastFoodList}
-                navigation={props.navigation}
-              />
-            </View>
-
-            <View>
-              {/* xep theo random favourite 10 product */}
+            {/* <View>
+   
               <SectionText>Favorite</SectionText>
               <HorizontalListFood
                 data={popularFastFoodList}
@@ -110,21 +44,19 @@ export default function HomeScreen(props: ThisProps): JSX.Element {
             </View>
 
             <View>
-              {/* xep theo order gan nhat 10 product */}
+            
               <SectionText>Order Again</SectionText>
               <HorizontalListFood
                 data={popularFastFoodList}
                 navigation={props.navigation}
               />
-            </View>
-
-            {/* random 20 product */}
+            </View> */}
             <SectionText>Discovery</SectionText>
           </View>
         }
       />
     );
-  else return <ActivityIndicator size={'large'} />;
+  } else return <ActivityIndicator size={'large'} />;
 }
 
 const styles = StyleSheet.create({

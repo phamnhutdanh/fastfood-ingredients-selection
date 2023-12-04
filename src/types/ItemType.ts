@@ -43,7 +43,6 @@ export type FoodListItemType = {
   description: string;
   averageRatingScores: number;
   shopName: any;
-  productSubcategory?: any;
   onPressItem: OnPressItem;
 };
 
