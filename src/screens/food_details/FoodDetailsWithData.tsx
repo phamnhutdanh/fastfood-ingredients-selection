@@ -61,6 +61,9 @@ export default function FoodDetailsWithData(props: ThisProps): JSX.Element {
             props.data.getProductById.productSubcategory.productCategory.shop
               .shopName
           }
+          shopId={
+            props.data.getProductById.productSubcategory.productCategory.shop.id
+          }
           textStyle={{fontSize: 16}}
           navigation={props.navigation}
         />

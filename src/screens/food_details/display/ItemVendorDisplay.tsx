@@ -7,11 +7,14 @@ type ThisProps = {
   navigation: any;
   textStyle?: ComponentStyle;
   shopName: string;
+  shopId: string;
 };
 
 export default function ItemVendorDisplay(props: ThisProps): JSX.Element {
   const navigateToVendorDetailsScreen = () => {
-    props.navigation.navigate('VendorDetailsScreen');
+    props.navigation.navigate('VendorDetailsScreen', {
+      shopId: props.shopId,
+    });
   };
 
   return (

@@ -19,6 +19,7 @@ export const GET_FOOD_BY_ID = gql`
       productSubcategory {
         productCategory {
           shop {
+            id
             shopName
           }
         }

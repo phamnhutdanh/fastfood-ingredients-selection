@@ -8,6 +8,7 @@ type ThisProps = {
   vendorName: string;
   phone: string;
   address: string;
+  id: string;
 };
 
 export default function VendorInfoDisplay(props: ThisProps): JSX.Element {
@@ -19,7 +20,7 @@ export default function VendorInfoDisplay(props: ThisProps): JSX.Element {
           size={90}
           avatarStyle={{borderRadius: 12}}
         />
-        <View>
+        <View style={{flex: 1}}>
           <SectionText>{props.vendorName}</SectionText>
           <GenericText>Hotline: {props.phone}</GenericText>
         </View>
