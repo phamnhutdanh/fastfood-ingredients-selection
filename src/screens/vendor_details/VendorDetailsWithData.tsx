@@ -1,7 +1,12 @@
 import {Button} from '@rneui/themed';
-import {StyleSheet, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import VendorInfoDisplay from './display/VendorInfoDisplay';
-import ListSubcategoryFoods from './display/ListSubcategyFoods';
+import VerticalListFood from '../../components/displays/VerticalListFood';
+import {useQuery} from '@apollo/client';
+import {GET_ALL_SUBCATEGORY_OF_SHOP} from './VendorDetailsQuery';
+import {SectionText} from '../../components/texts/SectionText';
+import HorizontalListFood from '../../components/displays/HorizontalListFood';
+import {useCallback} from 'react';
 
 type ThisProps = {
   shopId: string;
@@ -17,17 +22,41 @@ export default function VendorDetailsWithData(props: ThisProps): JSX.Element {
   const navigateToAllFoodOfShop = () => {
     props.navigation.navigate('VendorFoodDetails');
   };
+  const {data, loading} = useQuery(GET_ALL_SUBCATEGORY_OF_SHOP, {
+    variables: {
+      getAllSubCategoryOfShopId: props.shopId,
+    },
+  });
 
-  return (
-    <View style={styles.container}>
-      <VendorInfoDisplay id={props.shopId} />
-      <ListSubcategoryFoods id={props.shopId} navigation={props.navigation} />
-
-      <Button buttonStyle={styles.button} onPress={navigateToAllFoodOfShop}>
-        VIEW ALL FOODS
-      </Button>
-    </View>
+  const memorizedValue = useCallback(
+    ({item}: {item: any}) => (
+      <View>
+        <SectionText>{item.title}</SectionText>
+        <HorizontalListFood
+          data={item.products}
+          navigation={props.navigation}
+        />
+      </View>
+    ),
+    [data],
   );
+
+  if (!loading) {
+    return (
+      <VerticalListFood
+        data={data?.getAllSubCategoryOfShop}
+        navigation={props.navigation}
+        contentContainerStyle={styles.container}
+        renderItem={memorizedValue}
+        listHeaderComponent={<VendorInfoDisplay id={props.shopId} />}
+        listFooterComponent={
+          <Button buttonStyle={styles.button} onPress={navigateToAllFoodOfShop}>
+            VIEW ALL FOODS
+          </Button>
+        }
+      />
+    );
+  } else return <ActivityIndicator size={'large'} />;
 }
 
 const styles = StyleSheet.create({

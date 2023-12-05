@@ -3,14 +3,14 @@ import {useCallback} from 'react';
 import GenericFlatList from './generics/GenericFlatList';
 import ItemFoodVertical from '../items/ItemFoodVertical';
 import {ComponentStyle, ItemComponent} from '../../types/GenericType';
-import {GET_FOOD_BY_ID} from '../../screens/food_details/FoodDetailsQuery';
-import {useQuery} from '@apollo/client';
 
 type ThisProps = {
   data: ArrayLike<any>;
   navigation: any;
   listHeaderComponent?: ItemComponent | any;
+  listFooterComponent?: ItemComponent | any;
   contentContainerStyle?: ComponentStyle;
+  renderItem?: any;
 };
 
 export default function VerticalListFood(props: ThisProps): JSX.Element {
@@ -39,9 +39,10 @@ export default function VerticalListFood(props: ThisProps): JSX.Element {
   return (
     <GenericFlatList
       data={props.data}
-      renderItem={memorizedValue}
+      renderItem={props.renderItem ? props.renderItem : memorizedValue}
       contentContainerStyle={[styles.container, props.contentContainerStyle]}
       ListHeaderComponent={props.listHeaderComponent}
+      ListFooterComponent={props.listFooterComponent}
     />
   );
 }
