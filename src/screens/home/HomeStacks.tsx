@@ -5,11 +5,13 @@ import HomeScreen from './HomeScreen';
 import SearchScreen from '../search/SearchScreen';
 import colors from '../../styles/colors';
 import AccountStacks from '../account/AccountStacks';
+import AllFoodInShopGridDisplay from '../vendor_details/AllFoodInShopGridDisplay';
 
 type HomeStackParams = {
   HomeScreen: undefined;
   FoodDetailsScreen: undefined;
   VendorDetailsScreen: undefined;
+  VendorFoodDetails: undefined;
   AccountStacks: undefined;
   SearchScreen: undefined;
 };
@@ -36,6 +38,11 @@ export default function HomeStacks(): JSX.Element {
         name="VendorDetailsScreen"
         component={VendorDetailsScreen}
         options={{headerShown: true, title: 'Shop details'}}
+      />
+      <HomeNavigators.Screen
+        name="VendorFoodDetails"
+        component={AllFoodInShopGridDisplay}
+        options={{headerShown: true, title: ''}}
       />
       <HomeNavigators.Screen
         name="AccountStacks"

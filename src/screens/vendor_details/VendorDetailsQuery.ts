@@ -19,6 +19,7 @@ export const GET_ALL_PRODUCT_OF_SHOP = gql`
       title
       imageUri
       fullPrice
+      description
       averageRatingScores
       productSubcategory {
         productCategory {

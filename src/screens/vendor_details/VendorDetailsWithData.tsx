@@ -20,7 +20,9 @@ type FoodSectionType = {
 
 export default function VendorDetailsWithData(props: ThisProps): JSX.Element {
   const navigateToAllFoodOfShop = () => {
-    props.navigation.navigate('VendorFoodDetails');
+    props.navigation.navigate('VendorFoodDetails', {
+      shopId: props.shopId,
+    });
   };
   const {data, loading} = useQuery(GET_ALL_SUBCATEGORY_OF_SHOP, {
     variables: {

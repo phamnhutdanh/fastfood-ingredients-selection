@@ -27,5 +27,6 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: fonts.POPPINS_BOLD,
     color: colors.darkBlue,
+    fontSize: 16,
   },
 });

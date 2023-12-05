@@ -1,65 +1,8 @@
-import {StyleSheet, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {SectionText} from '../../components/texts/SectionText';
-import GridFoodInShopDisplay from './display/GridFoodInShopDisplay';
-
-const popularFastFoodList = [
-  {
-    id: 1,
-    foodName: 'Name',
-    vendorName: 'Vendor',
-    priceValue: 30000,
-    rating: 3.4,
-  },
-  {
-    id: 2,
-    foodName: 'Name 2',
-    vendorName: 'Vendor 2',
-    priceValue: 20000,
-    rating: 3.1,
-  },
-  {
-    id: 3,
-    foodName: 'Name 3',
-    vendorName: 'Vendor 3',
-    priceValue: 10000,
-    rating: 4.4,
-  },
-  {
-    id: 4,
-    foodName: 'Name 4',
-    vendorName: 'Vendor 4',
-    priceValue: 3000,
-    rating: 2.4,
-  },
-  {
-    id: 5,
-    foodName: 'Name 3',
-    vendorName: 'Vendor 3',
-    priceValue: 10000,
-    rating: 4.4,
-  },
-  {
-    id: 6,
-    foodName: 'Name 4',
-    vendorName: 'Vendor 4',
-    priceValue: 3000,
-    rating: 2.4,
-  },
-  {
-    id: 7,
-    foodName: 'Name 3',
-    vendorName: 'Vendor 3',
-    priceValue: 10000,
-    rating: 4.4,
-  },
-  {
-    id: 8,
-    foodName: 'Name 4',
-    vendorName: 'Vendor 4',
-    priceValue: 3000,
-    rating: 2.4,
-  },
-];
+import VerticalListFood from '../../components/displays/VerticalListFood';
+import {useQuery} from '@apollo/client';
+import {GET_ALL_PRODUCT_OF_SHOP} from './VendorDetailsQuery';
 
 type ThisProps = {
   navigation: any;
@@ -69,11 +12,17 @@ type ThisProps = {
 export default function AllFoodInShopGridDisplay(
   props: ThisProps,
 ): JSX.Element {
-  /** @TODO Add search and filter */
+  const {data, loading} = useQuery(GET_ALL_PRODUCT_OF_SHOP, {
+    variables: {
+      getAllProductOfShopId: props.route.params.shopId,
+    },
+  });
+
+  if (loading) return <ActivityIndicator size={'small'} />;
   return (
     <View style={styles.container}>
-      <GridFoodInShopDisplay
-        data={popularFastFoodList}
+      <VerticalListFood
+        data={data?.getAllProductOfShop}
         navigation={props.navigation}
         listHeaderComponent={<SectionText>All favorite foods</SectionText>}
       />
