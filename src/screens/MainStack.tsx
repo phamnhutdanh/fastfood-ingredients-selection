@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Icon} from '@rneui/themed';
 import colors from '../styles/colors';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -6,9 +6,6 @@ import Notification from './notification/Notification';
 import HomeStacks from './home/HomeStacks';
 import CartStacks from './cart/CartStacks';
 
-import {ActivityIndicator, View} from 'react-native';
-import {FIREBASE_AUTH} from '../auth/firebaseConfig';
-import {onAuthStateChanged} from 'firebase/auth';
 import AccountStacks from './account/AccountStacks';
 
 type MainTabStackParams = {
@@ -21,36 +18,7 @@ type MainTabStackParams = {
 
 const MainTabStackNavigator = createBottomTabNavigator<MainTabStackParams>();
 
-type MainScreenProps = {
-  navigation: any;
-  route: any;
-};
-
-export function MainStack(props: MainScreenProps) {
-  const [authServiceInitialized, setAuthServiceInitialized] = useState(false);
-
-  useEffect(() => {
-    const auth = FIREBASE_AUTH;
-    onAuthStateChanged(auth, user => {
-      setAuthServiceInitialized(true);
-      if (user) {
-      } else {
-        props.navigation.navigate('LoginScreen');
-      }
-    });
-  });
-
-  if (!authServiceInitialized) {
-    return (
-      <View>
-        <ActivityIndicator size={'large'} />
-      </View>
-    );
-  }
-  return <MainScreenAfterLogin />;
-}
-
-export function MainScreenAfterLogin(): JSX.Element {
+export function MainStack(): JSX.Element {
   return (
     <MainTabStackNavigator.Navigator
       initialRouteName="HomeStacks"

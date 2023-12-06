@@ -2,10 +2,10 @@ import {ActivityIndicator, StatusBar, View} from 'react-native';
 import {GenericText} from '../../components/texts/generics/GenericText';
 import {TextLink} from '../../components/texts/TextLink';
 import {StyleSheet} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import GenericButton from '../../components/buttons/generics/GenericButton';
 import {ErrorMessageText} from '../../components/texts/ErrorMessageText';
-import {signInWithEmailAndPassword} from 'firebase/auth';
+import {onAuthStateChanged, signInWithEmailAndPassword} from 'firebase/auth';
 import {FIREBASE_AUTH} from '../../auth/firebaseConfig';
 import colors from '../../styles/colors';
 import Separator from '../../components/displays/Separator';
@@ -18,7 +18,7 @@ type ThisProps = {
   route: any;
 };
 
-export default function LoginScreen(props: ThisProps): JSX.Element {
+function LoginWithoutAuthCheck(props: ThisProps): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -90,6 +90,24 @@ export default function LoginScreen(props: ThisProps): JSX.Element {
         <TextLink onPressItem={onPressSignUpLink}>sign up</TextLink>
       </View>
     </View>
+  );
+}
+
+export default function LoginScreen(props: ThisProps): JSX.Element {
+  const [authServiceInitialized, setAuthServiceInitialized] = useState(false);
+
+  useEffect(() => {
+    const auth = FIREBASE_AUTH;
+    onAuthStateChanged(auth, user => {
+      setAuthServiceInitialized(true);
+      if (user) {
+        props.navigation.navigate('MainStack');
+      }
+    });
+  });
+
+  return (
+    <LoginWithoutAuthCheck navigation={props.navigation} route={props.route} />
   );
 }
 

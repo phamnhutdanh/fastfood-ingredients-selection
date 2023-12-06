@@ -53,10 +53,7 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
       setErrorMessage('Re enter password is incorrect!');
       return setDisplayError(true);
     }
-    console.log('email: ' + email);
-    console.log('password: ' + password);
-    console.log('re enter password: ' + reEnterPassword);
-    console.log('auth ', FIREBASE_AUTH);
+
     const auth = FIREBASE_AUTH;
     try {
       await createUserWithEmailAndPassword(auth, email, password)
@@ -69,11 +66,10 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
               password: password,
               firebaseUID: userUID,
             },
-          }).then(id => {
-            console.log(data);
-            console.log('id: ', id);
+          }).then(() => {
             Snackbar.show({text: 'Account created success'});
             setDisplayError(false);
+            navigateToLoginScreen();
           });
         })
         .catch(error => {
@@ -85,7 +81,7 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
     }
   };
 
-  const onPressLogInLink = async () => {
+  const navigateToLoginScreen = async () => {
     props.navigation.navigate('LoginScreen');
   };
 
@@ -94,7 +90,7 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
       <IntroductionSignUp />
       <View style={styles.textContainer}>
         <GenericText>Already have an account, </GenericText>
-        <TextLink onPressItem={onPressLogInLink}>log in</TextLink>
+        <TextLink onPressItem={navigateToLoginScreen}>log in</TextLink>
       </View>
       <EmailTextInput value={email} onChangeText={setEmail} />
       <PasswordTextInput

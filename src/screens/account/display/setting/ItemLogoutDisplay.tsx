@@ -7,15 +7,16 @@ type ThisProps = {
 };
 
 export default function ItemLogoutDisplay(props: ThisProps): JSX.Element {
-  const signOut = () => {
+  const signOut = async () => {
     const auth = FIREBASE_AUTH;
-    auth
+
+    await auth
       .signOut()
       .then(() => {
         props.navigation.navigate('LoginScreen');
       })
       .catch(error => {
-        Snackbar.show(error);
+        Snackbar.show({text: error});
       });
   };
 
