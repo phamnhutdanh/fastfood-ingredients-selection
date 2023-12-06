@@ -26,12 +26,9 @@ export default function HomeScreen(props: ThisProps): JSX.Element {
           <View style={styles.headingContainer}>
             <HomeHeaderDisplay navigation={props.navigation} />
 
-            <RecentProducts navigation={props.navigation} route={props.route} />
+            <RecentProducts navigation={props.navigation} />
 
-            <PopularProducts
-              navigation={props.navigation}
-              route={props.route}
-            />
+            <PopularProducts navigation={props.navigation} />
 
             {/* <View>
    

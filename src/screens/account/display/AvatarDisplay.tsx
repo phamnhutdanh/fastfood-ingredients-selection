@@ -1,25 +1,41 @@
-import {StyleSheet, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {Avatar} from '@rneui/themed';
-import {TitleText} from '../../../components/texts/TitleText';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {SectionText} from '../../../components/texts/SectionText';
+import {ItemSubtitleText} from '../../../components/texts/ItemSubtitleText';
 
 type ThisProps = {
   avatarUri: string;
   name: string;
+  email: string;
 };
 
 export default function AvatarDisplay(props: ThisProps): JSX.Element {
   return (
-    <View style={styles.avatar}>
-      <Avatar source={{uri: props.avatarUri}} size={120} rounded />
-      <TitleText>{props.name}</TitleText>
-    </View>
+    <SafeAreaView style={styles.avatar}>
+      {props.avatarUri ? (
+        <Avatar source={{uri: props.avatarUri}} size={60} rounded />
+      ) : (
+        <ActivityIndicator size={'small'} />
+      )}
+
+      {props.email && props.name ? (
+        <View>
+          <SectionText>{props.name}</SectionText>
+          <ItemSubtitleText>{props.email}</ItemSubtitleText>
+        </View>
+      ) : (
+        <ActivityIndicator size={'small'} />
+      )}
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   avatar: {
-    justifyContent: 'center',
+    flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    gap: 12,
+    paddingVertical: 12,
   },
 });

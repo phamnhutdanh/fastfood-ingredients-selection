@@ -7,7 +7,6 @@ import React, {Suspense} from 'react';
 
 type ThisProps = {
   navigation: any;
-  route: any;
 };
 
 export default function RecentProducts(props: ThisProps): JSX.Element {

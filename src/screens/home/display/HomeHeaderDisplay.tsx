@@ -4,6 +4,9 @@ import {BigTitleText} from '../../../components/texts/BigTitleText';
 import {pressableRippleConfig} from '../../../styles/pressable_config';
 import {SearchBarButton} from '../../../components/buttons/SearchBarButton';
 import colors from '../../../styles/colors';
+import {useQuery} from '@apollo/client';
+import {GET_USER_BY_FIREBASE_UID} from '../../account/AccountQuery';
+import {FIREBASE_AUTH} from '../../../auth/firebaseConfig';
 
 type ThisProps = {
   navigation: any;
@@ -17,6 +20,12 @@ export default function HomeHeaderDisplay(props: ThisProps): JSX.Element {
     props.navigation.navigate('AccountStacks');
   };
 
+  const {data} = useQuery(GET_USER_BY_FIREBASE_UID, {
+    variables: {
+      id: FIREBASE_AUTH.currentUser?.uid,
+    },
+  });
+
   return (
     <View>
       <View style={styles.oval}></View>
@@ -27,7 +36,11 @@ export default function HomeHeaderDisplay(props: ThisProps): JSX.Element {
             android_ripple={pressableRippleConfig}
             onPress={navigateToAccountScreen}>
             <View style={styles.avatarContainer}>
-              <Avatar source={{uri: avatarUri}} size={48} rounded />
+              <Avatar
+                source={{uri: data?.getUserByFirebaseUID?.imageUrl}}
+                size={48}
+                rounded
+              />
             </View>
           </Pressable>
         </View>

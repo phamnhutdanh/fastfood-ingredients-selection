@@ -7,7 +7,6 @@ import {Suspense} from 'react';
 
 type ThisProps = {
   navigation: any;
-  route: any;
 };
 
 export default function PopularProducts(props: ThisProps): JSX.Element {
