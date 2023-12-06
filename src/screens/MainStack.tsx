@@ -9,7 +9,6 @@ import CartStacks from './cart/CartStacks';
 import {ActivityIndicator, View} from 'react-native';
 import {FIREBASE_AUTH} from '../auth/firebaseConfig';
 import {onAuthStateChanged} from 'firebase/auth';
-import AccountScreen from './account/AccountScreen';
 import AccountStacks from './account/AccountStacks';
 
 type MainTabStackParams = {
@@ -30,24 +29,24 @@ type MainScreenProps = {
 export function MainStack(props: MainScreenProps) {
   const [authServiceInitialized, setAuthServiceInitialized] = useState(false);
 
-  // useEffect(() => {
-  //   const auth = FIREBASE_AUTH;
-  //   onAuthStateChanged(auth, user => {
-  //     setAuthServiceInitialized(true);
-  //     if (user) {
-  //     } else {
-  //       props.navigation.navigate('LoginScreen');
-  //     }
-  //   });
-  // });
+  useEffect(() => {
+    const auth = FIREBASE_AUTH;
+    onAuthStateChanged(auth, user => {
+      setAuthServiceInitialized(true);
+      if (user) {
+      } else {
+        props.navigation.navigate('LoginScreen');
+      }
+    });
+  });
 
-  // if (!authServiceInitialized) {
-  //   return (
-  //     <View>
-  //       <ActivityIndicator size={'large'} />
-  //     </View>
-  //   );
-  // }
+  if (!authServiceInitialized) {
+    return (
+      <View>
+        <ActivityIndicator size={'large'} />
+      </View>
+    );
+  }
   return <MainScreenAfterLogin />;
 }
 

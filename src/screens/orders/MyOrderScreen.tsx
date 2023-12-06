@@ -1,7 +1,5 @@
-import {Text} from '@rneui/themed';
 import {StyleSheet, View} from 'react-native';
 import {TextLink} from '../../components/texts/TextLink';
-import {ItemSectionText} from '../../components/texts/ItemSectionText';
 import {ItemTitleText} from '../../components/texts/ItemTitleText';
 import EditAddressDisplay from '../account/display/edit_info/EditAddressDisplay';
 import {useState} from 'react';

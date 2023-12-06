@@ -48,19 +48,7 @@ type ThisProps = {
 };
 
 export default function AccountScreen(props: ThisProps): JSX.Element {
-  //const [authServiceInitialized, setAuthServiceInitialized] = useState(false);
   const [name, setName] = useState('Smurf cat');
-  // useEffect(() => {
-  //   const auth = FIREBASE_AUTH;
-  //   onAuthStateChanged(auth, user => {
-  //     setAuthServiceInitialized(true);
-  //     if (user) {
-  //       setName(user.uid);
-  //     } else {
-  //       props.navigation.navigate('LoginScreen');
-  //     }
-  //   });
-  // });
 
   return (
     <ScrollView

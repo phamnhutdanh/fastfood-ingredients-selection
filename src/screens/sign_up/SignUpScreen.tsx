@@ -40,8 +40,6 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [reEnterPassword, setReEnterPassword] = useState('');
-  const [isPasswordShow, setPasswordShow] = useState(false);
-  const [isRePasswordShow, setRePasswordShow] = useState(false);
   const [displayError, setDisplayError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [createUserAccount, {loading, error, data}] =

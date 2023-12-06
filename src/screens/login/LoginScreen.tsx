@@ -24,11 +24,7 @@ export default function LoginScreen(props: ThisProps): JSX.Element {
   const [isLoading, setIsLoading] = useState(false);
   const [displayError, setDisplayError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [isPasswordShow, setPasswordShow] = useState(false);
 
-  // const onPressButtonLogin = () => {
-  //   props.navigation.navigate('MainStack');
-  // };
   const onPressButtonLogin = async () => {
     if (email.length < 1 || password.length < 1) {
       setErrorMessage('Fields cannot be empty!');
