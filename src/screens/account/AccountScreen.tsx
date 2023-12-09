@@ -50,7 +50,6 @@ export default function AccountScreen(props: ThisProps): JSX.Element {
       id: FIREBASE_AUTH.currentUser?.uid,
     },
   });
-  console.log('UID: ', FIREBASE_AUTH.currentUser?.uid);
 
   return (
     <ScrollView

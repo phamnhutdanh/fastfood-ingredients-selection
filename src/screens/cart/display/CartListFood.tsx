@@ -1,40 +1,55 @@
-import {StyleSheet} from 'react-native';
-import {useCallback, useState} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {useCallback, useEffect, useState} from 'react';
 import ItemCart from './ItemCart';
-import {ItemCartType} from '../../../types/ItemType';
 import GenericFlatList from '../../../components/displays/generics/GenericFlatList';
 import {TotalPriceAndPlaceOrder} from './TotalPriceAndPlaceOrderDisplay';
+import {ItemTitleText} from '../../../components/texts/ItemTitleText';
+import DeleteAllDialog from './DeleteAllDialog';
 
 type ThisProps = {
   data: ArrayLike<any>;
   navigation: any;
+  refetch: any;
+  userId: string;
 };
 
 export default function CartListFood(props: ThisProps): JSX.Element {
-  const [price, setPrice] = useState(20000);
+  const [price, setPrice] = useState(0);
 
-  const navigateToFoodDetailsScreen = (item: ItemCartType) => {
+  const navigateToFoodDetailsScreen = (item: any) => {
     props.navigation.navigate('FoodDetailsScreen', {
       foodName: item.foodName,
     });
   };
+
+  useEffect(() => {
+    let sum = 0;
+    for (let i = 0; i < props.data.length; i++) {
+      sum = sum + props.data[i].fullPrice;
+    }
+    console.log(sum);
+    setPrice(sum);
+  }, [props.data]);
 
   const onPressPlaceOrder = () => {
     props.navigation.navigate('MyOrderScreen');
   };
 
   const memorizedValue = useCallback(
-    ({item}: {item: ItemCartType}) => (
-      <ItemCart
-        onPressItem={() => navigateToFoodDetailsScreen(item)}
-        foodName={item.foodName}
-        size={item.size}
-        priceValue={item.priceValue}
-        amount={item.amount}
-        id={item.id}
-        imageUri={item.imageUri}
-      />
-    ),
+    ({item}: {item: any}) => {
+      return (
+        <ItemCart
+          refetch={props.refetch}
+          onPressItem={() => navigateToFoodDetailsScreen(item)}
+          foodName={item.productSize.product.title}
+          size={item.productSize.title}
+          priceValue={item.productSize.fullPrice}
+          amount={item.amount}
+          id={item.id}
+          imageUri={item.productSize.product.imageUri}
+        />
+      );
+    },
     [props.data],
   );
 
@@ -48,6 +63,17 @@ export default function CartListFood(props: ThisProps): JSX.Element {
           price={price}
           onPressPlaceOrder={onPressPlaceOrder}
         />
+      }
+      ListHeaderComponent={
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+          }}>
+          <ItemTitleText>All products</ItemTitleText>
+          <DeleteAllDialog userId={props.userId} refetch={props.refetch} />
+        </View>
       }
     />
   );

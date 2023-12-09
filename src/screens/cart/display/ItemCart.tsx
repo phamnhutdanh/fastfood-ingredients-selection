@@ -6,15 +6,18 @@ import display from '../../../utils/display';
 import {ItemTitleText} from '../../../components/texts/ItemTitleText';
 import {ItemSubtitleText} from '../../../components/texts/ItemSubtitleText';
 import {PriceText} from '../../../components/texts/PriceText';
-import {Button, Icon} from '@rneui/themed';
+import {Button} from '@rneui/themed';
 import colors from '../../../styles/colors';
 import SubtractButton from '../../../components/buttons/SubtractButton';
 import {GenericText} from '../../../components/texts/generics/GenericText';
 import AddButton from '../../../components/buttons/AddButton';
 import fonts from '../../../styles/fonts';
 import {ItemCartType} from '../../../types/ItemType';
+import DeleteDialog from './DeleteDialog';
 
-type ThisProps = ItemCartType & {};
+type ThisProps = ItemCartType & {
+  refetch: any;
+};
 
 export default function ItemCart(props: ThisProps): JSX.Element {
   const [isChangeAmount, setChangeAmount] = useState(false);
@@ -65,17 +68,7 @@ export default function ItemCart(props: ThisProps): JSX.Element {
           <AddButton onPressItem={addMore} />
         </View>
 
-        <Button
-          icon={
-            <Icon
-              type="font-awesome"
-              name="trash"
-              size={24}
-              color={colors.red}
-            />
-          }
-          buttonStyle={{backgroundColor: 'transparent', marginBottom: 4}}
-        />
+        <DeleteDialog cartProductId={props.id} refetch={props.refetch} />
       </View>
 
       {isChangeAmount && (
