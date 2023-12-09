@@ -3,7 +3,7 @@ import GenericFlatList from '../../../components/displays/generics/GenericFlatLi
 import {ItemFoodSizeName} from '../../../types/ItemType';
 import {GenericText} from '../../../components/texts/generics/GenericText';
 import colors from '../../../styles/colors';
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Pressable} from 'react-native';
 import {pressableRippleConfig} from '../../../styles/pressable_config';
 import fonts from '../../../styles/fonts';
@@ -16,7 +16,12 @@ type ThisProps = {
 };
 
 export default function ListSizeFoodDisplay(props: ThisProps): JSX.Element {
-  const [indexChosen, setIndexChosen] = useState(-1);
+  const [indexChosen, setIndexChosen] = useState(0);
+
+  useEffect(() => {
+    const firstItem = props.data[0];
+    props.setChosen(firstItem.id);
+  }, []);
 
   const memorizedValue = useCallback(
     ({item, index}: {item: any; index: number}) => (

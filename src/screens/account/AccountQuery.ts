@@ -18,6 +18,7 @@ export const GET_USER_BY_ID = gql`
 export const GET_USER_BY_FIREBASE_UID = gql`
   query GetUserByFirebaseUID($id: ID!) {
     getUserByFirebaseUID(id: $id) {
+      id
       name
       imageUrl
       defaultAddress

@@ -13,16 +13,18 @@ import ListTagFoodDisplay from './display/ListTagFoodDisplay';
 import {BigTitleText} from '../../components/texts/BigTitleText';
 import RatingText from '../../components/texts/RatingText';
 import {useMutation} from '@apollo/client';
+import {ADD_PRODUCT_TO_CART} from './FoodDetailsQuery';
 import Snackbar from 'react-native-snackbar';
 
 type ThisProps = {
   data: any;
   navigation: any;
+  userId: string;
 };
 
 export default function FoodDetailsWithData(props: ThisProps): JSX.Element {
-  // const [createUserAccount, {loading, error, data}] =
-  //   useMutation(CreateUserAccount);
+  const [addProductToCart, {loading, error, data}] =
+    useMutation(ADD_PRODUCT_TO_CART);
 
   const [isFavorite, setFavorite] = useState<boolean>(true);
   const [amount, setAmount] = useState(1);
@@ -40,12 +42,18 @@ export default function FoodDetailsWithData(props: ThisProps): JSX.Element {
     console.log('Amount: ', amount);
     console.log('Size: ', chosen);
     console.log('Full price: ', fullPrice);
-
-    // await createUserAccount({
-    //   variables: {},
-    // }).then(() => {
-    //   Snackbar.show({text: 'Item added to cart!'});
-    // });
+    console.log(props.userId);
+    if (chosen === null) console.log('please chose size');
+    await addProductToCart({
+      variables: {
+        productSizeId: chosen,
+        userId: props.userId,
+        amount: amount,
+        fullPrice: fullPrice * amount,
+      },
+    }).then(() => {
+      Snackbar.show({text: 'Item added to cart!'});
+    });
   };
 
   return (
