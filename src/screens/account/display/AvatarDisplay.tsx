@@ -13,20 +13,20 @@ type ThisProps = {
 export default function AvatarDisplay(props: ThisProps): JSX.Element {
   return (
     <SafeAreaView style={styles.avatar}>
-      {props.avatarUri ? (
-        <Avatar source={{uri: props.avatarUri}} size={60} rounded />
-      ) : (
-        <ActivityIndicator size={'small'} />
-      )}
+      <Avatar
+        source={{
+          uri: props.avatarUri
+            ? props.avatarUri
+            : 'https://res.cloudinary.com/dxz5uumy7/image/upload/v1702088258/Food_data/default/png-transparent-default-avatar-thumbnail.png',
+        }}
+        size={60}
+        rounded
+      />
 
-      {props.email && props.name ? (
-        <View>
-          <SectionText>{props.name}</SectionText>
-          <ItemSubtitleText>{props.email}</ItemSubtitleText>
-        </View>
-      ) : (
-        <ActivityIndicator size={'small'} />
-      )}
+      <View style={{flex: 1}}>
+        <SectionText>{props.name}</SectionText>
+        <ItemSubtitleText>{props.email}</ItemSubtitleText>
+      </View>
     </SafeAreaView>
   );
 }
@@ -34,6 +34,7 @@ export default function AvatarDisplay(props: ThisProps): JSX.Element {
 const styles = StyleSheet.create({
   avatar: {
     flexDirection: 'row',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     gap: 12,
     paddingVertical: 12,

@@ -1,16 +1,16 @@
 import {OnPressItem} from './GenericType';
 
 export type ItemOrderSizeType = {
-  id: number;
+  id: string;
   size: string;
   quantity: number;
   price: number;
 };
 
 export type ItemCartType = {
-  id: number;
+  id: string;
   onPressItem: OnPressItem;
-  imageUri?: string;
+  imageUri: string;
   foodName: string;
   size: string;
   priceValue: number;
@@ -18,8 +18,8 @@ export type ItemCartType = {
 };
 
 export type ItemOngoingType = {
-  id: number;
-  imageUri?: string;
+  id: string;
+  imageUri: string;
   foodName: string;
   size: string;
   amount: number;
@@ -27,16 +27,16 @@ export type ItemOngoingType = {
 };
 
 export type ItemHistoryOrderType = {
-  id: number;
+  id: string;
   onPressItem: OnPressItem;
-  imageUri?: string;
+  imageUri: string;
   foodName: string;
   date: string;
   priceValue: number;
 };
 
 export type FoodListItemType = {
-  id: number;
+  id: string;
   imageUri: string;
   title: string;
   fullPrice: number;
@@ -47,12 +47,12 @@ export type FoodListItemType = {
 };
 
 export type ItemFoodTagName = {
-  id: number;
+  id: string;
   title: string;
 };
 
 export type ItemFoodSizeName = {
-  id: number;
+  id: string;
   title: string;
   fullPrice: number;
 };

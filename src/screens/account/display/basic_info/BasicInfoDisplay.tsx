@@ -10,7 +10,7 @@ type ThisProps = {
 };
 
 export default function BasicInfoDisplay(props: ThisProps): JSX.Element {
-  if (!props.phone || !props.address)
+  if (props.phone === null || props.address === null)
     return <ActivityIndicator size={'small'} />;
   return (
     <View style={styles.container}>

@@ -1,4 +1,4 @@
-import {Pressable, StyleSheet, View} from 'react-native';
+import {ActivityIndicator, Pressable, StyleSheet, View} from 'react-native';
 import {Avatar} from '@rneui/themed';
 import {BigTitleText} from '../../../components/texts/BigTitleText';
 import {pressableRippleConfig} from '../../../styles/pressable_config';
@@ -11,9 +11,6 @@ import {FIREBASE_AUTH} from '../../../auth/firebaseConfig';
 type ThisProps = {
   navigation: any;
 };
-
-const avatarUri =
-  'https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg';
 
 export default function HomeHeaderDisplay(props: ThisProps): JSX.Element {
   const navigateToAccountScreen = () => {
@@ -37,7 +34,11 @@ export default function HomeHeaderDisplay(props: ThisProps): JSX.Element {
             onPress={navigateToAccountScreen}>
             <View style={styles.avatarContainer}>
               <Avatar
-                source={{uri: data?.getUserByFirebaseUID?.imageUrl}}
+                source={{
+                  uri: data?.getUserByFirebaseUID?.imageUrl
+                    ? data.getUserByFirebaseUID.imageUrl
+                    : 'https://res.cloudinary.com/dxz5uumy7/image/upload/v1702088258/Food_data/default/png-transparent-default-avatar-thumbnail.png',
+                }}
                 size={48}
                 rounded
               />

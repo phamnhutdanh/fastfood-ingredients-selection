@@ -19,7 +19,7 @@ export default function ItemFoodHorizontal(props: ThisProps): JSX.Element {
       android_ripple={pressableRippleConfig}
       onPress={props.onPressItem}>
       <ItemImageFood
-        imageUri={props.imageUri ? props.imageUri : ''}
+        imageUri={props.imageUri}
         imageWidth={display.setWidth(45)}
         imageHeight={display.setHeight(15)}
       />

@@ -30,7 +30,11 @@ export default function CartStacks(): JSX.Element {
       <CartNavigators.Screen
         name="FoodDetailsScreen"
         component={FoodDetailsScreen}
-        options={{headerTransparent: true, headerShown: true, headerTitle: ''}}
+        options={{
+          headerTransparent: true,
+          headerShown: true,
+          headerTitle: '',
+        }}
       />
       <CartNavigators.Screen
         name="VendorDetailsScreen"

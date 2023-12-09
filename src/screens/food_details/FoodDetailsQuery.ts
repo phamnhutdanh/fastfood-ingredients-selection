@@ -7,9 +7,11 @@ export const GET_FOOD_BY_ID = gql`
       imageUri
       fullPrice
       ProductTag {
+        id
         title
       }
       ProductSize {
+        id
         title
         fullPrice
       }
@@ -27,3 +29,5 @@ export const GET_FOOD_BY_ID = gql`
     }
   }
 `;
+
+export const ADD_PRODUCT_TO_CART = ``;

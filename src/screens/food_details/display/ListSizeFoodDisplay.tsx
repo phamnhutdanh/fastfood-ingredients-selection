@@ -39,7 +39,7 @@ export default function ListSizeFoodDisplay(props: ThisProps): JSX.Element {
   const onPressItem = (item: ItemFoodSizeName, index: number) => {
     setIndexChosen(index);
     props.setFullPrice(item.fullPrice);
-    props.setChosen(item.title);
+    props.setChosen(item.id);
   };
 
   return (

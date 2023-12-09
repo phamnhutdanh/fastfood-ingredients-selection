@@ -20,19 +20,9 @@ type ThisProps = {
   route: any;
 };
 
-const CreateUserAccount = gql`
-  mutation CreateUserAccount(
-    $email: String!
-    $password: String!
-    $firebaseUID: String!
-  ) {
-    createUserAccount(
-      email: $email
-      password: $password
-      firebaseUID: $firebaseUID
-    ) {
-      id
-    }
+const CREATE_USER_ACCOUNT = gql`
+  mutation CreateUserAccount($email: String!, $firebaseUid: String!) {
+    createUserAccount(email: $email, firebaseUID: $firebaseUid)
   }
 `;
 
@@ -43,7 +33,7 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
   const [displayError, setDisplayError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [createUserAccount, {loading, error, data}] =
-    useMutation(CreateUserAccount);
+    useMutation(CREATE_USER_ACCOUNT);
 
   const onPressButtonSignUp = async () => {
     if (email.length < 1 || password.length < 1 || reEnterPassword.length < 1) {
@@ -63,8 +53,7 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
           await createUserAccount({
             variables: {
               email: email,
-              password: password,
-              firebaseUID: userUID,
+              firebaseUid: userUID,
             },
           }).then(() => {
             Snackbar.show({text: 'Account created success'});

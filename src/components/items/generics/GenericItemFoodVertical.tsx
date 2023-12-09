@@ -25,7 +25,7 @@ export default function GenericItemFoodVertical(props: ThisProps): JSX.Element {
       android_ripple={pressableRippleConfig}
       onPress={props.onPressItem}>
       <ItemImageFood
-        imageUri={props.imageUri ? props.imageUri : ''}
+        imageUri={props.imageUri}
         imageWidth={display.setWidth(30)}
         imageHeight={display.setHeight(15)}
       />

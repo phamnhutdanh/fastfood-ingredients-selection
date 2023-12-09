@@ -12,6 +12,8 @@ import ListSizeFoodDisplay from './display/ListSizeFoodDisplay';
 import ListTagFoodDisplay from './display/ListTagFoodDisplay';
 import {BigTitleText} from '../../components/texts/BigTitleText';
 import RatingText from '../../components/texts/RatingText';
+import {useMutation} from '@apollo/client';
+import Snackbar from 'react-native-snackbar';
 
 type ThisProps = {
   data: any;
@@ -19,6 +21,9 @@ type ThisProps = {
 };
 
 export default function FoodDetailsWithData(props: ThisProps): JSX.Element {
+  // const [createUserAccount, {loading, error, data}] =
+  //   useMutation(CreateUserAccount);
+
   const [isFavorite, setFavorite] = useState<boolean>(true);
   const [amount, setAmount] = useState(1);
   const [chosen, setChosen] = useState('');
@@ -31,10 +36,16 @@ export default function FoodDetailsWithData(props: ThisProps): JSX.Element {
     setFavorite(!isFavorite);
   };
 
-  const addToCart = () => {
+  const addToCart = async () => {
     console.log('Amount: ', amount);
     console.log('Size: ', chosen);
     console.log('Full price: ', fullPrice);
+
+    // await createUserAccount({
+    //   variables: {},
+    // }).then(() => {
+    //   Snackbar.show({text: 'Item added to cart!'});
+    // });
   };
 
   return (

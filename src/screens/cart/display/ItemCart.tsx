@@ -42,7 +42,7 @@ export default function ItemCart(props: ThisProps): JSX.Element {
       onPress={props.onPressItem}>
       <View style={styles.container}>
         <ItemImageFood
-          imageUri={props.imageUri ? props.imageUri : ''}
+          imageUri={props.imageUri}
           imageWidth={display.setWidth(20)}
           imageHeight={display.setHeight(10)}
         />

@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
 import {MainTabCartScreen} from './tabs/MainTabCartScreen';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 type ThisProps = {
   navigation: any;
@@ -9,21 +9,8 @@ type ThisProps = {
 export default function CartScreen(props: ThisProps): JSX.Element {
   return (
     <>
+      <SafeAreaView></SafeAreaView>
       <MainTabCartScreen navigation={props.navigation} />
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    gap: 12,
-  },
-  title: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  buttonOrder: {paddingVertical: 12},
-});

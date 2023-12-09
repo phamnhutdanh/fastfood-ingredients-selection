@@ -32,6 +32,7 @@ export default function CartListFood(props: ThisProps): JSX.Element {
         priceValue={item.priceValue}
         amount={item.amount}
         id={item.id}
+        imageUri={item.imageUri}
       />
     ),
     [props.data],

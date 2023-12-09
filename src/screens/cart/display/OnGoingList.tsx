@@ -18,6 +18,7 @@ export default function OnGoingList(props: ThisProps): JSX.Element {
         amount={item.amount}
         id={item.id}
         status={item.status}
+        imageUri={item.imageUri}
       />
     ),
     [props.data],

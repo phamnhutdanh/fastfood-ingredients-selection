@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet} from 'react-native';
+import {ActivityIndicator, ScrollView, StyleSheet} from 'react-native';
 import BasicInfoDisplay from './display/basic_info/BasicInfoDisplay';
 import AvatarDisplay from './display/AvatarDisplay';
 import MyFavoriteDisplay from './display/MyFavoriteDisplay';
@@ -45,25 +45,36 @@ type ThisProps = {
 };
 
 export default function AccountScreen(props: ThisProps): JSX.Element {
-  const {data} = useQuery(GET_USER_BY_FIREBASE_UID, {
+  const {data, loading} = useQuery(GET_USER_BY_FIREBASE_UID, {
     variables: {
       id: FIREBASE_AUTH.currentUser?.uid,
     },
   });
+  console.log('UID: ', FIREBASE_AUTH.currentUser?.uid);
 
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.container}>
-      <AvatarDisplay
-        avatarUri={data?.getUserByFirebaseUID?.imageUrl}
-        name={data?.getUserByFirebaseUID?.name}
-        email={data?.getUserByFirebaseUID?.account.email}
-      />
-      <BasicInfoDisplay
-        phone={data?.getUserByFirebaseUID?.phoneNumber}
-        address={data?.getUserByFirebaseUID?.defaultAddress}
-      />
+      {loading ? (
+        <ActivityIndicator size={'small'} />
+      ) : (
+        <AvatarDisplay
+          avatarUri={data?.getUserByFirebaseUID?.imageUrl}
+          name={data?.getUserByFirebaseUID?.name}
+          email={data?.getUserByFirebaseUID?.account.email}
+        />
+      )}
+
+      {loading ? (
+        <ActivityIndicator size={'small'} />
+      ) : (
+        <BasicInfoDisplay
+          phone={data?.getUserByFirebaseUID?.phoneNumber}
+          address={data?.getUserByFirebaseUID?.defaultAddress}
+        />
+      )}
+
       <MyFavoriteDisplay data={list} navigation={props.navigation} />
       <SettingDisplay navigation={props.navigation} />
     </ScrollView>
