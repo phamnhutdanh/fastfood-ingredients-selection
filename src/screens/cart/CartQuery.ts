@@ -6,6 +6,7 @@ export const GET_ALL_CART_PRODUCT_OF_USER = gql`
       id
       fullPrice
       productSize {
+        id
         title
         fullPrice
         product {
@@ -27,5 +28,21 @@ export const DELETE_A_CART_PRODUCT = gql`
 export const DELETE_ALL_CART_OF_USER = gql`
   mutation DeleteAllCartProductsOfUser($userId: ID!) {
     deleteAllCartProductsOfUser(userId: $userId)
+  }
+`;
+
+export const UPDATE_CART_PRODUCT = gql`
+  mutation UpdateCartProduct(
+    $cartProductId: ID!
+    $productSizeId: ID!
+    $amount: Int
+    $fullPrice: Float
+  ) {
+    updateCartProduct(
+      cartProductId: $cartProductId
+      productSizeId: $productSizeId
+      amount: $amount
+      fullPrice: $fullPrice
+    )
   }
 `;

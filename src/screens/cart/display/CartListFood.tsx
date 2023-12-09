@@ -43,6 +43,7 @@ export default function CartListFood(props: ThisProps): JSX.Element {
           onPressItem={() => navigateToFoodDetailsScreen(item)}
           foodName={item.productSize.product.title}
           size={item.productSize.title}
+          sizeId={item.productSize.id}
           priceValue={item.productSize.fullPrice}
           amount={item.amount}
           id={item.id}

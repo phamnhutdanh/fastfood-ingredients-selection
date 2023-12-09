@@ -14,14 +14,20 @@ import AddButton from '../../../components/buttons/AddButton';
 import fonts from '../../../styles/fonts';
 import {ItemCartType} from '../../../types/ItemType';
 import DeleteDialog from './DeleteDialog';
+import {UPDATE_CART_PRODUCT} from '../CartQuery';
+import {useMutation} from '@apollo/client';
+import Snackbar from 'react-native-snackbar';
 
 type ThisProps = ItemCartType & {
   refetch: any;
+  sizeId: string;
 };
 
 export default function ItemCart(props: ThisProps): JSX.Element {
   const [isChangeAmount, setChangeAmount] = useState(false);
   const [amount, setAmount] = useState(props.amount);
+  const [updateCartProduct, {data, loading, error}] =
+    useMutation(UPDATE_CART_PRODUCT);
 
   const addMore = () => {
     setAmount(amount + 1);
@@ -35,8 +41,18 @@ export default function ItemCart(props: ThisProps): JSX.Element {
     }
   };
 
-  const onPressSave = () => {
-    console.log('On press save cart: Call API update');
+  const onPressSave = async () => {
+    await updateCartProduct({
+      variables: {
+        cartProductId: props.id,
+        productSizeId: props.sizeId,
+        amount: amount,
+        fullPrice: props.priceValue,
+      },
+    }).then(() => {
+      props.refetch();
+      Snackbar.show({text: 'Item updated success'});
+    });
   };
 
   return (
