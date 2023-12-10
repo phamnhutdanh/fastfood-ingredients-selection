@@ -46,7 +46,11 @@ export default function CartStacks(): JSX.Element {
         component={AllFoodInShopGridDisplay}
         options={{headerShown: true, title: ''}}
       />
-      <CartNavigators.Screen name="MyOrderScreen" component={MyOrderScreen} />
+      <CartNavigators.Screen
+        name="MyOrderScreen"
+        component={MyOrderScreen}
+        options={{headerShown: true, title: 'Confirm your order'}}
+      />
     </CartNavigators.Navigator>
   );
 }

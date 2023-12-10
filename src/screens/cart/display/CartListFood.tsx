@@ -32,7 +32,10 @@ export default function CartListFood(props: ThisProps): JSX.Element {
   }, [props.data]);
 
   const onPressPlaceOrder = () => {
-    props.navigation.navigate('MyOrderScreen');
+    props.navigation.navigate('MyOrderScreen', {
+      data: props.data,
+      totalPrice: price,
+    });
   };
 
   const memorizedValue = useCallback(
@@ -66,12 +69,7 @@ export default function CartListFood(props: ThisProps): JSX.Element {
         />
       }
       ListHeaderComponent={
-        <View
-          style={{
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexDirection: 'row',
-          }}>
+        <View style={styles.header}>
           <ItemTitleText>All products</ItemTitleText>
           <DeleteAllDialog userId={props.userId} refetch={props.refetch} />
         </View>
@@ -83,5 +81,10 @@ export default function CartListFood(props: ThisProps): JSX.Element {
 const styles = StyleSheet.create({
   container: {
     gap: 20,
+  },
+  header: {
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
   },
 });

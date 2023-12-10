@@ -17,6 +17,15 @@ export type ItemCartType = {
   amount: number;
 };
 
+export type ItemOrderType = {
+  id: string;
+  imageUri: string;
+  foodName: string;
+  size: string;
+  priceValue: number;
+  amount: number;
+};
+
 export type ItemOngoingType = {
   id: string;
   imageUri: string;

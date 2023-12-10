@@ -12,6 +12,7 @@
   "dependencies": {
     "@apollo/client": "^3.8.7",
     "@react-native-async-storage/async-storage": "^1.21.0",
+    "@react-native-community/datetimepicker": "^7.4.2",
     "@react-navigation/bottom-tabs": "^6.5.10",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.15",
@@ -19,6 +20,8 @@
     "@rneui/themed": "^4.0.0-rc.8",
     "firebase": "^10.6.0",
     "graphql": "^16.8.1",
+    "i": "^0.3.7",
+    "npm": "^10.2.5",
     "react": "18.2.0",
     "react-native": "0.72.6",
     "react-native-asset": "^2.1.1",

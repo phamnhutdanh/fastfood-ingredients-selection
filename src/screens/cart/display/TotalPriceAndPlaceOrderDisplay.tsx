@@ -34,9 +34,8 @@ export function TotalPriceAndPlaceOrder(props: ThisProps): JSX.Element {
 const styles = StyleSheet.create({
   footer: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 4,
-    paddingHorizontal: 8,
   },
 });

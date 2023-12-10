@@ -1,44 +1,62 @@
-import {StyleSheet, View} from 'react-native';
-import {TextLink} from '../../components/texts/TextLink';
-import {ItemTitleText} from '../../components/texts/ItemTitleText';
-import EditAddressDisplay from '../account/display/edit_info/EditAddressDisplay';
-import {useState} from 'react';
-import {GenericText} from '../../components/texts/generics/GenericText';
-import {TotalPriceAndPlaceOrder} from '../cart/display/TotalPriceAndPlaceOrderDisplay';
+import {StyleSheet} from 'react-native';
+import {useCallback, useState} from 'react';
+import GenericFlatList from '../../components/displays/generics/GenericFlatList';
+import ItemOrder from './display/ItemOrder';
+import {ListHeaderOrder} from './display/ListHeaderOrder';
+import {ListFooterOrder} from './display/ListFooterOrder';
 
-export default function MyOrderHistory(): JSX.Element {
-  const [address, setAddress] = useState(
-    'address address address address address address address',
+type ThisProps = {
+  navigation: any;
+  route: any;
+};
+
+export default function MyOrderHistory(props: ThisProps): JSX.Element {
+  const [address, setAddress] = useState('address address');
+  const [note, setNote] = useState('');
+  const data = props.route.params.data;
+  const totalPrice = props.route.params.totalPrice;
+
+  const placeOrder = () => {};
+
+  const memorizedValue = useCallback(
+    ({item, index}: {item: any; index: number}) => (
+      <ItemOrder
+        id={item.id}
+        imageUri={item.productSize.product.imageUri}
+        foodName={item.productSize.product.title}
+        size={item.productSize.title}
+        priceValue={item.productSize.fullPrice}
+        amount={item.amount}
+      />
+    ),
+    [data],
   );
 
-  const placeOrder = () => {
-    console.log('Place order');
-  };
   return (
-    <View>
-      <View style={styles.text}>
-        <ItemTitleText>My favorite foods</ItemTitleText>
-        <TextLink onPress={() => {}}>View all</TextLink>
-      </View>
-      <EditAddressDisplay value={address} onChangedText={setAddress} />
-      <View style={styles.text}>
-        <ItemTitleText>All food</ItemTitleText>
-        <TextLink onPress={() => {}}>Delete all</TextLink>
-      </View>
-
-      <View>
-        <ItemTitleText>Payment method</ItemTitleText>
-        <GenericText>Cast on delivery</GenericText>
-      </View>
-
-      <TotalPriceAndPlaceOrder price={10000} onPressPlaceOrder={placeOrder} />
-    </View>
+    <GenericFlatList
+      data={data}
+      renderItem={memorizedValue}
+      contentContainerStyle={styles.container}
+      removeClippedSubviews={false}
+      ListHeaderComponent={
+        <ListHeaderOrder address={address} setAddress={setAddress} />
+      }
+      ListFooterComponent={
+        <ListFooterOrder
+          totalPrice={totalPrice}
+          onPressPlaceOrder={placeOrder}
+          note={note}
+          setNote={setNote}
+        />
+      }
+    />
   );
 }
+
 const styles = StyleSheet.create({
-  text: {
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    alignItems: 'center',
+  container: {
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    gap: 12,
   },
 });
