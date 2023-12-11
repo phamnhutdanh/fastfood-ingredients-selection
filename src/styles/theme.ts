@@ -66,5 +66,15 @@ export const theme = createTheme({
         fontFamily: fonts.POPPINS_MEDIUM,
       }),
     },
+    Avatar: {
+      source: {
+        uri: 'https://res.cloudinary.com/dxz5uumy7/image/upload/v1702088258/Food_data/default/png-transparent-default-avatar-thumbnail.png',
+      },
+    },
+    Image: {
+      source: {
+        uri: 'https://res.cloudinary.com/dxz5uumy7/image/upload/v1702088164/Food_data/default/istockphoto-1354776457-612x612.jpg',
+      },
+    },
   },
 });

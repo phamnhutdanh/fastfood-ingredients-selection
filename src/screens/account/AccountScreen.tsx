@@ -1,15 +1,12 @@
-import {ScrollView, StyleSheet} from 'react-native';
+import {ActivityIndicator, ScrollView, StyleSheet} from 'react-native';
 import BasicInfoDisplay from './display/basic_info/BasicInfoDisplay';
 import AvatarDisplay from './display/AvatarDisplay';
 import MyFavoriteDisplay from './display/MyFavoriteDisplay';
 import SettingDisplay from './display/setting/SettingDisplay';
-import {useEffect, useState} from 'react';
-import {FIREBASE_AUTH} from '../../auth/firebaseConfig';
-import {onAuthStateChanged} from 'firebase/auth';
 import colors from '../../styles/colors';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-const avatarUri =
-  'https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg';
+import {useQuery} from '@apollo/client';
+import {GET_USER_BY_FIREBASE_UID} from './AccountQuery';
+import {FIREBASE_AUTH} from '../../auth/firebaseConfig';
 
 const list = [
   {
@@ -48,33 +45,35 @@ type ThisProps = {
 };
 
 export default function AccountScreen(props: ThisProps): JSX.Element {
-  //const [authServiceInitialized, setAuthServiceInitialized] = useState(false);
-  const [name, setName] = useState('Smurf cat');
-  // useEffect(() => {
-  //   const auth = FIREBASE_AUTH;
-  //   onAuthStateChanged(auth, user => {
-  //     setAuthServiceInitialized(true);
-  //     if (user) {
-  //       setName(user.uid);
-  //     } else {
-  //       props.navigation.navigate('LoginScreen');
-  //     }
-  //   });
-  // });
+  const {data, loading} = useQuery(GET_USER_BY_FIREBASE_UID, {
+    variables: {
+      id: FIREBASE_AUTH.currentUser?.uid,
+    },
+  });
 
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.container}>
-      <AvatarDisplay avatarUri={avatarUri} name={name} />
-      <BasicInfoDisplay
-        gender={'other'}
-        birthday={'01/01/2000'}
-        phone={'0123456789'}
-        address={
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
-        }
-      />
+      {loading ? (
+        <ActivityIndicator size={'small'} />
+      ) : (
+        <AvatarDisplay
+          avatarUri={data?.getUserByFirebaseUID?.imageUrl}
+          name={data?.getUserByFirebaseUID?.name}
+          email={data?.getUserByFirebaseUID?.account.email}
+        />
+      )}
+
+      {loading ? (
+        <ActivityIndicator size={'small'} />
+      ) : (
+        <BasicInfoDisplay
+          phone={data?.getUserByFirebaseUID?.phoneNumber}
+          address={data?.getUserByFirebaseUID?.defaultAddress}
+        />
+      )}
+
       <MyFavoriteDisplay data={list} navigation={props.navigation} />
       <SettingDisplay navigation={props.navigation} />
     </ScrollView>
@@ -83,7 +82,7 @@ export default function AccountScreen(props: ThisProps): JSX.Element {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 32,
     paddingVertical: 40,
     gap: 12,
     backgroundColor: colors.lightGrey,

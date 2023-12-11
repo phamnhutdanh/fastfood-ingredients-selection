@@ -3,7 +3,7 @@ import GenericFlatList from '../../../components/displays/generics/GenericFlatLi
 import {ItemFoodSizeName} from '../../../types/ItemType';
 import {GenericText} from '../../../components/texts/generics/GenericText';
 import colors from '../../../styles/colors';
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Pressable} from 'react-native';
 import {pressableRippleConfig} from '../../../styles/pressable_config';
 import fonts from '../../../styles/fonts';
@@ -12,14 +12,21 @@ type ThisProps = {
   data: ArrayLike<ItemFoodSizeName>;
   chosen: string;
   setChosen: (item: string) => void;
+  setFullPrice: (item: number) => void;
 };
 
 export default function ListSizeFoodDisplay(props: ThisProps): JSX.Element {
-  const [indexChosen, setIndexChosen] = useState(-1);
+  const [indexChosen, setIndexChosen] = useState(0);
+
+  useEffect(() => {
+    const firstItem = props.data[0];
+    props.setChosen(firstItem.id);
+  }, []);
 
   const memorizedValue = useCallback(
     ({item, index}: {item: any; index: number}) => (
       <Pressable
+        key={index}
         android_ripple={pressableRippleConfig}
         onPress={() => onPressItem(item, index)}>
         <GenericText
@@ -27,7 +34,7 @@ export default function ListSizeFoodDisplay(props: ThisProps): JSX.Element {
             styles.mainInfoContainer,
             indexChosen === index ? styles.chosen : {},
           ]}>
-          {item.size}
+          {item.title}
         </GenericText>
       </Pressable>
     ),
@@ -36,7 +43,8 @@ export default function ListSizeFoodDisplay(props: ThisProps): JSX.Element {
 
   const onPressItem = (item: ItemFoodSizeName, index: number) => {
     setIndexChosen(index);
-    props.setChosen(item.size);
+    props.setFullPrice(item.fullPrice);
+    props.setChosen(item.id);
   };
 
   return (

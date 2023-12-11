@@ -1,16 +1,25 @@
 import {OnPressItem} from './GenericType';
 
 export type ItemOrderSizeType = {
-  id: number;
+  id: string;
   size: string;
   quantity: number;
   price: number;
 };
 
 export type ItemCartType = {
-  id: number;
+  id: string;
   onPressItem: OnPressItem;
-  imageUri?: string;
+  imageUri: string;
+  foodName: string;
+  size: string;
+  priceValue: number;
+  amount: number;
+};
+
+export type ItemOrderType = {
+  id: string;
+  imageUri: string;
   foodName: string;
   size: string;
   priceValue: number;
@@ -18,8 +27,8 @@ export type ItemCartType = {
 };
 
 export type ItemOngoingType = {
-  id: number;
-  imageUri?: string;
+  id: string;
+  imageUri: string;
   foodName: string;
   size: string;
   amount: number;
@@ -27,30 +36,46 @@ export type ItemOngoingType = {
 };
 
 export type ItemHistoryOrderType = {
-  id: number;
+  id: string;
   onPressItem: OnPressItem;
-  imageUri?: string;
+  imageUri: string;
   foodName: string;
   date: string;
   priceValue: number;
 };
 
 export type FoodListItemType = {
-  id: number;
+  id: string;
   imageUri: string;
-  foodName: string;
-  vendorName: string;
-  priceValue: number;
+  title: string;
+  fullPrice: number;
+  description: string;
+  averageRatingScores: number;
+  shopName: any;
   onPressItem: OnPressItem;
-  rating: number;
 };
 
-export type ItemFoodTypeName = {
-  id: number;
-  type: string;
+export type ItemFoodTagName = {
+  id: string;
+  title: string;
 };
 
 export type ItemFoodSizeName = {
-  id: number;
-  size: string;
+  id: string;
+  title: string;
+  fullPrice: number;
+};
+
+export type OrderInputType = {
+  deliveryAddress: string;
+  totalCost: number;
+  deliveredAt: string;
+  userId: string;
+  commentary: string;
+};
+
+export type OrderProductInputType = {
+  fullPrice: number;
+  count: number;
+  productSizeId: string;
 };

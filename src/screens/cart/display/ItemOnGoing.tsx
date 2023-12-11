@@ -6,6 +6,7 @@ import {ItemTitleText} from '../../../components/texts/ItemTitleText';
 import {ItemSubtitleText} from '../../../components/texts/ItemSubtitleText';
 import {ItemOngoingType} from '../../../types/ItemType';
 import StatusDisplay from '../tabs/on_going/StatusDisplay';
+import colors from '../../../styles/colors';
 
 type ThisProps = ItemOngoingType & {};
 
@@ -13,7 +14,7 @@ export default function ItemOnGoing(props: ThisProps): JSX.Element {
   return (
     <View style={styles.container}>
       <ItemImageFood
-        imageUri={props.imageUri ? props.imageUri : ''}
+        imageUri={props.imageUri}
         imageWidth={display.setWidth(20)}
         imageHeight={display.setHeight(10)}
       />
@@ -35,10 +36,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     paddingEnd: 20,
-    borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
     gap: 8,
+    borderWidth: 1,
+    borderRadius: 20,
+    borderColor: colors.lightGrey,
   },
   info_container: {
     flex: 1,

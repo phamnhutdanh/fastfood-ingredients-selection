@@ -43,7 +43,7 @@ export default function OnGoingTab(props: ThisProps): JSX.Element {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 32,
+    paddingVertical: 12,
     paddingHorizontal: 20,
   },
 });

@@ -24,6 +24,7 @@ export default function HistoryOrderList(props: ThisProps): JSX.Element {
         foodName={item.foodName}
         date={item.date}
         priceValue={item.priceValue}
+        imageUri={item.imageUri}
       />
     ),
     [props.data],

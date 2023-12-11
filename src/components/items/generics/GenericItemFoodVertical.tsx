@@ -11,7 +11,6 @@ import {FoodListItemType} from '../../../types/ItemType';
 import fonts from '../../../styles/fonts';
 import display from '../../../utils/display';
 import RatingText from '../../texts/RatingText';
-import {Icon} from '@rneui/themed';
 import FavoriteButton from '../../buttons/FavoriteButton';
 
 type ThisProps = FoodListItemType & {
@@ -26,37 +25,23 @@ export default function GenericItemFoodVertical(props: ThisProps): JSX.Element {
       android_ripple={pressableRippleConfig}
       onPress={props.onPressItem}>
       <ItemImageFood
-        imageUri={props.imageUri ? props.imageUri : ''}
+        imageUri={props.imageUri}
         imageWidth={display.setWidth(30)}
         imageHeight={display.setHeight(15)}
       />
       <View style={styles.info_container}>
         <View style={styles.name_and_rating}>
-          <ItemTitleText style={styles.text}>{props.foodName}</ItemTitleText>
-          <RatingText ratingScore={4.5} />
+          <ItemTitleText style={styles.text}>{props.title}</ItemTitleText>
+          <RatingText ratingScore={props.averageRatingScores} />
         </View>
         <ItemSubtitleText style={{marginBottom: 4}}>
-          {props.vendorName}
+          {props.shopName}
         </ItemSubtitleText>
         <ItemSubtitleText numberOfLines={2} style={styles.description}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          {props.description}
         </ItemSubtitleText>
         <View style={styles.price_and_button}>
-          <PriceText priceValue={props.priceValue} textSize={14} />
-          <View style={styles.buttonAddToCart}>
-            <Icon
-              type="material-community"
-              name="cart-outline"
-              size={20}
-              color={colors.white}
-            />
-          </View>
+          <PriceText priceValue={props.fullPrice} textSize={14} />
         </View>
       </View>
 
@@ -80,6 +65,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 12,
+    borderWidth: 1,
+    borderColor: colors.lightGrey,
+    paddingVertical: 12,
   },
   buttonAddToCart: {
     backgroundColor: colors.primary,

@@ -1,7 +1,5 @@
 import {StyleSheet} from 'react-native';
 import {useCallback} from 'react';
-
-import {FoodListItemType} from '../../types/ItemType';
 import GenericFlatList from './generics/GenericFlatList';
 import ItemFoodVertical from '../items/ItemFoodVertical';
 import {ComponentStyle, ItemComponent} from '../../types/GenericType';
@@ -10,27 +8,29 @@ type ThisProps = {
   data: ArrayLike<any>;
   navigation: any;
   listHeaderComponent?: ItemComponent | any;
+  listFooterComponent?: ItemComponent | any;
   contentContainerStyle?: ComponentStyle;
+  renderItem?: any;
 };
 
 export default function VerticalListFood(props: ThisProps): JSX.Element {
-  const navigateToFoodDetailsScreen = (item: FoodListItemType) => {
+  const navigateToFoodDetailsScreen = (item: any) => {
     props.navigation.navigate('FoodDetailsScreen', {
-      id: item.id,
-      foodName: item.foodName,
+      foodId: item.id,
     });
   };
 
   const memorizedValue = useCallback(
-    ({item}: {item: FoodListItemType}) => (
+    ({item}: {item: any}) => (
       <ItemFoodVertical
-        imageUri={''}
-        foodName={item.foodName}
-        vendorName={item.vendorName}
-        priceValue={item.priceValue}
+        imageUri={item.imageUri}
         onPressItem={() => navigateToFoodDetailsScreen(item)}
         id={item.id}
-        rating={item.rating}
+        title={item.title}
+        fullPrice={item.fullPrice}
+        description={item.description}
+        averageRatingScores={item.averageRatingScores}
+        shopName={item.productSubcategory?.productCategory?.shop?.shopName}
       />
     ),
     [props.data],
@@ -39,9 +39,10 @@ export default function VerticalListFood(props: ThisProps): JSX.Element {
   return (
     <GenericFlatList
       data={props.data}
-      renderItem={memorizedValue}
+      renderItem={props.renderItem ? props.renderItem : memorizedValue}
       contentContainerStyle={[styles.container, props.contentContainerStyle]}
       ListHeaderComponent={props.listHeaderComponent}
+      ListFooterComponent={props.listFooterComponent}
     />
   );
 }

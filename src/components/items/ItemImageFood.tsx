@@ -3,9 +3,6 @@ import {ActivityIndicator, StyleSheet} from 'react-native';
 import colors from '../../styles/colors';
 import {Image} from '@rneui/themed';
 
-const imageUri =
-  'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=1780&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
-
 type ThisProps = {
   imageWidth?: number;
   imageHeight?: number;
@@ -15,7 +12,11 @@ type ThisProps = {
 export default function ItemImageFood(props: ThisProps): JSX.Element {
   return (
     <Image
-      source={{uri: props.imageUri ? props.imageUri : imageUri}}
+      source={{
+        uri: props.imageUri
+          ? props.imageUri
+          : 'https://res.cloudinary.com/dxz5uumy7/image/upload/v1702088164/Food_data/default/istockphoto-1354776457-612x612.jpg',
+      }}
       containerStyle={[
         styles.image_item,
         {width: props.imageWidth, height: props.imageHeight},

@@ -1,24 +1,19 @@
-import {StyleSheet, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {ItemSectionText} from '../../../../components/texts/ItemSectionText';
-import ItemGenderDisplay from './ItemGenderDisplay';
-import ItemBirthdayDisplay from './ItemBirthdayDisplay';
 import ItemPhoneDisplay from './ItemPhoneDisplay';
 import ItemAddressDisplay from './ItemAddressDisplay';
 import colors from '../../../../styles/colors';
 
 type ThisProps = {
-  gender: string;
-  birthday: string;
   phone: string;
   address: string;
 };
 
 export default function BasicInfoDisplay(props: ThisProps): JSX.Element {
+  if (props.phone === null || props.address === null)
+    return <ActivityIndicator size={'small'} />;
   return (
     <View style={styles.container}>
-      <ItemSectionText>Basic info</ItemSectionText>
-      <ItemGenderDisplay gender={props.gender} />
-      <ItemBirthdayDisplay birthday={props.birthday} />
       <ItemSectionText>Contact</ItemSectionText>
       <ItemPhoneDisplay phone={props.phone} />
       <ItemSectionText>Address</ItemSectionText>

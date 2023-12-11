@@ -1,8 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {useCallback} from 'react';
 import ItemFoodHorizontal from '../items/ItemFoodHorizontal';
-
-import {FoodListItemType} from '../../types/ItemType';
 import GenericFlatList from './generics/GenericFlatList';
 
 type ThisProps = {
@@ -11,24 +9,23 @@ type ThisProps = {
 };
 
 export default function HorizontalListFood(props: ThisProps): JSX.Element {
-  const navigateToFoodDetailsScreen = (item: FoodListItemType) => {
+  const navigateToFoodDetailsScreen = (item: any) => {
     props.navigation.navigate('FoodDetailsScreen', {
-      id: item.id,
-      foodName: item.foodName,
+      foodId: item.id,
     });
   };
 
   const memorizedValue = useCallback(
-    ({item}: {item: FoodListItemType}) => (
+    ({item}: {item: any}) => (
       <ItemFoodHorizontal
-        imageUri={''}
-        foodName={item.foodName}
-        vendorName={item.vendorName}
-        priceValue={item.priceValue}
+        imageUri={item.imageUri}
         onPressItem={() => navigateToFoodDetailsScreen(item)}
-        onPressAddButton={() => navigateToFoodDetailsScreen(item)}
         id={item.id}
-        rating={item.rating}
+        title={item.title}
+        fullPrice={item.fullPrice}
+        description={item.description}
+        averageRatingScores={item.averageRatingScores}
+        shopName={item.productSubcategory?.productCategory?.shop?.shopName}
       />
     ),
     [props.data],

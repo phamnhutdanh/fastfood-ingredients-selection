@@ -8,7 +8,10 @@ type ThisProps = TextProps;
 
 export function SectionText(props: ThisProps): JSX.Element {
   return (
-    <GenericText {...props} style={[styles.text, props.style]}>
+    <GenericText
+      numberOfLines={1}
+      {...props}
+      style={[styles.text, props.style]}>
       {props.children}
     </GenericText>
   );

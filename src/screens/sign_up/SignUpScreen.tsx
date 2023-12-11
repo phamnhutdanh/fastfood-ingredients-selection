@@ -20,19 +20,9 @@ type ThisProps = {
   route: any;
 };
 
-const CreateUserAccount = gql`
-  mutation CreateUserAccount(
-    $email: String!
-    $password: String!
-    $firebaseUID: String!
-  ) {
-    createUserAccount(
-      email: $email
-      password: $password
-      firebaseUID: $firebaseUID
-    ) {
-      id
-    }
+const CREATE_USER_ACCOUNT = gql`
+  mutation CreateUserAccount($email: String!, $firebaseUid: String!) {
+    createUserAccount(email: $email, firebaseUID: $firebaseUid)
   }
 `;
 
@@ -40,12 +30,10 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [reEnterPassword, setReEnterPassword] = useState('');
-  const [isPasswordShow, setPasswordShow] = useState(false);
-  const [isRePasswordShow, setRePasswordShow] = useState(false);
   const [displayError, setDisplayError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [createUserAccount, {loading, error, data}] =
-    useMutation(CreateUserAccount);
+    useMutation(CREATE_USER_ACCOUNT);
 
   const onPressButtonSignUp = async () => {
     if (email.length < 1 || password.length < 1 || reEnterPassword.length < 1) {
@@ -55,10 +43,7 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
       setErrorMessage('Re enter password is incorrect!');
       return setDisplayError(true);
     }
-    console.log('email: ' + email);
-    console.log('password: ' + password);
-    console.log('re enter password: ' + reEnterPassword);
-    console.log('auth ', FIREBASE_AUTH);
+
     const auth = FIREBASE_AUTH;
     try {
       await createUserWithEmailAndPassword(auth, email, password)
@@ -68,14 +53,12 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
           await createUserAccount({
             variables: {
               email: email,
-              password: password,
-              firebaseUID: userUID,
+              firebaseUid: userUID,
             },
-          }).then(id => {
-            console.log(data);
-            console.log('id: ', id);
+          }).then(() => {
             Snackbar.show({text: 'Account created success'});
             setDisplayError(false);
+            navigateToLoginScreen();
           });
         })
         .catch(error => {
@@ -87,7 +70,7 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
     }
   };
 
-  const onPressLogInLink = async () => {
+  const navigateToLoginScreen = async () => {
     props.navigation.navigate('LoginScreen');
   };
 
@@ -96,7 +79,7 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
       <IntroductionSignUp />
       <View style={styles.textContainer}>
         <GenericText>Already have an account, </GenericText>
-        <TextLink onPressItem={onPressLogInLink}>log in</TextLink>
+        <TextLink onPressItem={navigateToLoginScreen}>log in</TextLink>
       </View>
       <EmailTextInput value={email} onChangeText={setEmail} />
       <PasswordTextInput

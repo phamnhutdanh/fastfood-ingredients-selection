@@ -1,19 +1,27 @@
-import {Pressable, StyleSheet, View} from 'react-native';
+import {ActivityIndicator, Pressable, StyleSheet, View} from 'react-native';
 import {Avatar} from '@rneui/themed';
 import {BigTitleText} from '../../../components/texts/BigTitleText';
 import {pressableRippleConfig} from '../../../styles/pressable_config';
 import {SearchBarButton} from '../../../components/buttons/SearchBarButton';
 import colors from '../../../styles/colors';
+import {useQuery} from '@apollo/client';
+import {GET_USER_BY_FIREBASE_UID} from '../../account/AccountQuery';
+import {FIREBASE_AUTH} from '../../../auth/firebaseConfig';
 
 type ThisProps = {
   navigation: any;
-  avatarUri: string;
 };
 
 export default function HomeHeaderDisplay(props: ThisProps): JSX.Element {
   const navigateToAccountScreen = () => {
     props.navigation.navigate('AccountStacks');
   };
+
+  const {data} = useQuery(GET_USER_BY_FIREBASE_UID, {
+    variables: {
+      id: FIREBASE_AUTH.currentUser?.uid,
+    },
+  });
 
   return (
     <View>
@@ -25,7 +33,15 @@ export default function HomeHeaderDisplay(props: ThisProps): JSX.Element {
             android_ripple={pressableRippleConfig}
             onPress={navigateToAccountScreen}>
             <View style={styles.avatarContainer}>
-              <Avatar source={{uri: props.avatarUri}} size={48} rounded />
+              <Avatar
+                source={{
+                  uri: data?.getUserByFirebaseUID?.imageUrl
+                    ? data.getUserByFirebaseUID.imageUrl
+                    : 'https://res.cloudinary.com/dxz5uumy7/image/upload/v1702088258/Food_data/default/png-transparent-default-avatar-thumbnail.png',
+                }}
+                size={48}
+                rounded
+              />
             </View>
           </Pressable>
         </View>

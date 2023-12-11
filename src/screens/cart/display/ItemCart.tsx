@@ -6,19 +6,28 @@ import display from '../../../utils/display';
 import {ItemTitleText} from '../../../components/texts/ItemTitleText';
 import {ItemSubtitleText} from '../../../components/texts/ItemSubtitleText';
 import {PriceText} from '../../../components/texts/PriceText';
-import {Button, Icon} from '@rneui/themed';
+import {Button} from '@rneui/themed';
 import colors from '../../../styles/colors';
 import SubtractButton from '../../../components/buttons/SubtractButton';
 import {GenericText} from '../../../components/texts/generics/GenericText';
 import AddButton from '../../../components/buttons/AddButton';
 import fonts from '../../../styles/fonts';
 import {ItemCartType} from '../../../types/ItemType';
+import DeleteDialog from './DeleteDialog';
+import {UPDATE_CART_PRODUCT} from '../CartQuery';
+import {useMutation} from '@apollo/client';
+import Snackbar from 'react-native-snackbar';
 
-type ThisProps = ItemCartType & {};
+type ThisProps = ItemCartType & {
+  refetch: any;
+  sizeId: string;
+};
 
 export default function ItemCart(props: ThisProps): JSX.Element {
   const [isChangeAmount, setChangeAmount] = useState(false);
   const [amount, setAmount] = useState(props.amount);
+  const [updateCartProduct, {data, loading, error}] =
+    useMutation(UPDATE_CART_PRODUCT);
 
   const addMore = () => {
     setAmount(amount + 1);
@@ -32,8 +41,18 @@ export default function ItemCart(props: ThisProps): JSX.Element {
     }
   };
 
-  const onPressSave = () => {
-    console.log('On press save cart: Call API update');
+  const onPressSave = async () => {
+    await updateCartProduct({
+      variables: {
+        cartProductId: props.id,
+        productSizeId: props.sizeId,
+        amount: amount,
+        fullPrice: props.priceValue,
+      },
+    }).then(() => {
+      props.refetch();
+      Snackbar.show({text: 'Item updated success'});
+    });
   };
 
   return (
@@ -42,7 +61,7 @@ export default function ItemCart(props: ThisProps): JSX.Element {
       onPress={props.onPressItem}>
       <View style={styles.container}>
         <ItemImageFood
-          imageUri={props.imageUri ? props.imageUri : ''}
+          imageUri={props.imageUri}
           imageWidth={display.setWidth(20)}
           imageHeight={display.setHeight(10)}
         />
@@ -65,17 +84,7 @@ export default function ItemCart(props: ThisProps): JSX.Element {
           <AddButton onPressItem={addMore} />
         </View>
 
-        <Button
-          icon={
-            <Icon
-              type="font-awesome"
-              name="trash"
-              size={28}
-              color={colors.red}
-            />
-          }
-          buttonStyle={{backgroundColor: 'transparent'}}
-        />
+        <DeleteDialog cartProductId={props.id} refetch={props.refetch} />
       </View>
 
       {isChangeAmount && (
@@ -108,10 +117,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     paddingEnd: 20,
-    borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
     gap: 8,
+    borderWidth: 1,
+    borderRadius: 20,
+    borderColor: colors.lightGrey,
   },
   info_container: {
     flex: 1,

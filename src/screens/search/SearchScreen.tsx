@@ -1,7 +1,7 @@
 import {Input} from '@rneui/themed';
 import {StyleSheet, View} from 'react-native';
 import {SectionText} from '../../components/texts/SectionText';
-import ListTypeFoodDisplay from '../food_details/display/ListTypeFoodDisplay';
+import ListTagFoodDisplay from '../food_details/display/ListTagFoodDisplay';
 import VerticalListFood from '../../components/displays/VerticalListFood';
 import HeaderSearchTextInput from '../../components/inputs/HeaderSearchTextInput';
 import {useState} from 'react';
@@ -99,7 +99,7 @@ export default function SearchScreen(props: ThisProps): JSX.Element {
 
           <View>
             <SectionText>Popular tag</SectionText>
-            <ListTypeFoodDisplay data={listTypes} />
+            <ListTagFoodDisplay data={listTypes} />
           </View>
 
           <View>
