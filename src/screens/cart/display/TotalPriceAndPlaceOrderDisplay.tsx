@@ -1,4 +1,4 @@
-import {StyleSheet, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {OnPressItem} from '../../../types/GenericType';
 import {ItemTitleText} from '../../../components/texts/ItemTitleText';
 import {PriceText} from '../../../components/texts/PriceText';
@@ -8,6 +8,7 @@ import {Button} from '@rneui/themed';
 type ThisProps = {
   price: number;
   onPressPlaceOrder: OnPressItem;
+  loading: boolean;
 };
 
 export function TotalPriceAndPlaceOrder(props: ThisProps): JSX.Element {
@@ -17,16 +18,21 @@ export function TotalPriceAndPlaceOrder(props: ThisProps): JSX.Element {
         <ItemTitleText>Total: </ItemTitleText>
         <PriceText priceValue={props.price} />
       </View>
-      <Button
-        onPress={props.onPressPlaceOrder}
-        titleStyle={{
-          fontSize: 16,
-          fontFamily: fonts.POPPINS_BOLD,
-          paddingVertical: 4,
-          paddingHorizontal: 8,
-        }}>
-        PLACE ORDER
-      </Button>
+
+      {props.loading ? (
+        <ActivityIndicator size={'small'} />
+      ) : (
+        <Button
+          onPress={props.onPressPlaceOrder}
+          titleStyle={{
+            fontSize: 16,
+            fontFamily: fonts.POPPINS_BOLD,
+            paddingVertical: 4,
+            paddingHorizontal: 8,
+          }}>
+          PLACE ORDER
+        </Button>
+      )}
     </View>
   );
 }

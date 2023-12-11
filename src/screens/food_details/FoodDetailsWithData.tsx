@@ -1,5 +1,5 @@
 import {Button} from '@rneui/themed';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
 import {SectionText} from '../../components/texts/SectionText';
 import {GenericText} from '../../components/texts/generics/GenericText';
 import colors from '../../styles/colors';
@@ -120,9 +120,13 @@ export default function FoodDetailsWithData(props: ThisProps): JSX.Element {
           <GenericText>{props.data.getProductById.description}</GenericText>
         </View>
 
-        <Button buttonStyle={styles.buttonAddToCart} onPress={addToCart}>
-          ADD TO CART
-        </Button>
+        {loading ? (
+          <ActivityIndicator size={'small'} />
+        ) : (
+          <Button buttonStyle={styles.buttonAddToCart} onPress={addToCart}>
+            ADD TO CART
+          </Button>
+        )}
       </ScrollView>
     </SafeAreaView>
   );

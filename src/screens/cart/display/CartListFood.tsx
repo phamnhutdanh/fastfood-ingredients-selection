@@ -33,8 +33,9 @@ export default function CartListFood(props: ThisProps): JSX.Element {
 
   const onPressPlaceOrder = () => {
     props.navigation.navigate('MyOrderScreen', {
-      data: props.data,
-      totalPrice: price,
+      listData: props.data,
+      totalCost: price,
+      userId: props.userId,
     });
   };
 
@@ -62,17 +63,17 @@ export default function CartListFood(props: ThisProps): JSX.Element {
       data={props.data}
       renderItem={memorizedValue}
       contentContainerStyle={styles.container}
-      ListFooterComponent={
-        <TotalPriceAndPlaceOrder
-          price={price}
-          onPressPlaceOrder={onPressPlaceOrder}
-        />
-      }
       ListHeaderComponent={
         <View style={styles.header}>
           <ItemTitleText>All products</ItemTitleText>
           <DeleteAllDialog userId={props.userId} refetch={props.refetch} />
         </View>
+      }
+      ListFooterComponent={
+        <TotalPriceAndPlaceOrder
+          price={price}
+          onPressPlaceOrder={onPressPlaceOrder}
+        />
       }
     />
   );

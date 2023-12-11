@@ -9,8 +9,9 @@ type ThisProps = {
   onPressPlaceOrder: (item: any) => void;
   note: string;
   setNote: (item: any) => void;
+  isLoading: boolean;
 };
-//;
+
 export function ListFooterOrder(props: ThisProps): JSX.Element {
   return (
     <View style={styles.container}>
@@ -30,10 +31,10 @@ export function ListFooterOrder(props: ThisProps): JSX.Element {
           iconType={'font-awesome'}
         />
       </View>
-
       <TotalPriceAndPlaceOrder
         price={props.totalPrice}
         onPressPlaceOrder={props.onPressPlaceOrder}
+        loading={props.isLoading}
       />
     </View>
   );

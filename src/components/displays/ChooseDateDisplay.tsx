@@ -11,16 +11,28 @@ interface ThisProps {
 }
 export function ChooseDateDisplay(props: ThisProps): JSX.Element {
   let text;
+  // if (props.value instanceof Date) {
+  //   text =
+  //     props.value.getDate() +
+  //     '/' +
+  //     (props.value.getMonth() + 1) +
+  //     '/' +
+  //     props.value.getFullYear();
+  // } else {
+  //   text = props.value;
+  // }
   if (props.value instanceof Date) {
     text =
       props.value.getDate() +
       '/' +
       (props.value.getMonth() + 1) +
       '/' +
-      props.value.getFullYear();
-  } else {
-    text = props.value;
-  }
+      props.value.getFullYear() +
+      ' - ' +
+      props.value.getHours() +
+      ':' +
+      props.value.getMinutes();
+  } else text = props.value;
   return (
     <View style={styles.container}>
       <Icon

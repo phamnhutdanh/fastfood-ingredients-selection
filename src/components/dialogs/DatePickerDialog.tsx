@@ -16,7 +16,12 @@ export function DatePickerDialog(props: ThisProps): JSX.Element {
   const [visible, setVisible] = useState(false);
 
   const onChange = (event: any, selectedDate: any) => {
-    const currentDate = selectedDate || props.date;
+    const now = new Date();
+    let currentDate;
+    if (selectedDate <= now) {
+      currentDate = now;
+    } else currentDate = selectedDate || props.date;
+
     setVisible(false);
     props.onSelectedDate(currentDate);
   };
@@ -32,9 +37,9 @@ export function DatePickerDialog(props: ThisProps): JSX.Element {
       {visible && (
         <DateTimePicker
           value={props.date}
-          mode="date"
-          is24Hour
+          mode="time"
           display="default"
+          minimumDate={new Date()}
           onChange={onChange}
         />
       )}

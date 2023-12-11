@@ -4,17 +4,17 @@ import EditAddressDisplay from '../../account/display/edit_info/EditAddressDispl
 import {TextLink} from '../../../components/texts/TextLink';
 import {ChooseDateDisplay} from '../../../components/displays/ChooseDateDisplay';
 import colors from '../../../styles/colors';
-import React, {useState} from 'react';
+import React from 'react';
 import {DatePickerDialog} from '../../../components/dialogs/DatePickerDialog';
 
 type ThisProps = {
   address: string;
   setAddress: (item: string) => void;
+  deliveryTime: Date;
+  setDeliveryTime: (item: Date) => void;
 };
 
 export function ListHeaderOrder(props: ThisProps): JSX.Element {
-  const [date, setSelectedDate] = useState<Date>(new Date());
-
   return (
     <View style={styles.container}>
       <View style={styles.text}>
@@ -29,13 +29,16 @@ export function ListHeaderOrder(props: ThisProps): JSX.Element {
 
       <View style={styles.text}>
         <ItemTitleText>Delivery time</ItemTitleText>
-        <DatePickerDialog onSelectedDate={setSelectedDate} date={date} />
+        <DatePickerDialog
+          onSelectedDate={props.setDeliveryTime}
+          date={props.deliveryTime}
+        />
       </View>
 
       <ChooseDateDisplay
         iconSize={24}
         iconColor={colors.darkBlack}
-        value={date}
+        value={props.deliveryTime}
       />
 
       <ItemTitleText>All food</ItemTitleText>

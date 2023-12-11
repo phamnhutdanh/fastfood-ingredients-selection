@@ -5,6 +5,7 @@ import VendorDetailsScreen from '../vendor_details/VendorDetailsScreen';
 import FoodDetailsScreen from '../food_details/FoodDetailsScreen';
 import CartScreen from './CartScreen';
 import AllFoodInShopGridDisplay from '../vendor_details/AllFoodInShopGridDisplay';
+import CompleteOrderScreen from '../orders/CompleteOrderScreen';
 
 type CartStackParams = {
   CartScreen: undefined;
@@ -12,6 +13,7 @@ type CartStackParams = {
   FoodDetailsScreen: undefined;
   VendorDetailsScreen: undefined;
   VendorFoodDetails: undefined;
+  CompleteOrderScreen: undefined;
 };
 
 const CartNavigators = createNativeStackNavigator<CartStackParams>();
@@ -50,6 +52,11 @@ export default function CartStacks(): JSX.Element {
         name="MyOrderScreen"
         component={MyOrderScreen}
         options={{headerShown: true, title: 'Confirm your order'}}
+      />
+      <CartNavigators.Screen
+        name="CompleteOrderScreen"
+        component={CompleteOrderScreen}
+        options={{headerShown: true, headerTransparent: true}}
       />
     </CartNavigators.Navigator>
   );
