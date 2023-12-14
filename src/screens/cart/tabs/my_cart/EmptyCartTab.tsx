@@ -1,4 +1,4 @@
-import {Icon, Image, Text} from '@rneui/themed';
+import {Button, Icon, Image, Text} from '@rneui/themed';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import images from '../../../../styles/images';
 import React from 'react';
@@ -11,7 +11,11 @@ type ThisProps = {
   navigation: any;
 };
 
-export default function EmptyCartTab(): JSX.Element {
+export default function EmptyCartTab(props: ThisProps): JSX.Element {
+  const navigateToCartScreen = () => {
+    props.navigation.navigate('HomeStacks');
+  };
+
   return (
     <View style={styles.emptyCartContainer}>
       <Image
@@ -23,10 +27,16 @@ export default function EmptyCartTab(): JSX.Element {
       <Text style={styles.emptyCartSubText}>
         Go ahead and order some tasty food
       </Text>
-      <TouchableOpacity style={styles.addButtonEmpty}>
-        <Icon name="plus" color={colors.white} size={20} type="antdesign" />
-        <Text style={styles.addButtonEmptyText}>Add Food</Text>
-      </TouchableOpacity>
+      <Button
+        onPress={navigateToCartScreen}
+        icon={
+          <Icon name="plus" color={colors.white} size={20} type="antdesign" />
+        }
+        buttonStyle={styles.addButtonEmpty}
+        titleStyle={styles.addButtonEmptyText}>
+        Add food
+      </Button>
+
       <Separator height={display.setHeight(15)} />
     </View>
   );

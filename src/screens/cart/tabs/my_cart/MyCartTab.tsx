@@ -4,6 +4,7 @@ import React from 'react';
 import {useQuery} from '@apollo/client';
 import {GET_ALL_CART_PRODUCT_OF_USER} from '../../CartQuery';
 import {useFocusEffect} from '@react-navigation/native';
+import EmptyCartTab from './EmptyCartTab';
 
 type ThisProps = {
   navigation: any;
@@ -22,20 +23,28 @@ export default function MyCartTab(props: ThisProps): JSX.Element {
   });
 
   return (
-    <View style={styles.container}>
-      {loading ? (
-        <ActivityIndicator size={'small'} />
+    <>
+      {data.length > 0 ? (
+        <View style={styles.container}>
+          {loading ? (
+            <ActivityIndicator size={'small'} />
+          ) : (
+            <CartListFood
+              data={
+                data?.getAllCartProductOfUser
+                  ? data.getAllCartProductOfUser
+                  : {}
+              }
+              userId={props.userId}
+              refetch={refetch}
+              navigation={props.navigation}
+            />
+          )}
+        </View>
       ) : (
-        <CartListFood
-          data={
-            data?.getAllCartProductOfUser ? data.getAllCartProductOfUser : {}
-          }
-          userId={props.userId}
-          refetch={refetch}
-          navigation={props.navigation}
-        />
+        <EmptyCartTab navigation={props.navigation} />
       )}
-    </View>
+    </>
   );
 }
 
