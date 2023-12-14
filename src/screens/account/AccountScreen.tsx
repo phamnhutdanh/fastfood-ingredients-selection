@@ -1,4 +1,4 @@
-import {ActivityIndicator, ScrollView, StyleSheet} from 'react-native';
+import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
 import BasicInfoDisplay from './display/basic_info/BasicInfoDisplay';
 import AvatarDisplay from './display/AvatarDisplay';
 import MyFavoriteDisplay from './display/MyFavoriteDisplay';
@@ -7,6 +7,8 @@ import colors from '../../styles/colors';
 import {useQuery} from '@apollo/client';
 import {GET_USER_BY_FIREBASE_UID} from './AccountQuery';
 import {FIREBASE_AUTH} from '../../auth/firebaseConfig';
+import {ItemTitleText} from '../../components/texts/ItemTitleText';
+import {TextLink} from '../../components/texts/TextLink';
 
 const list = [
   {
@@ -51,6 +53,10 @@ export default function AccountScreen(props: ThisProps): JSX.Element {
     },
   });
 
+  const navigateToCreateShopAccount = () => {
+    props.navigation.navigate('');
+  };
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -73,7 +79,9 @@ export default function AccountScreen(props: ThisProps): JSX.Element {
           address={data?.getUserByFirebaseUID?.defaultAddress}
         />
       )}
-
+      <View>
+        <TextLink onPress={navigateToCreateShopAccount}>Create a shop</TextLink>
+      </View>
       <MyFavoriteDisplay data={list} navigation={props.navigation} />
       <SettingDisplay navigation={props.navigation} />
     </ScrollView>
