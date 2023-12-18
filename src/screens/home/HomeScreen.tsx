@@ -7,6 +7,7 @@ import React from 'react';
 import {GET_ALL_PRODUCT} from './HomeQuery';
 import PopularProducts from './display/PopularProducts';
 import RecentProducts from './display/RecentProducts';
+import {useFocusEffect} from '@react-navigation/native';
 
 type ThisProps = {
   navigation: any;
@@ -14,7 +15,11 @@ type ThisProps = {
 };
 
 export default function HomeScreen(props: ThisProps): JSX.Element {
-  const {data, loading} = useQuery(GET_ALL_PRODUCT);
+  const {data, loading, refetch} = useQuery(GET_ALL_PRODUCT);
+
+  useFocusEffect(() => {
+    refetch();
+  });
 
   if (!loading) {
     return (

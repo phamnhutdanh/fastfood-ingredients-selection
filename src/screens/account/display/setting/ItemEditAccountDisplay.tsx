@@ -2,11 +2,14 @@ import GenericTextNavigationDisplay from '../../../../components/texts/generics/
 
 type ThisProps = {
   navigation: any;
+  params: {};
 };
 
 export default function ItemEditAccountDisplay(props: ThisProps): JSX.Element {
   const navigateToEditAccountScreen = () => {
-    props.navigation.navigate('EditAccountScreen');
+    props.navigation.navigate('EditAccountScreen', {
+      user: props.params,
+    });
   };
   return (
     <GenericTextNavigationDisplay

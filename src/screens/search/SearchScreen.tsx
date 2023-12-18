@@ -1,4 +1,4 @@
-import {Button, Input} from '@rneui/themed';
+import {Input} from '@rneui/themed';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {SectionText} from '../../components/texts/SectionText';
 import ListTagFoodDisplay from '../food_details/display/ListTagFoodDisplay';
@@ -7,7 +7,6 @@ import HeaderSearchTextInput from '../../components/inputs/HeaderSearchTextInput
 import {Suspense, useState} from 'react';
 import {useQuery} from '@apollo/client';
 import {SEARCH_PRODUCT} from './SearchQuery';
-import colors from '../../styles/colors';
 
 type ThisProps = {
   navigation: any;

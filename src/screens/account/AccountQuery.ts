@@ -30,3 +30,21 @@ export const GET_USER_BY_FIREBASE_UID = gql`
     }
   }
 `;
+
+export const UPDATE_USER = gql`
+  mutation UpdateUser(
+    $userId: String!
+    $name: String
+    $phone: String
+    $address: String
+    $publicId: String
+  ) {
+    updateUser(
+      userId: $userId
+      name: $name
+      phone: $phone
+      address: $address
+      publicId: $publicId
+    )
+  }
+`;

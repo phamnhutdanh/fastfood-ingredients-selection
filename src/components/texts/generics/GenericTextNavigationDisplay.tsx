@@ -1,7 +1,7 @@
 import {Pressable} from 'react-native';
 import {pressableRippleConfig} from '../../../styles/pressable_config';
 import {ComponentStyle, OnPressItem} from '../../../types/GenericType';
-import {ItemSectionText} from '../ItemSectionText';
+import {ItemTitleText} from '../ItemTitleText';
 
 type ThisProps = {
   settingName: string;
@@ -16,9 +16,7 @@ export default function GenericTextNavigationDisplay(
     <Pressable
       android_ripple={pressableRippleConfig}
       onPress={props.onPressItem}>
-      <ItemSectionText style={props.textStyle}>
-        {props.settingName}
-      </ItemSectionText>
+      <ItemTitleText style={props.textStyle}>{props.settingName}</ItemTitleText>
     </Pressable>
   );
 }

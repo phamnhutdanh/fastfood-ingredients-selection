@@ -7,6 +7,7 @@ import colors from '../../../styles/colors';
 type ThisProps = {
   navigation: any;
   onPressSave: OnPressItem;
+  title?: string;
 };
 
 export default function SaveCancelButton(props: ThisProps): JSX.Element {
@@ -28,7 +29,7 @@ export default function SaveCancelButton(props: ThisProps): JSX.Element {
       <Button
         buttonStyle={[styles.button, {width: buttonWidth}]}
         onPress={props.onPressSave}>
-        SAVE
+        {props.title ? props.title : 'SAVE'}
       </Button>
     </View>
   );

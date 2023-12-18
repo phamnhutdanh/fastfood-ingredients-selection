@@ -1,5 +1,5 @@
 import {Button, Icon, Image, Text} from '@rneui/themed';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import images from '../../../../styles/images';
 import React from 'react';
 import colors from '../../../../styles/colors';

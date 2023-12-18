@@ -24,7 +24,7 @@ export default function MyCartTab(props: ThisProps): JSX.Element {
 
   return (
     <>
-      {data.length > 0 ? (
+      {!data ? (
         <View style={styles.container}>
           {loading ? (
             <ActivityIndicator size={'small'} />
