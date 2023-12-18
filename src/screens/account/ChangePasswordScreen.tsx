@@ -55,7 +55,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 32,
   },
-  input: {
-    backgroundColor: colors.lightGrey,
-  },
 });

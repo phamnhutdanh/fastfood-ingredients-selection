@@ -4,6 +4,7 @@ import {GET_FOOD_BY_ID} from './FoodDetailsQuery';
 import FoodDetailsWithData from './FoodDetailsWithData';
 import {GET_USER_BY_FIREBASE_UID} from '../account/AccountQuery';
 import {FIREBASE_AUTH} from '../../auth/firebaseConfig';
+import {useFocusEffect} from '@react-navigation/native';
 
 type ThisProps = {
   navigation: any;
@@ -11,10 +12,14 @@ type ThisProps = {
 };
 
 export default function FoodDetailsScreen(props: ThisProps): JSX.Element {
-  const {data, loading} = useQuery(GET_FOOD_BY_ID, {
+  const {data, loading, refetch} = useQuery(GET_FOOD_BY_ID, {
     variables: {
       getProductById: props.route.params.foodId,
     },
+  });
+
+  useFocusEffect(() => {
+    refetch();
   });
 
   if (loading) return <ActivityIndicator size={'large'} />;

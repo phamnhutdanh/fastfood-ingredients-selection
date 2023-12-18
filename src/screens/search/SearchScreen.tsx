@@ -1,74 +1,12 @@
 import {Input} from '@rneui/themed';
-import {StyleSheet, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {SectionText} from '../../components/texts/SectionText';
 import ListTagFoodDisplay from '../food_details/display/ListTagFoodDisplay';
 import VerticalListFood from '../../components/displays/VerticalListFood';
 import HeaderSearchTextInput from '../../components/inputs/HeaderSearchTextInput';
-import {useState} from 'react';
-
-const listTypes = [
-  {id: 1, type: 'Vegetables'},
-  {id: 2, type: 'Milk'},
-  {id: 3, type: 'Hamburger'},
-];
-const listResult = [
-  {
-    id: 1,
-    foodName: 'Name',
-    vendorName: 'Vendor',
-    priceValue: 30000,
-    rating: 3.4,
-  },
-  {
-    id: 2,
-    foodName: 'Name 2',
-    vendorName: 'Vendor 2',
-    priceValue: 20000,
-    rating: 3.1,
-  },
-  {
-    id: 3,
-    foodName: 'Name 3',
-    vendorName: 'Vendor 3',
-    priceValue: 10000,
-    rating: 4.4,
-  },
-  {
-    id: 4,
-    foodName: 'Name 4',
-    vendorName: 'Vendor 4',
-    priceValue: 3000,
-    rating: 2.4,
-  },
-  {
-    id: 5,
-    foodName: 'Name 3',
-    vendorName: 'Vendor 3',
-    priceValue: 10000,
-    rating: 4.4,
-  },
-  {
-    id: 6,
-    foodName: 'Name 4',
-    vendorName: 'Vendor 4',
-    priceValue: 3000,
-    rating: 2.4,
-  },
-  {
-    id: 7,
-    foodName: 'Name 3',
-    vendorName: 'Vendor 3',
-    priceValue: 10000,
-    rating: 4.4,
-  },
-  {
-    id: 8,
-    foodName: 'Name 4',
-    vendorName: 'Vendor 4',
-    priceValue: 3000,
-    rating: 2.4,
-  },
-];
+import {Suspense, useState} from 'react';
+import {useQuery} from '@apollo/client';
+import {SEARCH_PRODUCT} from './SearchQuery';
 
 type ThisProps = {
   navigation: any;
@@ -76,48 +14,63 @@ type ThisProps = {
 
 export default function SearchScreen(props: ThisProps): JSX.Element {
   const [searchText, setSearchText] = useState('');
+  const [isFilter, setFilter] = useState(false);
+
+  const {data, loading, refetch} = useQuery(SEARCH_PRODUCT, {
+    variables: {
+      text: searchText,
+    },
+  });
 
   const goBack = () => {
     props.navigation.goBack();
   };
 
   return (
-    <VerticalListFood
-      data={listResult}
-      navigation={props.navigation}
-      contentContainerStyle={styles.container}
-      listHeaderComponent={
-        <View style={styles.head}>
-          <HeaderSearchTextInput
-            value={searchText}
-            onChangeText={setSearchText}
-            onPressBack={() => goBack()}
-            onPressSearch={function (item: any): void {
-              throw new Error('Function not implemented.');
-            }}
-          />
+    <Suspense fallback={<ActivityIndicator size={'large'} />}>
+      <VerticalListFood
+        data={data?.searchProduct}
+        navigation={props.navigation}
+        contentContainerStyle={styles.container}
+        listHeaderComponent={
+          <View style={styles.head}>
+            <HeaderSearchTextInput
+              value={searchText}
+              onChangeText={setSearchText}
+              onPressBack={() => goBack()}
+              onPressSearch={() => {}}
+              isFilter={isFilter}
+              setFilter={setFilter}
+            />
 
-          <View>
-            <SectionText>Popular tag</SectionText>
-            <ListTagFoodDisplay data={listTypes} />
+            {isFilter && (
+              <View>
+                <SectionText>Popular tag</SectionText>
+                <ListTagFoodDisplay />
+              </View>
+            )}
+
+            {isFilter && (
+              <View>
+                <SectionText>Price range</SectionText>
+                <View style={styles.minMaxContainer}>
+                  <Input
+                    keyboardType="numeric"
+                    containerStyle={styles.input}
+                    placeholder="Min price"></Input>
+                  <Input
+                    keyboardType="numeric"
+                    containerStyle={styles.input}
+                    placeholder="Max price"></Input>
+                </View>
+              </View>
+            )}
+
+            <SectionText>Result</SectionText>
           </View>
-
-          <View>
-            <SectionText>Price range</SectionText>
-            <View style={styles.minMaxContainer}>
-              <Input
-                containerStyle={styles.input}
-                placeholder="Min price"></Input>
-              <Input
-                containerStyle={styles.input}
-                placeholder="Max price"></Input>
-            </View>
-          </View>
-
-          <SectionText>Result</SectionText>
-        </View>
-      }
-    />
+        }
+      />
+    </Suspense>
   );
 }
 const styles = StyleSheet.create({

@@ -7,6 +7,7 @@ import colors from '../../styles/colors';
 import {useQuery} from '@apollo/client';
 import {GET_USER_BY_FIREBASE_UID} from './AccountQuery';
 import {FIREBASE_AUTH} from '../../auth/firebaseConfig';
+import {useFocusEffect} from '@react-navigation/native';
 
 const list = [
   {
@@ -45,10 +46,14 @@ type ThisProps = {
 };
 
 export default function AccountScreen(props: ThisProps): JSX.Element {
-  const {data, loading} = useQuery(GET_USER_BY_FIREBASE_UID, {
+  const {data, loading, refetch} = useQuery(GET_USER_BY_FIREBASE_UID, {
     variables: {
       id: FIREBASE_AUTH.currentUser?.uid,
     },
+  });
+
+  useFocusEffect(() => {
+    refetch();
   });
 
   return (
@@ -62,6 +67,7 @@ export default function AccountScreen(props: ThisProps): JSX.Element {
           avatarUri={data?.getUserByFirebaseUID?.imageUrl}
           name={data?.getUserByFirebaseUID?.name}
           email={data?.getUserByFirebaseUID?.account.email}
+          isEdit={false}
         />
       )}
 
@@ -73,17 +79,26 @@ export default function AccountScreen(props: ThisProps): JSX.Element {
           address={data?.getUserByFirebaseUID?.defaultAddress}
         />
       )}
-
       <MyFavoriteDisplay data={list} navigation={props.navigation} />
-      <SettingDisplay navigation={props.navigation} />
+      <SettingDisplay
+        params={{
+          userId: data?.getUserByFirebaseUID?.id,
+          avatarUri: data?.getUserByFirebaseUID?.imageUrl,
+          name: data?.getUserByFirebaseUID?.name,
+          email: data?.getUserByFirebaseUID?.account.email,
+          phone: data?.getUserByFirebaseUID?.phoneNumber,
+          address: data?.getUserByFirebaseUID?.defaultAddress,
+        }}
+        navigation={props.navigation}
+      />
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 32,
-    paddingVertical: 40,
+    paddingHorizontal: 20,
+    paddingVertical: 28,
     gap: 12,
     backgroundColor: colors.lightGrey,
   },

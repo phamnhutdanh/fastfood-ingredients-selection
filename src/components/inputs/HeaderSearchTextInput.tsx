@@ -8,6 +8,8 @@ type ThisProps = {
   onChangeText: OnChangeText;
   onPressBack: OnPressItem;
   onPressSearch: OnPressItem;
+  isFilter: boolean;
+  setFilter: (item: boolean) => void;
 };
 
 export default function HeaderSearchTextInput(props: ThisProps): JSX.Element {
@@ -52,6 +54,18 @@ export default function HeaderSearchTextInput(props: ThisProps): JSX.Element {
         buttonStyle={styles.button}
         onPress={props.onPressSearch}
       />
+
+      <Button
+        buttonStyle={styles.button}
+        icon={
+          <Icon
+            name="filter"
+            size={20}
+            color={colors.darkBlack}
+            type="font-awesome"
+          />
+        }
+        onPress={() => props.setFilter(!props.isFilter)}></Button>
     </View>
   );
 }

@@ -1,8 +1,8 @@
 import {StyleSheet, View} from 'react-native';
-import {ItemSectionText} from '../../../components/texts/ItemSectionText';
 import colors from '../../../styles/colors';
 import {TextLink} from '../../../components/texts/TextLink';
 import HorizontalListFood from '../../../components/displays/HorizontalListFood';
+import {ItemTitleText} from '../../../components/texts/ItemTitleText';
 
 type ThisProps = {
   data: ArrayLike<any>;
@@ -17,7 +17,7 @@ export default function MyFavoriteDisplay(props: ThisProps): JSX.Element {
   return (
     <View style={styles.container}>
       <View style={styles.title}>
-        <ItemSectionText>My favorite foods</ItemSectionText>
+        <ItemTitleText>My favorite foods</ItemTitleText>
         <TextLink onPress={navigateToFavoriteScreen}>View all</TextLink>
       </View>
 

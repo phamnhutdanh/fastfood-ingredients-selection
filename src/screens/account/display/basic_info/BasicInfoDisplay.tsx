@@ -1,8 +1,8 @@
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
-import {ItemSectionText} from '../../../../components/texts/ItemSectionText';
 import ItemPhoneDisplay from './ItemPhoneDisplay';
 import ItemAddressDisplay from './ItemAddressDisplay';
 import colors from '../../../../styles/colors';
+import {ItemTitleText} from '../../../../components/texts/ItemTitleText';
 
 type ThisProps = {
   phone: string;
@@ -14,9 +14,9 @@ export default function BasicInfoDisplay(props: ThisProps): JSX.Element {
     return <ActivityIndicator size={'small'} />;
   return (
     <View style={styles.container}>
-      <ItemSectionText>Contact</ItemSectionText>
+      <ItemTitleText>Contact</ItemTitleText>
       <ItemPhoneDisplay phone={props.phone} />
-      <ItemSectionText>Address</ItemSectionText>
+      <ItemTitleText>Address</ItemTitleText>
       <ItemAddressDisplay address={props.address} />
     </View>
   );

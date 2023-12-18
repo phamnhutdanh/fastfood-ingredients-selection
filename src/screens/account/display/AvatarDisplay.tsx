@@ -1,13 +1,16 @@
-import {ActivityIndicator, StyleSheet, View} from 'react-native';
-import {Avatar} from '@rneui/themed';
+import {StyleSheet, View} from 'react-native';
+import {Avatar, Button, Icon} from '@rneui/themed';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {SectionText} from '../../../components/texts/SectionText';
 import {ItemSubtitleText} from '../../../components/texts/ItemSubtitleText';
+import colors from '../../../styles/colors';
 
 type ThisProps = {
   avatarUri: string;
   name: string;
   email: string;
+  isEdit?: boolean;
+  onPressImage?: () => void;
 };
 
 export default function AvatarDisplay(props: ThisProps): JSX.Element {
@@ -27,6 +30,20 @@ export default function AvatarDisplay(props: ThisProps): JSX.Element {
         <SectionText>{props.name}</SectionText>
         <ItemSubtitleText>{props.email}</ItemSubtitleText>
       </View>
+      {props.isEdit && (
+        <Button
+          icon={
+            <Icon
+              name={'image'}
+              type="font-awesome"
+              color={colors.darkBlack}
+              size={20}
+            />
+          }
+          onPress={props.onPressImage}
+          buttonStyle={{backgroundColor: 'transparent'}}
+        />
+      )}
     </SafeAreaView>
   );
 }
