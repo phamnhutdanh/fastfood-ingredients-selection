@@ -12,6 +12,7 @@ import Separator from '../../components/displays/Separator';
 import IntroductionLogin from './display/IntroductionLogin';
 import EmailTextInput from '../../components/inputs/EmailTextInput';
 import PasswordTextInput from '../../components/inputs/PasswordTextInput';
+import {useFocusEffect} from '@react-navigation/native';
 
 type ThisProps = {
   navigation: any;
@@ -95,19 +96,31 @@ function LoginWithoutAuthCheck(props: ThisProps): JSX.Element {
 
 export default function LoginScreen(props: ThisProps): JSX.Element {
   const [authServiceInitialized, setAuthServiceInitialized] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  useFocusEffect(() => {
+    setLoading(true);
     const auth = FIREBASE_AUTH;
     onAuthStateChanged(auth, user => {
       setAuthServiceInitialized(true);
       if (user) {
         props.navigation.navigate('MainStack');
       }
+      setLoading(false);
     });
   });
 
   return (
-    <LoginWithoutAuthCheck navigation={props.navigation} route={props.route} />
+    <>
+      {loading ? (
+        <ActivityIndicator />
+      ) : (
+        <LoginWithoutAuthCheck
+          navigation={props.navigation}
+          route={props.route}
+        />
+      )}
+    </>
   );
 }
 

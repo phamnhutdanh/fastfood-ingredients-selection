@@ -2,7 +2,7 @@ import GenericTextNavigationDisplay from '../../../../components/texts/generics/
 
 type ThisProps = {
   navigation: any;
-  params: {};
+  params: any;
 };
 
 export default function ItemEditAccountDisplay(props: ThisProps): JSX.Element {

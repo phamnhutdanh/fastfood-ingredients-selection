@@ -88,6 +88,8 @@ export default function AccountScreen(props: ThisProps): JSX.Element {
           email: data?.getUserByFirebaseUID?.account.email,
           phone: data?.getUserByFirebaseUID?.phoneNumber,
           address: data?.getUserByFirebaseUID?.defaultAddress,
+          role: data?.getUserByFirebaseUID?.account.role,
+          loginAs: data?.getUserByFirebaseUID?.loginAs,
         }}
         navigation={props.navigation}
       />

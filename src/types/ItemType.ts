@@ -74,6 +74,14 @@ export type OrderInputType = {
   commentary: string;
 };
 
+export type CreateShopInputType = {
+  shopAddress: string;
+  shopPhoneNumber: string;
+  shopName: string;
+  imageUri: string;
+  userId: string;
+};
+
 export type OrderProductInputType = {
   fullPrice: number;
   count: number;

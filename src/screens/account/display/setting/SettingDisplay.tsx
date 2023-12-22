@@ -6,17 +6,33 @@ import ItemChangePasswordDisplay from './ItemChangePasswordDisplay';
 import ItemLogoutDisplay from './ItemLogoutDisplay';
 import ItemCreateShopDisplay from './ItemCreateShopDisplay';
 import ItemChangeToShopAccountDisplay from './ItemChangeToShopAccountDisplay';
+import {useState} from 'react';
+import {UserRole} from '../../../../types/contants';
 
 type ThisProps = {
   navigation: any;
-  params: {};
+  params: any;
 };
 
 export default function SettingDisplay(props: ThisProps): JSX.Element {
+  const [role, setRole] = useState(props.params.role);
+
   return (
     <View style={styles.container}>
-      <ItemCreateShopDisplay navigation={props.navigation} />
-      <ItemChangeToShopAccountDisplay navigation={props.navigation} />
+      {role === UserRole.USER && (
+        <ItemCreateShopDisplay
+          params={props.params}
+          navigation={props.navigation}
+        />
+      )}
+
+      {role === UserRole.SHOP_OWNER && (
+        <ItemChangeToShopAccountDisplay
+          params={props.params}
+          navigation={props.navigation}
+        />
+      )}
+
       <ItemEditAccountDisplay
         params={props.params}
         navigation={props.navigation}

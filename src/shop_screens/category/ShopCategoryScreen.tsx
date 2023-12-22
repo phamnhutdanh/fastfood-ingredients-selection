@@ -2,10 +2,10 @@ import {Text} from '@rneui/themed';
 import {View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-export default function Notification(): JSX.Element {
+export default function ShopCategoryScreen(): JSX.Element {
   return (
     <SafeAreaView>
-      <Text>Notification Screen</Text>
+      <Text>ShopCategoryScreen</Text>
     </SafeAreaView>
   );
 }

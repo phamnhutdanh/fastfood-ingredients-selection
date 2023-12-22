@@ -23,6 +23,7 @@ export const GET_USER_BY_FIREBASE_UID = gql`
       imageUrl
       defaultAddress
       phoneNumber
+      loginAs
       account {
         role
         email
@@ -46,5 +47,23 @@ export const UPDATE_USER = gql`
       address: $address
       publicId: $publicId
     )
+  }
+`;
+
+export const CREATE_SHOP_ACCOUNT = gql`
+  mutation CreateShopAccount($shop: createShopAccountInput!) {
+    createShopAccount(shop: $shop)
+  }
+`;
+
+export const UPDATE_LOGIN_ROLE = gql`
+  mutation UpdateLoginRole($userId: String!, $role: Role) {
+    updateLoginRole(userId: $userId, role: $role)
+  }
+`;
+
+export const UPDATE_USER_LOGIN_ROLE = gql`
+  mutation UpdateLoginRole($userId: String!, $role: Role) {
+    updateLoginRole(userId: $userId, role: $role)
   }
 `;

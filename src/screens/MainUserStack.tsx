@@ -1,11 +1,11 @@
 import React from 'react';
 import {Icon} from '@rneui/themed';
-import colors from '../styles/colors';
+
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Notification from './notification/Notification';
+import colors from '../styles/colors';
 import HomeStacks from './home/HomeStacks';
 import CartStacks from './cart/CartStacks';
-
+import Notification from './notification/Notification';
 import AccountStacks from './account/AccountStacks';
 
 type MainTabStackParams = {
@@ -18,7 +18,7 @@ type MainTabStackParams = {
 
 const MainTabStackNavigator = createBottomTabNavigator<MainTabStackParams>();
 
-export function MainStack(): JSX.Element {
+export function MainUserStack(): JSX.Element {
   return (
     <MainTabStackNavigator.Navigator
       initialRouteName="HomeStacks"
