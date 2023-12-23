@@ -82,6 +82,14 @@ export type CreateShopInputType = {
   userId: string;
 };
 
+export type UpdateShopInputType = {
+  shopAddress: string;
+  shopPhoneNumber: string;
+  shopName: string;
+  imagePublicId: string;
+  shopId: string;
+};
+
 export type OrderProductInputType = {
   fullPrice: number;
   count: number;

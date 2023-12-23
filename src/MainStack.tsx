@@ -9,7 +9,7 @@ import {FIREBASE_AUTH} from './auth/firebaseConfig';
 import {MainUserStack} from './screens/MainUserStack';
 import {MainShopStack} from './shop_screens/MainShopStack';
 import {useFocusEffect} from '@react-navigation/native';
-import {UserRole} from './types/contants';
+import {UserRole} from './types/constants';
 
 export function MainStack(): JSX.Element {
   const {data, loading, refetch} = useQuery(GET_USER_BY_FIREBASE_UID, {

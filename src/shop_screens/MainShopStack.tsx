@@ -5,13 +5,13 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import colors from '../styles/colors';
 import ShopCategoryScreen from './category/ShopCategoryScreen';
 import ShopManageOrderScreen from './manage_order/ShopManageOrderScreen';
-import ShopAccountScreen from './shop_account/ShopAccountScreen';
 import ShopNotificationScreen from './notification/ShopNotificationScreen';
+import ShopAccountStacks from './shop_account/ShopAccountStacks';
 
 type MainTabStackParams = {
   ShopCategoryScreen: undefined;
   ShopManageOrderScreen: undefined;
-  ShopAccountScreen: undefined;
+  ShopAccountStacks: undefined;
   ShopNotificationScreen: undefined;
 };
 
@@ -32,12 +32,12 @@ export function MainShopStack(): JSX.Element {
         component={ShopManageOrderScreen}
       />
       <MainTabStackNavigator.Screen
-        name="ShopAccountScreen"
-        component={ShopAccountScreen}
-      />
-      <MainTabStackNavigator.Screen
         name="ShopNotificationScreen"
         component={ShopNotificationScreen}
+      />
+      <MainTabStackNavigator.Screen
+        name="ShopAccountStacks"
+        component={ShopAccountStacks}
       />
     </MainTabStackNavigator.Navigator>
   );
@@ -90,7 +90,7 @@ const MainTabScreenOptions = ({route}: any) => ({
               color={color}
             />
           ));
-    } else if (route.name === 'ShopAccountScreen') {
+    } else if (route.name === 'ShopAccountStacks') {
       icon = focused
         ? (icon = (
             <Icon

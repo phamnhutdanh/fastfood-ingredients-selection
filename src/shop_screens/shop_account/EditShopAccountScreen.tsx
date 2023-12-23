@@ -1,7 +1,6 @@
 import {useState} from 'react';
 import {useMutation} from '@apollo/client';
-import {CreateShopInputType} from '../../types/ItemType';
-import {CREATE_SHOP_ACCOUNT} from './AccountQuery';
+import {UpdateShopInputType} from '../../types/ItemType';
 import Snackbar from 'react-native-snackbar';
 import {
   Asset,
@@ -9,28 +8,31 @@ import {
   launchImageLibrary,
 } from 'react-native-image-picker';
 import {uploadImageToCloudinary} from '../../utils/updateImageToCloudinary';
-import GenericCreateShopScreen from './generics/GenericCreateShopScreen';
+import GenericCreateShopScreen from '../../screens/account/generics/GenericCreateShopScreen';
+import {UPDATE_SHOP_ACCOUNT} from '../../screens/account/AccountQuery';
 
 type ThisProps = {
   navigation: any;
   route: any;
 };
 
-export default function CreateShopAccountScreen(props: ThisProps): JSX.Element {
-  const [shopAddress, setShopAddress] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [shopName, setShopName] = useState('');
-  const [imageUri, setImageUri] = useState('');
-  const [createShopAccount, {loading, data, error}] =
-    useMutation(CREATE_SHOP_ACCOUNT);
+export default function EditShopAccountScreen(props: ThisProps): JSX.Element {
+  const [shopAddress, setShopAddress] = useState(
+    props.route.params.user.address,
+  );
+  const [phoneNumber, setPhoneNumber] = useState(props.route.params.user.phone);
+  const [shopName, setShopName] = useState(props.route.params.user.name);
+  const [imageUri, setImageUri] = useState(props.route.params.user.avatarUri);
+  const [updateShopAccount, {loading, data, error}] =
+    useMutation(UPDATE_SHOP_ACCOUNT);
 
-  const [userId, setUserId] = useState(props.route.params.user.userId);
+  const [shopId, setShopId] = useState(props.route.params.user.shopId);
   const [imageFile, setImageFile] = useState<Asset>();
 
   const [isDisplayError, setDisplayError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const createShop = async () => {
+  const updateShop = async () => {
     if (shopAddress === '' || phoneNumber === '' || shopName === '') {
       setErrorMessage('Fields cannot be empty!');
       setDisplayError(true);
@@ -39,39 +41,39 @@ export default function CreateShopAccountScreen(props: ThisProps): JSX.Element {
     if (imageFile) {
       try {
         const publicId = await uploadImageToCloudinary(imageFile!);
-        let shop: CreateShopInputType = {
+        let shop: UpdateShopInputType = {
           shopAddress: shopAddress,
           shopPhoneNumber: phoneNumber,
           shopName: shopName,
-          imageUri: publicId,
-          userId: userId,
+          imagePublicId: publicId,
+          shopId: shopId,
         };
-        await createShopAccount({
+        await updateShopAccount({
           variables: {
             shop: shop,
           },
         }).then(() => {
-          Snackbar.show({text: 'Shop account created success'});
-          props.navigation.navigate('AccountScreen');
+          Snackbar.show({text: 'Shop account updated success'});
+          props.navigation.navigate('ShopAccountScreen');
         });
       } catch (error) {
         console.log('EditAccountScreen: ', error);
       }
     } else {
-      let shop: CreateShopInputType = {
+      let shop: UpdateShopInputType = {
         shopAddress: shopAddress,
         shopPhoneNumber: phoneNumber,
         shopName: shopName,
-        imageUri: '',
-        userId: userId,
+        imagePublicId: '',
+        shopId: shopId,
       };
-      await createShopAccount({
+      await updateShopAccount({
         variables: {
           shop: shop,
         },
       }).then(() => {
-        Snackbar.show({text: 'Shop account created success'});
-        props.navigation.navigate('AccountScreen');
+        Snackbar.show({text: 'Shop account updated success'});
+        props.navigation.navigate('ShopAccountScreen');
       });
     }
   };
@@ -105,7 +107,7 @@ export default function CreateShopAccountScreen(props: ThisProps): JSX.Element {
       errorMessage={errorMessage}
       loading={loading}
       navigation={props.navigation}
-      onSaveAction={createShop}
+      onSaveAction={updateShop}
     />
   );
 }

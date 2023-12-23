@@ -56,6 +56,12 @@ export const CREATE_SHOP_ACCOUNT = gql`
   }
 `;
 
+export const UPDATE_SHOP_ACCOUNT = gql`
+  mutation UpdateShopAccount($shop: updateShopAccountInput) {
+    updateShopAccount(shop: $shop)
+  }
+`;
+
 export const UPDATE_LOGIN_ROLE = gql`
   mutation UpdateLoginRole($userId: String!, $role: Role) {
     updateLoginRole(userId: $userId, role: $role)
