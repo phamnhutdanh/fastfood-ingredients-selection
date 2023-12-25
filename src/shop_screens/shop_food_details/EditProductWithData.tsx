@@ -1,52 +1,57 @@
 import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
 import {ItemTitleText} from '../../components/texts/ItemTitleText';
 import {TextLink} from '../../components/texts/TextLink';
-import ProductNameInputDisplay from './display/ProductNameInputDisplay';
-import ProductPriceInputDisplay from './display/ProductPriceInputDisplay';
-import ProductSizeInputDisplay from './display/ProductSizeInputDisplay';
-import ProductDescriptionInputDisplay from './display/ProductDescriptionInputDisplay';
+
 import {useState} from 'react';
 import SaveCancelButton from '../../screens/account/display/SaveCancelButton';
-import ProductAvatarDisplay from './display/ProductAvatarDisplay';
+
 import {
   Asset,
   ImageLibraryOptions,
   launchImageLibrary,
 } from 'react-native-image-picker';
 import {uploadImageToCloudinary} from '../../utils/updateImageToCloudinary';
-import {useMutation} from '@apollo/client';
-import {CREATE_PRODUCT} from './ShopCategoryQuery';
-import Snackbar from 'react-native-snackbar';
-import {CreateProductInputType} from '../../types/ItemType';
-import ListSubcategoryDisplay from './display/ListSubcategoryDisplay';
+
+import {UpdateProductInputType} from '../../types/ItemType';
+
 import {ErrorMessageText} from '../../components/texts/ErrorMessageText';
+import ProductAvatarDisplay from '../category/display/ProductAvatarDisplay';
+import ListSubcategoryDisplay from '../category/display/ListSubcategoryDisplay';
+import ProductNameInputDisplay from '../category/display/ProductNameInputDisplay';
+import ProductDescriptionInputDisplay from '../category/display/ProductDescriptionInputDisplay';
+import ListTagFoodDisplay from '../../screens/food_details/display/ListTagFoodDisplay';
+import {useMutation} from '@apollo/client';
+import {UPDATE_PRODUCT} from './ShopFoodDetailQuery';
+import Snackbar from 'react-native-snackbar';
 
 type ThisProps = {
+  data: any;
   navigation: any;
-  route: any;
 };
 
-export default function AddProductShopScreen(props: ThisProps): JSX.Element {
-  const [productName, setProductName] = useState('');
-  const [productPrice, setProductPrice] = useState('');
+export default function EditProductWithData(props: ThisProps): JSX.Element {
+  const [productName, setProductName] = useState(props.data.title);
+  const [productPrice, setProductPrice] = useState(props.data.fullPrice);
   const [productSize, setProductSize] = useState('');
-  const [productDescription, setProductDescription] = useState('');
-  const [imageUri, setImageUri] = useState('');
+  const [productDescription, setProductDescription] = useState(
+    props.data.description,
+  );
+  const [imageUri, setImageUri] = useState(props.data.imageUri);
   const [imageFile, setImageFile] = useState<Asset>();
-  const [createProduct, {data, loading}] = useMutation(CREATE_PRODUCT);
+  const [shopId, setShopId] = useState(
+    props.data.productSubcategory.productCategory.shop.id,
+  );
   const [chosenSubCategoryId, setChosenSubCategoryId] = useState('');
 
   const [isDisplayError, setDisplayError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
+  const [updateProduct, {data, loading}] = useMutation(UPDATE_PRODUCT);
+
   const onSave = async () => {
     if (
       productName === '' ||
       productName === null ||
-      productPrice === '' ||
-      productPrice === null ||
-      productSize === '' ||
-      productSize === null ||
       productDescription === '' ||
       productDescription === null ||
       chosenSubCategoryId === '' ||
@@ -62,35 +67,33 @@ export default function AddProductShopScreen(props: ThisProps): JSX.Element {
     if (imageFile) {
       try {
         const publicId = await uploadImageToCloudinary(imageFile!);
-        let input: CreateProductInputType = {
+        let input: UpdateProductInputType = {
           title: productName,
-          price: +productPrice,
           description: productDescription,
           imagePublicId: publicId,
-          sizeTitle: productSize,
           subcategoryId: chosenSubCategoryId,
+          productId: props.data.id,
         };
-        await createProduct({
+        await updateProduct({
           variables: {
             productInput: input,
           },
         }).then(() => {
           Snackbar.show({text: 'Product added success'});
-          props.navigation.navigate('ShopCategoryScreen');
+          props.navigation.goBack();
         });
       } catch (error) {
         console.log('ShopCategoryScreen: ', error);
       }
     } else {
-      let input: CreateProductInputType = {
+      let input: UpdateProductInputType = {
         title: productName,
-        price: +productPrice,
         description: productDescription,
         imagePublicId: '',
-        sizeTitle: productSize,
         subcategoryId: chosenSubCategoryId,
+        productId: props.data.id,
       };
-      await createProduct({
+      await updateProduct({
         variables: {
           productInput: input,
         },
@@ -117,7 +120,20 @@ export default function AddProductShopScreen(props: ThisProps): JSX.Element {
 
   const navigateToCreateSubCategoryScreen = () => {
     props.navigation.navigate('AddSubCategoryScreen', {
-      shopId: props.route.params.shopId,
+      shopId: shopId,
+    });
+  };
+
+  const navigateToCreateSizeScreen = () => {
+    props.navigation.navigate('AddProductSizeScreen', {
+      foodId: props.data.id,
+      sizes: props.data.ProductSize,
+    });
+  };
+
+  const navigateToCreateTagScreen = () => {
+    props.navigation.navigate('AddProductTagScreen', {
+      foodId: props.data.id,
     });
   };
 
@@ -144,25 +160,39 @@ export default function AddProductShopScreen(props: ThisProps): JSX.Element {
         </View>
 
         <ListSubcategoryDisplay
-          shopId={props.route.params.shopId}
+          shopId={shopId}
           chosen={chosenSubCategoryId}
           setChosen={setChosenSubCategoryId}
         />
       </View>
 
+      <View>
+        <View style={styles.title}>
+          <ItemTitleText>List sizes</ItemTitleText>
+          <TextLink
+            style={styles.textLink}
+            onPress={navigateToCreateSizeScreen}>
+            Add new
+          </TextLink>
+        </View>
+
+        <ListTagFoodDisplay data={props.data.ProductSize} />
+      </View>
+
+      <View>
+        <View style={styles.title}>
+          <ItemTitleText>List tags</ItemTitleText>
+          <TextLink style={styles.textLink} onPress={navigateToCreateTagScreen}>
+            Add new
+          </TextLink>
+        </View>
+
+        <ListTagFoodDisplay data={props.data.ProductTag} />
+      </View>
+
       <ProductNameInputDisplay
         value={productName}
         onChangedText={setProductName}
-      />
-
-      <ProductPriceInputDisplay
-        value={productPrice}
-        onChangedText={setProductPrice}
-      />
-
-      <ProductSizeInputDisplay
-        value={productSize}
-        onChangedText={setProductSize}
       />
 
       <ProductDescriptionInputDisplay
@@ -171,7 +201,6 @@ export default function AddProductShopScreen(props: ThisProps): JSX.Element {
       />
 
       {isDisplayError && <ErrorMessageText>{errorMessage}</ErrorMessageText>}
-
       {loading ? (
         <ActivityIndicator size={'small'} />
       ) : (

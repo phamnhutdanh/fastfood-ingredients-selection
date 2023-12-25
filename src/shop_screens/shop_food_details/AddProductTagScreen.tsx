@@ -1,50 +1,42 @@
 import {ActivityIndicator, ScrollView, StyleSheet} from 'react-native';
-import ProductNameInputDisplay from './display/ProductNameInputDisplay';
-import ProductDescriptionInputDisplay from './display/ProductDescriptionInputDisplay';
+
 import {useState} from 'react';
 import SaveCancelButton from '../../screens/account/display/SaveCancelButton';
 import {useMutation} from '@apollo/client';
-import {CREATE_SUB_CATEGORY} from './ShopCategoryQuery';
+
 import Snackbar from 'react-native-snackbar';
-import {CreateProductSubCategoryInputType} from '../../types/ItemType';
+import {CreateTagInputType} from '../../types/ItemType';
 import {ErrorMessageText} from '../../components/texts/ErrorMessageText';
+import ProductNameInputDisplay from '../category/display/ProductNameInputDisplay';
+import {CREATE_TAG} from './ShopFoodDetailQuery';
 
 type ThisProps = {
   navigation: any;
   route: any;
 };
 
-export default function AddSubCategoryScreen(props: ThisProps): JSX.Element {
-  console.log('SHOP: ', props.route.params.shopId);
+export default function AddProductTagScreen(props: ThisProps): JSX.Element {
   const [productName, setProductName] = useState('');
-  const [productDescription, setProductDescription] = useState('');
-  const [createProductSubCategory, {data, loading}] =
-    useMutation(CREATE_SUB_CATEGORY);
+  const [createTag, {data, loading}] = useMutation(CREATE_TAG);
   const [isDisplayError, setDisplayError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const onSave = async () => {
-    if (
-      productName === '' ||
-      productName === null ||
-      productDescription === '' ||
-      productDescription === null
-    ) {
+    if (productName === '' || productName === null) {
       setDisplayError(true);
       setErrorMessage('Fields cannot be empty!');
       return;
     }
     setDisplayError(false);
-    let input: CreateProductSubCategoryInputType = {
+    let input: CreateTagInputType = {
       title: productName,
-      description: productDescription,
-      shopId: props.route.params.shopId,
+      productId: props.route.params.foodId,
     };
-    await createProductSubCategory({
+    await createTag({
       variables: {
-        subcategory: input,
+        tagInput: input,
       },
     }).then(() => {
-      Snackbar.show({text: 'Subcategory added success'});
+      Snackbar.show({text: 'Tag added success'});
       props.navigation.goBack();
     });
   };
@@ -58,10 +50,6 @@ export default function AddSubCategoryScreen(props: ThisProps): JSX.Element {
         onChangedText={setProductName}
       />
 
-      <ProductDescriptionInputDisplay
-        value={productDescription}
-        onChangedText={setProductDescription}
-      />
       {isDisplayError && <ErrorMessageText>{errorMessage}</ErrorMessageText>}
 
       {loading ? (

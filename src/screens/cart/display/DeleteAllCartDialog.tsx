@@ -10,7 +10,7 @@ type ThisProps = {
   refetch: any;
 };
 
-export default function DeleteAllDialog(props: ThisProps): JSX.Element {
+export default function DeleteAllCartDialog(props: ThisProps): JSX.Element {
   const [deleteAllCartProductsOfUser, {data, loading, error}] = useMutation(
     DELETE_ALL_CART_OF_USER,
   );

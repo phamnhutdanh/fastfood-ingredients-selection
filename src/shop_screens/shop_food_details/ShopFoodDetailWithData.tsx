@@ -1,5 +1,5 @@
 import {Button} from '@rneui/themed';
-import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {SectionText} from '../../components/texts/SectionText';
 import {GenericText} from '../../components/texts/generics/GenericText';
 import colors from '../../styles/colors';
@@ -8,14 +8,13 @@ import {useState} from 'react';
 
 import {BigTitleText} from '../../components/texts/BigTitleText';
 import RatingText from '../../components/texts/RatingText';
-import {useMutation} from '@apollo/client';
 
-import Snackbar from 'react-native-snackbar';
 import ImageFoodDetailsDisplay from '../../screens/food_details/display/ImageFoodDetailsDisplay';
-import PriceAndAmountDisplay from '../../screens/food_details/display/PriceAndAmountDisplay';
-import ItemVendorDisplay from '../../screens/food_details/display/ItemVendorDisplay';
 import ListSizeFoodDisplay from '../../screens/food_details/display/ListSizeFoodDisplay';
 import ListTagFoodDisplay from '../../screens/food_details/display/ListTagFoodDisplay';
+import {PriceText} from '../../components/texts/PriceText';
+import DeleteFoodDialog from './display/DeleteFoodDialog';
+import fonts from '../../styles/fonts';
 
 type ThisProps = {
   data: any;
@@ -23,33 +22,14 @@ type ThisProps = {
 };
 
 export default function ShopFoodDetailWithData(props: ThisProps): JSX.Element {
-  const [isFavorite, setFavorite] = useState<boolean>(true);
-  const [amount, setAmount] = useState(1);
   const [chosen, setChosen] = useState('');
   const [fullPrice, setFullPrice] = useState(
     props.data.getProductById.fullPrice,
   );
 
-  const addToFavoriteFood = () => {
-    console.log('CALL API: add to favorite 3');
-    setFavorite(!isFavorite);
-  };
-
-  const addToCart = async () => {
-    console.log('Amount: ', amount);
-    console.log('Size: ', chosen);
-    console.log('Full price: ', fullPrice);
-    console.log(props.userId);
-    if (chosen === null) console.log('please chose size');
-    await addProductToCart({
-      variables: {
-        productSizeId: chosen,
-        userId: props.userId,
-        amount: amount,
-        fullPrice: fullPrice * amount,
-      },
-    }).then(() => {
-      Snackbar.show({text: 'Item added to cart!'});
+  const editFood = () => {
+    props.navigation.navigate('EditProductScreen', {
+      productId: props.data.getProductById.id,
     });
   };
 
@@ -66,22 +46,7 @@ export default function ShopFoodDetailWithData(props: ThisProps): JSX.Element {
         showsVerticalScrollIndicator={false}
         scrollEnabled={true}>
         <BigTitleText>{props.data.getProductById.title}</BigTitleText>
-        <PriceAndAmountDisplay
-          price={fullPrice}
-          amount={amount}
-          setAmount={setAmount}
-        />
-        <ItemVendorDisplay
-          shopName={
-            props.data.getProductById.productSubcategory.productCategory.shop
-              .shopName
-          }
-          shopId={
-            props.data.getProductById.productSubcategory.productCategory.shop.id
-          }
-          textStyle={{fontSize: 16}}
-          navigation={props.navigation}
-        />
+        <PriceText textSize={16} priceValue={fullPrice} />
 
         {props.data.getProductById.ProductSize.length > 0 ? (
           <View>
@@ -116,13 +81,17 @@ export default function ShopFoodDetailWithData(props: ThisProps): JSX.Element {
           <GenericText>{props.data.getProductById.description}</GenericText>
         </View>
 
-        {loading ? (
-          <ActivityIndicator size={'small'} />
-        ) : (
-          <Button buttonStyle={styles.buttonAddToCart} onPress={addToCart}>
-            ADD TO CART
-          </Button>
-        )}
+        <Button
+          buttonStyle={styles.buttonEdit}
+          titleStyle={styles.titleEdit}
+          onPress={editFood}>
+          EDIT FOOD
+        </Button>
+
+        <DeleteFoodDialog
+          foodId={props.data.getProductById.id}
+          navigation={props.navigation}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -141,7 +110,14 @@ const styles = StyleSheet.create({
     paddingVertical: 32,
     paddingHorizontal: 28,
   },
-  buttonAddToCart: {paddingVertical: 12},
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  buttonEdit: {paddingVertical: 12, backgroundColor: colors.lightGrey},
+  titleEdit: {color: colors.darkBlack, fontFamily: fonts.POPPINS_BOLD},
+  titleDelete: {color: colors.white},
+  buttonDelete: {paddingVertical: 12, backgroundColor: colors.red},
   ratings: {
     flexDirection: 'row',
     alignItems: 'center',

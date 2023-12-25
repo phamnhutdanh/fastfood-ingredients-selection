@@ -5,6 +5,7 @@ import {useQuery} from '@apollo/client';
 import {GET_ALL_SUB_CATEGORY_TAG_OF_SHOP} from '../ShopCategoryQuery';
 import {ActivityIndicator, View} from 'react-native';
 import {ErrorMessageText} from '../../../components/texts/ErrorMessageText';
+import {useFocusEffect} from '@react-navigation/native';
 
 type ThisProps = {
   shopId: string;
@@ -13,10 +14,14 @@ type ThisProps = {
 };
 
 export default function ListSubcategoryDisplay(props: ThisProps): JSX.Element {
-  const {data, loading} = useQuery(GET_ALL_SUB_CATEGORY_TAG_OF_SHOP, {
+  const {data, loading, refetch} = useQuery(GET_ALL_SUB_CATEGORY_TAG_OF_SHOP, {
     variables: {
       id: props.shopId,
     },
+  });
+
+  useFocusEffect(() => {
+    refetch();
   });
 
   const onPressItem = (item: ItemFoodSizeName, index: number) => {

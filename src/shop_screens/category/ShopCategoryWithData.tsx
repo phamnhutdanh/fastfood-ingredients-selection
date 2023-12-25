@@ -6,7 +6,7 @@ import {useQuery} from '@apollo/client';
 
 import {SectionText} from '../../components/texts/SectionText';
 import HorizontalListFood from '../../components/displays/HorizontalListFood';
-import {useCallback} from 'react';
+import {useCallback, useEffect} from 'react';
 import {GET_ALL_SUBCATEGORY_OF_SHOP} from '../../screens/vendor_details/VendorDetailsQuery';
 import ShopInfoDisplay from '../display/ShopInfoDisplay';
 import fonts from '../../styles/fonts';
@@ -39,11 +39,12 @@ export default function ShopCategoryWithData(props: ThisProps): JSX.Element {
 
   useFocusEffect(() => {
     refetch();
+    console.log('REFETCH');
   });
 
   const memorizedValue = useCallback(
-    ({item}: {item: any}) => (
-      <View>
+    ({item, index}: {item: any; index: number}) => (
+      <View key={index}>
         <SectionText>{item.title}</SectionText>
         <HorizontalListFood
           data={item.products}

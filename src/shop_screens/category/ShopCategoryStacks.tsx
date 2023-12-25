@@ -3,18 +3,26 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ShopCategoryScreen from './ShopCategoryScreen';
 import AddProductShopScreen from './AddProductShopScreen';
 import AddSubCategoryScreen from './AddSubCategoryScreen';
+import FoodDetailsScreen from '../../screens/food_details/FoodDetailsScreen';
+import EditProductScreen from '../shop_food_details/EditProductScreen';
+import AddProductTagScreen from '../shop_food_details/AddProductTagScreen';
+import AddProductSizeScreen from '../shop_food_details/AddProductSizeScreen';
 
 type AccountStackParams = {
   ShopCategoryScreen: undefined;
   AddProductShopScreen: undefined;
   AddSubCategoryScreen: undefined;
+  FoodDetailsScreen: undefined;
+  EditProductScreen: undefined;
+  AddProductSizeScreen: undefined;
+  AddProductTagScreen: undefined;
 };
 
-const AccountNavigators = createNativeStackNavigator<AccountStackParams>();
+const CategoriesNavigators = createNativeStackNavigator<AccountStackParams>();
 
 export default function ShopCategoryStacks(): JSX.Element {
   return (
-    <AccountNavigators.Navigator
+    <CategoriesNavigators.Navigator
       initialRouteName="ShopCategoryScreen"
       screenOptions={{
         headerShown: false,
@@ -22,21 +30,41 @@ export default function ShopCategoryStacks(): JSX.Element {
           backgroundColor: colors.white,
         },
       }}>
-      <AccountNavigators.Screen
+      <CategoriesNavigators.Screen
         name="ShopCategoryScreen"
         component={ShopCategoryScreen}
         options={{headerTransparent: true, headerShown: true, headerTitle: ''}}
       />
-      <AccountNavigators.Screen
+      <CategoriesNavigators.Screen
         name="AddProductShopScreen"
         component={AddProductShopScreen}
         options={{headerShown: true, title: 'Add product'}}
       />
-      <AccountNavigators.Screen
+      <CategoriesNavigators.Screen
         name="AddSubCategoryScreen"
         component={AddSubCategoryScreen}
         options={{headerShown: true, title: 'Add subcategory'}}
       />
-    </AccountNavigators.Navigator>
+      <CategoriesNavigators.Screen
+        name="FoodDetailsScreen"
+        component={FoodDetailsScreen}
+        options={{headerTransparent: true, headerShown: true, headerTitle: ''}}
+      />
+      <CategoriesNavigators.Screen
+        name="EditProductScreen"
+        component={EditProductScreen}
+        options={{headerShown: true, title: 'Edit product'}}
+      />
+      <CategoriesNavigators.Screen
+        name="AddProductSizeScreen"
+        component={AddProductSizeScreen}
+        options={{headerShown: true, title: 'Add product size'}}
+      />
+      <CategoriesNavigators.Screen
+        name="AddProductTagScreen"
+        component={AddProductTagScreen}
+        options={{headerShown: true, title: 'Add product tag'}}
+      />
+    </CategoriesNavigators.Navigator>
   );
 }

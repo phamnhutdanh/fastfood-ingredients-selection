@@ -105,8 +105,27 @@ export type CreateProductInputType = {
   description: string;
 };
 
+export type UpdateProductInputType = {
+  subcategoryId: string;
+  imagePublicId: string;
+  title: string;
+  description: string;
+  productId: string;
+};
+
 export type CreateProductSubCategoryInputType = {
   shopId: string;
   title: string;
   description: string;
+};
+
+export type CreateTagInputType = {
+  title: string;
+  productId: string;
+};
+
+export type CreateSizeInputType = {
+  title: string;
+  productId: string;
+  fullPrice: number;
 };

@@ -7,6 +7,7 @@ import HeaderSearchTextInput from '../../components/inputs/HeaderSearchTextInput
 import {Suspense, useState} from 'react';
 import {useQuery} from '@apollo/client';
 import {SEARCH_PRODUCT} from './SearchQuery';
+import ListAllTagDisplay from './display/ListAllTagDisplay';
 
 type ThisProps = {
   navigation: any;
@@ -46,7 +47,7 @@ export default function SearchScreen(props: ThisProps): JSX.Element {
             {isFilter && (
               <View>
                 <SectionText>Popular tag</SectionText>
-                <ListTagFoodDisplay />
+                <ListAllTagDisplay />
               </View>
             )}
 

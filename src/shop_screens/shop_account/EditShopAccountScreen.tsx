@@ -73,7 +73,7 @@ export default function EditShopAccountScreen(props: ThisProps): JSX.Element {
         },
       }).then(() => {
         Snackbar.show({text: 'Shop account updated success'});
-        props.navigation.navigate('ShopAccountScreen');
+        props.navigation.goBack();
       });
     }
   };

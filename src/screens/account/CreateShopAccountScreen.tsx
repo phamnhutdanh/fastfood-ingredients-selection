@@ -71,7 +71,7 @@ export default function CreateShopAccountScreen(props: ThisProps): JSX.Element {
         },
       }).then(() => {
         Snackbar.show({text: 'Shop account created success'});
-        props.navigation.navigate('AccountScreen');
+        props.navigation.goBack();
       });
     }
   };

@@ -31,8 +31,8 @@ export default function VendorDetailsWithData(props: ThisProps): JSX.Element {
   });
 
   const memorizedValue = useCallback(
-    ({item}: {item: any}) => (
-      <View>
+    ({item, index}: {item: any; index: number}) => (
+      <View key={index}>
         <SectionText>{item.title}</SectionText>
         <HorizontalListFood
           data={item.products}
