@@ -79,7 +79,7 @@ export default function EditProductWithData(props: ThisProps): JSX.Element {
             productInput: input,
           },
         }).then(() => {
-          Snackbar.show({text: 'Product added success'});
+          Snackbar.show({text: 'Product updated success'});
           props.navigation.goBack();
         });
       } catch (error) {
@@ -98,7 +98,7 @@ export default function EditProductWithData(props: ThisProps): JSX.Element {
           productInput: input,
         },
       }).then(() => {
-        Snackbar.show({text: 'Product added success'});
+        Snackbar.show({text: 'Product updated success'});
         props.navigation.goBack();
       });
     }

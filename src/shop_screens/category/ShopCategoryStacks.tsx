@@ -7,6 +7,7 @@ import FoodDetailsScreen from '../../screens/food_details/FoodDetailsScreen';
 import EditProductScreen from '../shop_food_details/EditProductScreen';
 import AddProductTagScreen from '../shop_food_details/AddProductTagScreen';
 import AddProductSizeScreen from '../shop_food_details/AddProductSizeScreen';
+import AllFoodInShopGridDisplay from '../../screens/vendor_details/AllFoodInShopGridDisplay';
 
 type AccountStackParams = {
   ShopCategoryScreen: undefined;
@@ -16,6 +17,7 @@ type AccountStackParams = {
   EditProductScreen: undefined;
   AddProductSizeScreen: undefined;
   AddProductTagScreen: undefined;
+  VendorFoodDetails: undefined;
 };
 
 const CategoriesNavigators = createNativeStackNavigator<AccountStackParams>();
@@ -64,6 +66,11 @@ export default function ShopCategoryStacks(): JSX.Element {
         name="AddProductTagScreen"
         component={AddProductTagScreen}
         options={{headerShown: true, title: 'Add product tag'}}
+      />
+      <CategoriesNavigators.Screen
+        name="VendorFoodDetails"
+        component={AllFoodInShopGridDisplay}
+        options={{headerShown: true, title: 'All products'}}
       />
     </CategoriesNavigators.Navigator>
   );

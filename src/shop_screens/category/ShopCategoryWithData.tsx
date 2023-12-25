@@ -20,7 +20,7 @@ type ThisProps = {
 
 export default function ShopCategoryWithData(props: ThisProps): JSX.Element {
   const navigateToAllFoodOfShop = () => {
-    props.navigation.navigate('ShopFoodDetailScreen', {
+    props.navigation.navigate('VendorFoodDetails', {
       shopId: props.shopId,
     });
   };
