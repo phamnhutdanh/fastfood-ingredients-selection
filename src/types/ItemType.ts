@@ -95,3 +95,18 @@ export type OrderProductInputType = {
   count: number;
   productSizeId: string;
 };
+
+export type CreateProductInputType = {
+  subcategoryId: string;
+  imagePublicId: string;
+  title: string;
+  price: number;
+  sizeTitle: string;
+  description: string;
+};
+
+export type CreateProductSubCategoryInputType = {
+  shopId: string;
+  title: string;
+  description: string;
+};

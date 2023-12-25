@@ -1,11 +1,9 @@
 import {ActivityIndicator, View} from 'react-native';
-
 import {GenericText} from '../../components/texts/generics/GenericText';
 import {TextLink} from '../../components/texts/TextLink';
 import {StyleSheet} from 'react-native';
 import {useState} from 'react';
 import GenericButton from '../../components/buttons/generics/GenericButton';
-
 import {gql, useMutation} from '@apollo/client';
 import {FIREBASE_AUTH} from '../../auth/firebaseConfig';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
@@ -55,11 +53,17 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
               email: email,
               firebaseUid: userUID,
             },
-          }).then(() => {
-            Snackbar.show({text: 'Account created success'});
-            setDisplayError(false);
-            navigateToLoginScreen();
-          });
+          })
+            .then(() => {
+              Snackbar.show({text: 'Account created success'});
+              setDisplayError(false);
+              navigateToLoginScreen();
+            })
+            .catch(error => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              setErrorMessage(`${errorCode} ${errorMessage}`);
+            });
         })
         .catch(error => {
           const errorCode = error.code;
@@ -71,7 +75,7 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
   };
 
   const navigateToLoginScreen = async () => {
-    props.navigation.navigate('LoginScreen');
+    props.navigation.replace('LoginScreen');
   };
 
   return (

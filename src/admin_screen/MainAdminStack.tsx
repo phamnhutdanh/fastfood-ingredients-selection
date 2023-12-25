@@ -3,41 +3,29 @@ import {Icon} from '@rneui/themed';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import colors from '../styles/colors';
-import ShopManageOrderScreen from './manage_order/ShopManageOrderScreen';
-import ShopNotificationScreen from './notification/ShopNotificationScreen';
-import ShopAccountStacks from './shop_account/ShopAccountStacks';
-import ShopCategoryStacks from './category/ShopCategoryStacks';
+import AccountListScreen from './accounts/AccountListScreen';
+import AdminNotificationScreen from './notification/AdminNotificationScreen';
 
 type MainTabStackParams = {
-  ShopCategoryStacks: undefined;
-  ShopManageOrderScreen: undefined;
-  ShopAccountStacks: undefined;
-  ShopNotificationScreen: undefined;
+  AccountListScreen: undefined;
+  AdminNotificationScreen: undefined;
 };
 
 const MainTabStackNavigator = createBottomTabNavigator<MainTabStackParams>();
 
-export function MainShopStack(): JSX.Element {
+export function MainAdminStack(): JSX.Element {
   return (
     <MainTabStackNavigator.Navigator
-      initialRouteName="ShopCategoryStacks"
+      initialRouteName="AccountListScreen"
       sceneContainerStyle={{backgroundColor: colors.white}}
       screenOptions={MainTabScreenOptions}>
       <MainTabStackNavigator.Screen
-        name="ShopCategoryStacks"
-        component={ShopCategoryStacks}
+        name="AccountListScreen"
+        component={AccountListScreen}
       />
       <MainTabStackNavigator.Screen
-        name="ShopManageOrderScreen"
-        component={ShopManageOrderScreen}
-      />
-      <MainTabStackNavigator.Screen
-        name="ShopNotificationScreen"
-        component={ShopNotificationScreen}
-      />
-      <MainTabStackNavigator.Screen
-        name="ShopAccountStacks"
-        component={ShopAccountStacks}
+        name="AdminNotificationScreen"
+        component={AdminNotificationScreen}
       />
     </MainTabStackNavigator.Navigator>
   );
@@ -46,33 +34,7 @@ export function MainShopStack(): JSX.Element {
 const MainTabScreenOptions = ({route}: any) => ({
   tabBarIcon: ({focused, color, size}: any) => {
     let icon;
-    if (route.name === 'ShopCategoryStacks') {
-      icon = focused
-        ? (icon = (
-            <Icon type="font-awesome" name="inbox" size={size} color={color} />
-          ))
-        : (icon = (
-            <Icon type="feather" name="inbox" size={size} color={color} />
-          ));
-    } else if (route.name === 'ShopManageOrderScreen') {
-      icon = focused
-        ? (icon = (
-            <Icon
-              type="font-awesome"
-              name="file-text"
-              size={size}
-              color={color}
-            />
-          ))
-        : (icon = (
-            <Icon
-              type="font-awesome"
-              name="file-text-o"
-              size={size}
-              color={color}
-            />
-          ));
-    } else if (route.name === 'ShopNotificationScreen') {
+    if (route.name === 'AdminNotificationScreen') {
       icon = focused
         ? (icon = (
             <Icon
@@ -90,7 +52,7 @@ const MainTabScreenOptions = ({route}: any) => ({
               color={color}
             />
           ));
-    } else if (route.name === 'ShopAccountStacks') {
+    } else if (route.name === 'AccountListScreen') {
       icon = focused
         ? (icon = (
             <Icon

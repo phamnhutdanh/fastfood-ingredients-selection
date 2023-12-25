@@ -1,33 +1,44 @@
 import {Button} from '@rneui/themed';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
-import ShopInfoDisplay from '../../shop_screens/display/ShopInfoDisplay';
+
 import VerticalListFood from '../../components/displays/VerticalListFood';
 import {useQuery} from '@apollo/client';
-import {GET_ALL_SUBCATEGORY_OF_SHOP} from './VendorDetailsQuery';
+
 import {SectionText} from '../../components/texts/SectionText';
 import HorizontalListFood from '../../components/displays/HorizontalListFood';
 import {useCallback} from 'react';
+import {GET_ALL_SUBCATEGORY_OF_SHOP} from '../../screens/vendor_details/VendorDetailsQuery';
+import ShopInfoDisplay from '../display/ShopInfoDisplay';
+import fonts from '../../styles/fonts';
+import colors from '../../styles/colors';
+import {useFocusEffect} from '@react-navigation/native';
 
 type ThisProps = {
   shopId: string;
   navigation: any;
 };
 
-type FoodSectionType = {
-  title: string;
-  listFood: ArrayLike<any>;
-};
-
-export default function VendorDetailsWithData(props: ThisProps): JSX.Element {
+export default function ShopCategoryWithData(props: ThisProps): JSX.Element {
   const navigateToAllFoodOfShop = () => {
-    props.navigation.navigate('VendorFoodDetails', {
+    props.navigation.navigate('ShopFoodDetailScreen', {
       shopId: props.shopId,
     });
   };
-  const {data, loading} = useQuery(GET_ALL_SUBCATEGORY_OF_SHOP, {
+
+  const navigateToAddFoodScreen = () => {
+    props.navigation.navigate('AddProductShopScreen', {
+      shopId: props.shopId,
+    });
+  };
+
+  const {data, loading, refetch} = useQuery(GET_ALL_SUBCATEGORY_OF_SHOP, {
     variables: {
       getAllSubCategoryOfShopId: props.shopId,
     },
+  });
+
+  useFocusEffect(() => {
+    refetch();
   });
 
   const memorizedValue = useCallback(
@@ -50,9 +61,22 @@ export default function VendorDetailsWithData(props: ThisProps): JSX.Element {
         navigation={props.navigation}
         contentContainerStyle={styles.container}
         renderItem={memorizedValue}
-        listHeaderComponent={<ShopInfoDisplay id={props.shopId} />}
+        listHeaderComponent={
+          <View>
+            <ShopInfoDisplay id={props.shopId} />
+            <Button
+              buttonStyle={[styles.button, {backgroundColor: colors.green}]}
+              titleStyle={styles.buttonTitle}
+              onPress={navigateToAddFoodScreen}>
+              ADD NEW FOOD
+            </Button>
+          </View>
+        }
         listFooterComponent={
-          <Button buttonStyle={styles.button} onPress={navigateToAllFoodOfShop}>
+          <Button
+            buttonStyle={styles.button}
+            titleStyle={styles.buttonTitle}
+            onPress={navigateToAllFoodOfShop}>
             VIEW ALL FOODS
           </Button>
         }
@@ -69,5 +93,14 @@ const styles = StyleSheet.create({
   },
   button: {
     paddingVertical: 12,
+  },
+  buttonTitle: {
+    fontSize: 12,
+    fontFamily: fonts.POPPINS_BOLD,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'space-between',
   },
 });

@@ -27,7 +27,7 @@ export default function ItemSwapAccountDisplay(props: ThisProps): JSX.Element {
           role: UserRole.USER,
         },
       }).then(() => {
-        props.navigation.navigate('LoginScreen');
+        props.navigation.replace('MainStack');
       });
     } else if (props.params.loginAs === UserRole.USER) {
       await updateLoginRole({
@@ -36,7 +36,7 @@ export default function ItemSwapAccountDisplay(props: ThisProps): JSX.Element {
           role: UserRole.SHOP_OWNER,
         },
       }).then(() => {
-        props.navigation.navigate('LoginScreen');
+        props.navigation.replace('MainStack');
       });
     }
   };

@@ -5,27 +5,24 @@ import {GenericText} from '../../components/texts/generics/GenericText';
 import colors from '../../styles/colors';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useState} from 'react';
-import ImageFoodDetailsDisplay from './display/ImageFoodDetailsDisplay';
-import PriceAndAmountDisplay from './display/PriceAndAmountDisplay';
-import ItemVendorDisplay from './display/ItemVendorDisplay';
-import ListSizeFoodDisplay from './display/ListSizeFoodDisplay';
-import ListTagFoodDisplay from './display/ListTagFoodDisplay';
+
 import {BigTitleText} from '../../components/texts/BigTitleText';
 import RatingText from '../../components/texts/RatingText';
 import {useMutation} from '@apollo/client';
-import {ADD_PRODUCT_TO_CART} from './FoodDetailsQuery';
+
 import Snackbar from 'react-native-snackbar';
+import ImageFoodDetailsDisplay from '../../screens/food_details/display/ImageFoodDetailsDisplay';
+import PriceAndAmountDisplay from '../../screens/food_details/display/PriceAndAmountDisplay';
+import ItemVendorDisplay from '../../screens/food_details/display/ItemVendorDisplay';
+import ListSizeFoodDisplay from '../../screens/food_details/display/ListSizeFoodDisplay';
+import ListTagFoodDisplay from '../../screens/food_details/display/ListTagFoodDisplay';
 
 type ThisProps = {
   data: any;
   navigation: any;
-  userId: string;
 };
 
-export default function FoodDetailsWithData(props: ThisProps): JSX.Element {
-  const [addProductToCart, {loading, error, data}] =
-    useMutation(ADD_PRODUCT_TO_CART);
-
+export default function ShopFoodDetailWithData(props: ThisProps): JSX.Element {
   const [isFavorite, setFavorite] = useState<boolean>(true);
   const [amount, setAmount] = useState(1);
   const [chosen, setChosen] = useState('');
@@ -59,10 +56,8 @@ export default function FoodDetailsWithData(props: ThisProps): JSX.Element {
   return (
     <SafeAreaView style={{flex: 1}}>
       <ImageFoodDetailsDisplay
-        isFavorite={isFavorite}
         imageUri={props.data.getProductById.imageUri}
-        onPressFavoriteButton={addToFavoriteFood}
-        isVisibleFavorite={true}
+        isVisibleFavorite={false}
       />
 
       <ScrollView

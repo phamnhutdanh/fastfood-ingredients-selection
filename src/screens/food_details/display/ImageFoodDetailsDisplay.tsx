@@ -5,9 +5,10 @@ import {OnPressItem} from '../../../types/GenericType';
 import FavoriteButton from '../../../components/buttons/FavoriteButton';
 
 type ThisProps = {
-  isFavorite: boolean;
+  isFavorite?: boolean;
   imageUri: string;
-  onPressFavoriteButton: OnPressItem;
+  onPressFavoriteButton?: OnPressItem;
+  isVisibleFavorite: boolean;
 };
 
 export default function ImageFoodDetailsDisplay(props: ThisProps): JSX.Element {
@@ -17,11 +18,13 @@ export default function ImageFoodDetailsDisplay(props: ThisProps): JSX.Element {
         source={{uri: props.imageUri}}
         containerStyle={styles.image}
         PlaceholderContent={<ActivityIndicator />}>
-        <FavoriteButton
-          isFavorite={props.isFavorite}
-          iconSize={40}
-          onPressItem={props.onPressFavoriteButton}
-        />
+        {props.isVisibleFavorite && (
+          <FavoriteButton
+            isFavorite={props.isFavorite}
+            iconSize={40}
+            onPressItem={props.onPressFavoriteButton}
+          />
+        )}
       </Image>
     </View>
   );

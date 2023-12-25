@@ -4,10 +4,10 @@ import {ComponentStyle, OnPressItem} from '../../types/GenericType';
 import AddAndSubtractGenericButton from './generics/AddAndSubtractGenericButton';
 
 type ThisProps = {
-  onPressItem: OnPressItem;
+  onPressItem: OnPressItem | undefined;
   buttonStyle?: ComponentStyle;
   iconSize?: number;
-  isFavorite: boolean;
+  isFavorite: boolean | undefined;
 };
 
 export default function FavoriteButton(props: ThisProps): JSX.Element {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text} from '@rneui/themed';
 
-import {ActivityIndicator} from 'react-native';
+import {ActivityIndicator, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useQuery} from '@apollo/client';
 import {GET_USER_BY_FIREBASE_UID} from './screens/account/AccountQuery';
@@ -23,7 +23,12 @@ export function MainStack(): JSX.Element {
     refetch();
   });
 
-  if (loading) return <ActivityIndicator size={'large'} />;
+  if (loading)
+    return (
+      <SafeAreaView style={styles.containerLoading}>
+        <ActivityIndicator size={'large'} />
+      </SafeAreaView>
+    );
 
   if (loginAs === UserRole.USER) {
     return <MainUserStack />;
@@ -34,10 +39,22 @@ export function MainStack(): JSX.Element {
   if (loginAs === UserRole.ADMIN) {
     return (
       <SafeAreaView>
-        <Text> Admin stack</Text>
+        <Text>Admin stack</Text>
       </SafeAreaView>
     );
   }
-
-  return <ActivityIndicator size={'large'} />;
+  return (
+    <SafeAreaView>
+      <Text>Main stack no user error login</Text>
+    </SafeAreaView>
+  );
 }
+
+const styles = StyleSheet.create({
+  containerLoading: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
