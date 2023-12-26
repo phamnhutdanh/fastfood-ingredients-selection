@@ -7,6 +7,7 @@ import AccountScreen from './AccountScreen';
 import EditAccountScreen from './EditAccountScreen';
 import ChangePasswordScreen from './ChangePasswordScreen';
 import CreateShopAccountScreen from './CreateShopAccountScreen';
+import ReviewFoodScreen from '../food_details/ReviewFoodScreen';
 
 type AccountStackParams = {
   FoodDetailsScreen: undefined;
@@ -16,6 +17,7 @@ type AccountStackParams = {
   EditAccountScreen: undefined;
   ChangePasswordScreen: undefined;
   CreateShopAccountScreen: undefined;
+  ReviewFoodScreen: undefined;
 };
 
 const AccountNavigators = createNativeStackNavigator<AccountStackParams>();
@@ -78,6 +80,11 @@ export default function AccountStacks(): JSX.Element {
           headerShown: true,
           headerTitle: 'Create a shop account',
         }}
+      />
+      <AccountNavigators.Screen
+        name="ReviewFoodScreen"
+        component={ReviewFoodScreen}
+        options={{headerShown: true, title: 'List reviews'}}
       />
     </AccountNavigators.Navigator>
   );

@@ -6,6 +6,7 @@ import SearchScreen from '../search/SearchScreen';
 import colors from '../../styles/colors';
 import AllFoodInShopGridDisplay from '../vendor_details/AllFoodInShopGridDisplay';
 import AccountScreen from '../account/AccountScreen';
+import ReviewFoodScreen from '../food_details/ReviewFoodScreen';
 
 type HomeStackParams = {
   HomeScreen: undefined;
@@ -14,6 +15,7 @@ type HomeStackParams = {
   VendorFoodDetails: undefined;
   AccountScreen: undefined;
   SearchScreen: undefined;
+  ReviewFoodScreen: undefined;
 };
 
 const HomeNavigators = createNativeStackNavigator<HomeStackParams>();
@@ -64,6 +66,11 @@ export default function HomeStacks(): JSX.Element {
           headerShown: false,
           title: 'Searching',
         }}
+      />
+      <HomeNavigators.Screen
+        name="ReviewFoodScreen"
+        component={ReviewFoodScreen}
+        options={{headerShown: true, title: 'List reviews'}}
       />
     </HomeNavigators.Navigator>
   );

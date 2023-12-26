@@ -15,6 +15,7 @@ import RatingText from '../../components/texts/RatingText';
 import {useMutation} from '@apollo/client';
 import {ADD_PRODUCT_TO_CART} from './FoodDetailsQuery';
 import Snackbar from 'react-native-snackbar';
+import fonts from '../../styles/fonts';
 
 type ThisProps = {
   data: any;
@@ -39,10 +40,6 @@ export default function FoodDetailsWithData(props: ThisProps): JSX.Element {
   };
 
   const addToCart = async () => {
-    console.log('Amount: ', amount);
-    console.log('Size: ', chosen);
-    console.log('Full price: ', fullPrice);
-    console.log(props.userId);
     if (chosen === null) console.log('please chose size');
     await addProductToCart({
       variables: {
@@ -53,6 +50,13 @@ export default function FoodDetailsWithData(props: ThisProps): JSX.Element {
       },
     }).then(() => {
       Snackbar.show({text: 'Item added to cart!'});
+    });
+  };
+
+  const createReview = () => {
+    props.navigation.navigate('ReviewFoodScreen', {
+      userId: props.userId,
+      productId: props.data.getProductById.id,
     });
   };
 
@@ -124,10 +128,20 @@ export default function FoodDetailsWithData(props: ThisProps): JSX.Element {
         {loading ? (
           <ActivityIndicator size={'small'} />
         ) : (
-          <Button buttonStyle={styles.buttonAddToCart} onPress={addToCart}>
+          <Button
+            buttonStyle={styles.button}
+            titleStyle={styles.titleButton}
+            onPress={addToCart}>
             ADD TO CART
           </Button>
         )}
+
+        <Button
+          buttonStyle={styles.buttonCreateReview}
+          titleStyle={styles.titleCreateReview}
+          onPress={createReview}>
+          VIEW REVIEW
+        </Button>
       </ScrollView>
     </SafeAreaView>
   );
@@ -146,7 +160,16 @@ const styles = StyleSheet.create({
     paddingVertical: 32,
     paddingHorizontal: 28,
   },
-  buttonAddToCart: {paddingVertical: 12},
+  button: {paddingVertical: 12},
+  titleButton: {fontFamily: fonts.POPPINS_BOLD},
+  buttonCreateReview: {
+    paddingVertical: 12,
+    backgroundColor: colors.lightGrey,
+  },
+  titleCreateReview: {
+    color: colors.darkBlack,
+    fontFamily: fonts.POPPINS_BOLD,
+  },
   ratings: {
     flexDirection: 'row',
     alignItems: 'center',

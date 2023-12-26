@@ -33,6 +33,13 @@ export default function ShopFoodDetailWithData(props: ThisProps): JSX.Element {
     });
   };
 
+  const createReview = () => {
+    props.navigation.navigate('ReviewFoodScreen', {
+      userId: '',
+      productId: props.data.getProductById.id,
+    });
+  };
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <ImageFoodDetailsDisplay
@@ -92,6 +99,13 @@ export default function ShopFoodDetailWithData(props: ThisProps): JSX.Element {
           foodId={props.data.getProductById.id}
           navigation={props.navigation}
         />
+
+        <Button
+          buttonStyle={styles.buttonCreateReview}
+          titleStyle={styles.titleCreateReview}
+          onPress={createReview}>
+          VIEW REVIEW
+        </Button>
       </ScrollView>
     </SafeAreaView>
   );
@@ -118,6 +132,14 @@ const styles = StyleSheet.create({
   titleEdit: {color: colors.darkBlack, fontFamily: fonts.POPPINS_BOLD},
   titleDelete: {color: colors.white},
   buttonDelete: {paddingVertical: 12, backgroundColor: colors.red},
+  buttonCreateReview: {
+    paddingVertical: 12,
+    backgroundColor: colors.lightGrey,
+  },
+  titleCreateReview: {
+    color: colors.darkBlack,
+    fontFamily: fonts.POPPINS_BOLD,
+  },
   ratings: {
     flexDirection: 'row',
     alignItems: 'center',
