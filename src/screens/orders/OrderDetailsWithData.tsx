@@ -9,10 +9,12 @@ import {
 import colors from '../../styles/colors';
 import {GenericText} from '../../components/texts/generics/GenericText';
 import ButtonCancelOrder from './display/ButtonCancelOrder';
-import {OrderStatus} from '../../types/constants';
+import {OrderStatus, UserRole} from '../../types/constants';
 import StatusDisplay from '../cart/tabs/on_going/StatusDisplay';
 import AvatarDisplay from '../account/display/AvatarDisplay';
 import ShopAvatarDisplay from '../../shop_screens/display/ShopAvatarDisplay';
+import ButtonAcceptOrder from './display/ButtonAcceptOrder';
+import ButtonCompleteOrder from './display/ButtonCompleteOrder';
 
 type ThisProps = {
   navigation: any;
@@ -29,6 +31,7 @@ export default function OrderDetailsWithData(props: ThisProps): JSX.Element {
   const userEmail = props.data.user.account.email;
   const userName = props.data.user.name;
   const phoneNumber = props.data.user.phoneNumber;
+  const loginAs = props.data.user.loginAs;
 
   const shopAvatarUri =
     props.data.productSize.product.productSubcategory.productCategory.shop
@@ -80,13 +83,10 @@ export default function OrderDetailsWithData(props: ThisProps): JSX.Element {
         <GenericText style={styles.text}>{deliveryAddress}</GenericText>
       </View>
 
-      {(status === OrderStatus.CANCELED ||
-        status === OrderStatus.DELIVERED) && (
-        <View>
-          <ItemTitleText>Status </ItemTitleText>
-          <StatusDisplay isHorizontal status={status} />
-        </View>
-      )}
+      <View>
+        <ItemTitleText>Status </ItemTitleText>
+        <StatusDisplay isHorizontal status={status} />
+      </View>
 
       <View>
         <ItemTitleText>Order create at</ItemTitleText>
@@ -111,7 +111,7 @@ export default function OrderDetailsWithData(props: ThisProps): JSX.Element {
       <View>
         <ItemTitleText>Product</ItemTitleText>
         <ItemOrder
-          id={props.data.id}
+          id={orderId}
           imageUri={props.data.productSize.product.imageUri}
           foodName={props.data.productSize.product.title}
           size={props.data.productSize.title}
@@ -125,12 +125,16 @@ export default function OrderDetailsWithData(props: ThisProps): JSX.Element {
         <PriceText priceValue={totalCost}></PriceText>
       </View>
 
-      {(status === OrderStatus.PENDING ||
-        status === OrderStatus.ON_THE_WAY) && (
-        <ButtonCancelOrder
-          navigation={props.navigation}
-          orderId={props.data.id}
-        />
+      {loginAs === UserRole.SHOP_OWNER && status === OrderStatus.PENDING && (
+        <ButtonAcceptOrder orderId={orderId} navigation={props.navigation} />
+      )}
+
+      {loginAs === UserRole.SHOP_OWNER && status === OrderStatus.ON_THE_WAY && (
+        <ButtonCompleteOrder orderId={orderId} navigation={props.navigation} />
+      )}
+
+      {status === OrderStatus.PENDING && (
+        <ButtonCancelOrder navigation={props.navigation} orderId={orderId} />
       )}
     </ScrollView>
   );

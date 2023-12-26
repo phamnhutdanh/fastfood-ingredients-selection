@@ -36,6 +36,7 @@ export const GET_ORDER_BY_ID = gql`
       createdAt
       updatedAt
       user {
+        loginAs
         name
         imageUrl
         account {
@@ -50,5 +51,11 @@ export const GET_ORDER_BY_ID = gql`
 export const CANCEL_ORDER = gql`
   mutation CancelOrder($orderId: ID!) {
     cancelOrder(orderId: $orderId)
+  }
+`;
+
+export const CHANGE_ORDER_STATUS = gql`
+  mutation ChangeOrderStatus($orderId: ID!, $status: OrderStatus!) {
+    changeOrderStatus(orderId: $orderId, status: $status)
   }
 `;
