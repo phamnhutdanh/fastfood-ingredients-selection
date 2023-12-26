@@ -6,7 +6,7 @@ type ThisProps = {
   navigation: any;
 };
 
-export default function EmptyCartTab(props: ThisProps): JSX.Element {
+export default function EmptyOnGoingTab(props: ThisProps): JSX.Element {
   const navigateToCartScreen = () => {
     props.navigation.navigate('HomeStacks');
   };
@@ -14,8 +14,8 @@ export default function EmptyCartTab(props: ThisProps): JSX.Element {
   return (
     <GenericEmptyTab
       onPressButton={navigateToCartScreen}
-      imageSource={images.EMPTY_CART}
-      title={'Cart empty'}
+      imageSource={images.DELIVER}
+      title={'Order empty'}
       body={' Go ahead and order some tasty food'}
       buttonTitle={'Add item'}
     />

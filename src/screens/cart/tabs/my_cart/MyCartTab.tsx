@@ -24,7 +24,7 @@ export default function MyCartTab(props: ThisProps): JSX.Element {
 
   return (
     <>
-      {data == null || data?.getAllCartProductOfUser?.length <= 0 ? (
+      {data === null || data?.getAllCartProductOfUser?.length <= 0 ? (
         <EmptyCartTab navigation={props.navigation} />
       ) : (
         <View style={styles.container}>

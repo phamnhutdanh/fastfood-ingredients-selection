@@ -8,10 +8,16 @@ import {ItemSubtitleText} from '../../../components/texts/ItemSubtitleText';
 import {PriceText} from '../../../components/texts/PriceText';
 import {ItemHistoryOrderType} from '../../../types/ItemType';
 import colors from '../../../styles/colors';
+import {
+  convertDateTo_HM_DMY,
+  convertMillisecondsToDate,
+} from '../../../utils/dateConvert';
 
 type ThisProps = ItemHistoryOrderType & {};
 
 export default function ItemHistoryOrder(props: ThisProps): JSX.Element {
+  let date = convertMillisecondsToDate(props.date);
+  let dateString = convertDateTo_HM_DMY(date);
   return (
     <Pressable
       android_ripple={pressableRippleConfig}
@@ -25,7 +31,7 @@ export default function ItemHistoryOrder(props: ThisProps): JSX.Element {
         <View style={styles.info_container}>
           <ItemTitleText style={styles.text}>{props.foodName}</ItemTitleText>
 
-          <ItemSubtitleText>{props.date}</ItemSubtitleText>
+          <ItemSubtitleText>{dateString}</ItemSubtitleText>
         </View>
 
         <PriceText priceValue={props.priceValue} textSize={14} />

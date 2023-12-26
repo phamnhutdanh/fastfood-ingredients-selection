@@ -47,3 +47,39 @@ export const UPDATE_CART_PRODUCT = gql`
     )
   }
 `;
+
+export const GET_ON_GOING_ORDER_OF_USER = gql`
+  query GetOnGoingOrdersOfUser($userId: ID!) {
+    getOnGoingOrdersOfUser(userId: $userId) {
+      id
+      productSize {
+        title
+        product {
+          title
+          imageUri
+        }
+      }
+      status
+      count
+    }
+  }
+`;
+
+export const GET_COMPLETE_ORDER_OF_USER = gql`
+  query GetCompleteOrdersOfUser($userId: ID!) {
+    getCompleteOrdersOfUser(userId: $userId) {
+      id
+      productSize {
+        title
+        fullPrice
+        product {
+          title
+          imageUri
+        }
+      }
+      createdAt
+      status
+      count
+    }
+  }
+`;

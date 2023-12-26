@@ -1,24 +1,22 @@
 import {StyleSheet} from 'react-native';
 import {useCallback} from 'react';
-import {ItemOngoingType} from '../../../types/ItemType';
 import GenericFlatList from '../../../components/displays/generics/GenericFlatList';
 import ItemOnGoing from './ItemOnGoing';
 
 type ThisProps = {
   data: ArrayLike<any>;
-  navigation: any;
 };
 
 export default function OnGoingList(props: ThisProps): JSX.Element {
   const memorizedValue = useCallback(
-    ({item}: {item: ItemOngoingType}) => (
+    ({item}: {item: any}) => (
       <ItemOnGoing
-        foodName={item.foodName}
-        size={item.size}
-        amount={item.amount}
+        foodName={item.productSize.product.title}
+        size={item.productSize.title}
+        amount={item.count}
         id={item.id}
         status={item.status}
-        imageUri={item.imageUri}
+        imageUri={item.productSize.product.imageUri}
       />
     ),
     [props.data],

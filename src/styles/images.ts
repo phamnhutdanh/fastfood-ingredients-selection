@@ -18,4 +18,5 @@ export default {
   EMPTY_CART: require('../assets/images/empty_cart.png'),
   AVATAR: require('../assets/images/user_avatar.png'),
   COMPLETE: require('../assets/images/complete.png'),
+  HISTORY_ORDER: require('../assets/images/history_order.png'),
 };
