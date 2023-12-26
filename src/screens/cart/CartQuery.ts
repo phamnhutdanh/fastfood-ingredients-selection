@@ -10,6 +10,7 @@ export const GET_ALL_CART_PRODUCT_OF_USER = gql`
         title
         fullPrice
         product {
+          id
           title
           imageUri
         }

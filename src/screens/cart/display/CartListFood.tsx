@@ -18,7 +18,7 @@ export default function CartListFood(props: ThisProps): JSX.Element {
 
   const navigateToFoodDetailsScreen = (item: any) => {
     props.navigation.navigate('FoodDetailsScreen', {
-      foodName: item.foodName,
+      foodId: item.productSize.product.id,
     });
   };
 
@@ -73,6 +73,7 @@ export default function CartListFood(props: ThisProps): JSX.Element {
         <TotalPriceAndPlaceOrder
           price={price}
           onPressPlaceOrder={onPressPlaceOrder}
+          loading={false}
         />
       }
     />

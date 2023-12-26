@@ -66,14 +66,6 @@ export type ItemFoodSizeName = {
   fullPrice: number;
 };
 
-export type OrderInputType = {
-  deliveryAddress: string;
-  totalCost: number;
-  deliveredAt: string;
-  userId: string;
-  commentary: string;
-};
-
 export type CreateShopInputType = {
   shopAddress: string;
   shopPhoneNumber: string;
@@ -93,6 +85,11 @@ export type UpdateShopInputType = {
 export type OrderProductInputType = {
   fullPrice: number;
   count: number;
+  deliveryAddress: string;
+  totalCost: number;
+  commentary: string;
+  deliveredAt: string;
+  userId: string;
   productSizeId: string;
 };
 
