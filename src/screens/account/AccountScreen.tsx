@@ -8,6 +8,7 @@ import {useQuery} from '@apollo/client';
 import {GET_USER_BY_FIREBASE_UID} from './AccountQuery';
 import {FIREBASE_AUTH} from '../../auth/firebaseConfig';
 import {useFocusEffect} from '@react-navigation/native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const list = [
   {
@@ -60,6 +61,7 @@ export default function AccountScreen(props: ThisProps): JSX.Element {
     <ScrollView
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.container}>
+      <SafeAreaView></SafeAreaView>
       {loading ? (
         <ActivityIndicator size={'small'} />
       ) : (

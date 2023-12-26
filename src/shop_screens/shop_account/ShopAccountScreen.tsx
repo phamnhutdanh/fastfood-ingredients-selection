@@ -1,4 +1,9 @@
-import {ActivityIndicator, ScrollView, StyleSheet} from 'react-native';
+import {
+  ActivityIndicator,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+} from 'react-native';
 import colors from '../../styles/colors';
 import AvatarDisplay from '../../screens/account/display/AvatarDisplay';
 import BasicInfoDisplay from '../../screens/account/display/basic_info/BasicInfoDisplay';
@@ -28,6 +33,8 @@ export default function ShopAccountScreen(props: ThisProps): JSX.Element {
     <ScrollView
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.container}>
+      <SafeAreaView></SafeAreaView>
+
       {loading ? (
         <ActivityIndicator size={'small'} />
       ) : (

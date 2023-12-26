@@ -1,6 +1,5 @@
 import {StyleSheet, View} from 'react-native';
 import {Avatar, Button, Icon} from '@rneui/themed';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import {SectionText} from '../../../components/texts/SectionText';
 import {ItemSubtitleText} from '../../../components/texts/ItemSubtitleText';
 import colors from '../../../styles/colors';
@@ -15,7 +14,7 @@ type ThisProps = {
 
 export default function AvatarDisplay(props: ThisProps): JSX.Element {
   return (
-    <SafeAreaView style={styles.avatar}>
+    <View style={styles.avatar}>
       <Avatar
         source={{
           uri: props.avatarUri
@@ -44,7 +43,7 @@ export default function AvatarDisplay(props: ThisProps): JSX.Element {
           buttonStyle={{backgroundColor: 'transparent'}}
         />
       )}
-    </SafeAreaView>
+    </View>
   );
 }
 

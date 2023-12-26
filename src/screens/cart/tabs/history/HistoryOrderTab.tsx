@@ -40,6 +40,7 @@ export default function HistoryOrderTab(props: ThisProps): JSX.Element {
                   ? data.getCompleteOrdersOfUser
                   : {}
               }
+              navigation={props.navigation}
             />
           )}
         </View>

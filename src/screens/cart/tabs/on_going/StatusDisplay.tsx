@@ -6,13 +6,18 @@ import {Icon} from '@rneui/themed';
 import {OrderStatus} from '../../../../types/constants';
 
 type ThisProps = {
-  status: string;
+  status: OrderStatus;
+  isHorizontal?: boolean;
 };
 
 export default function StatusDisplay(props: ThisProps): JSX.Element {
   if (props.status === OrderStatus.PENDING) {
     return (
-      <View style={styles.container}>
+      <View
+        style={[
+          styles.container,
+          props.isHorizontal ? {flexDirection: 'row'} : {},
+        ]}>
         <ItemTitleText style={styles.pending}>Pending</ItemTitleText>
         <Icon
           type="material"
@@ -24,14 +29,22 @@ export default function StatusDisplay(props: ThisProps): JSX.Element {
     );
   } else if (props.status === OrderStatus.CANCELED) {
     return (
-      <View style={styles.container}>
+      <View
+        style={[
+          styles.container,
+          props.isHorizontal ? {flexDirection: 'row'} : {},
+        ]}>
         <ItemTitleText style={styles.cancel}>Canceled</ItemTitleText>
         <Icon type="material" name="cancel" size={24} color={colors.red} />
       </View>
     );
   } else if (props.status === OrderStatus.DELIVERED) {
     return (
-      <View style={styles.container}>
+      <View
+        style={[
+          styles.container,
+          props.isHorizontal ? {flexDirection: 'row'} : {},
+        ]}>
         <ItemTitleText style={styles.complete}>Delivered</ItemTitleText>
         <Icon
           type="ionicon"
@@ -43,7 +56,11 @@ export default function StatusDisplay(props: ThisProps): JSX.Element {
     );
   } else if (props.status === OrderStatus.ON_THE_WAY) {
     return (
-      <View style={styles.container}>
+      <View
+        style={[
+          styles.container,
+          props.isHorizontal ? {flexDirection: 'row'} : {},
+        ]}>
         <ItemTitleText style={styles.on_the_way}>On the way</ItemTitleText>
         <Icon
           type="material"
@@ -59,7 +76,6 @@ export default function StatusDisplay(props: ThisProps): JSX.Element {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
     alignItems: 'flex-end',
   },
   pending: {

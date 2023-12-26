@@ -12,8 +12,12 @@ import {
   convertDateTo_HM_DMY,
   convertMillisecondsToDate,
 } from '../../../utils/dateConvert';
+import {OnPressItem} from '../../../types/GenericType';
+import StatusDisplay from '../tabs/on_going/StatusDisplay';
 
-type ThisProps = ItemHistoryOrderType & {};
+type ThisProps = ItemHistoryOrderType & {
+  onPressItem: OnPressItem;
+};
 
 export default function ItemHistoryOrder(props: ThisProps): JSX.Element {
   let date = convertMillisecondsToDate(props.date);
@@ -32,9 +36,10 @@ export default function ItemHistoryOrder(props: ThisProps): JSX.Element {
           <ItemTitleText style={styles.text}>{props.foodName}</ItemTitleText>
 
           <ItemSubtitleText>{dateString}</ItemSubtitleText>
+          <PriceText priceValue={props.priceValue} textSize={14} />
         </View>
 
-        <PriceText priceValue={props.priceValue} textSize={14} />
+        <StatusDisplay status={props.status} />
       </View>
     </Pressable>
   );

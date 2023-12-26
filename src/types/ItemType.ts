@@ -1,4 +1,5 @@
 import {OnPressItem} from './GenericType';
+import {OrderStatus} from './constants';
 
 export type ItemOrderSizeType = {
   id: string;
@@ -9,7 +10,6 @@ export type ItemOrderSizeType = {
 
 export type ItemCartType = {
   id: string;
-  onPressItem: OnPressItem;
   imageUri: string;
   foodName: string;
   size: string;
@@ -32,15 +32,15 @@ export type ItemOngoingType = {
   foodName: string;
   size: string;
   amount: number;
-  status: string;
+  status: OrderStatus;
 };
 
 export type ItemHistoryOrderType = {
   id: string;
-  onPressItem: OnPressItem;
   imageUri: string;
   foodName: string;
   date: string;
+  status: OrderStatus;
   priceValue: number;
 };
 

@@ -14,8 +14,8 @@ type ThisProps = {
 };
 
 export default function MyOrderScreen(props: ThisProps): JSX.Element {
-  const [deliveryAddress, setDeliveryAddress] = useState('address address');
-  const [commentary, setCommentary] = useState('comment');
+  const [deliveryAddress, setDeliveryAddress] = useState('');
+  const [commentary, setCommentary] = useState('');
   const {listData, totalCost, userId} = props.route.params;
   const [deliveryTime, setDeliveryTime] = useState<Date>(new Date());
   const [createOrderProduct, {loading, error, data}] =
