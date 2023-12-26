@@ -3,14 +3,14 @@ import {Icon} from '@rneui/themed';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import colors from '../styles/colors';
-import ShopManageOrderScreen from './manage_order/ShopManageOrderScreen';
 import ShopNotificationScreen from './notification/ShopNotificationScreen';
 import ShopAccountStacks from './shop_account/ShopAccountStacks';
 import ShopCategoryStacks from './category/ShopCategoryStacks';
+import ShopManageOrderStacks from './manage_order/ShopManageOrderStacks';
 
 type MainTabStackParams = {
   ShopCategoryStacks: undefined;
-  ShopManageOrderScreen: undefined;
+  ShopManageOrderStacks: undefined;
   ShopAccountStacks: undefined;
   ShopNotificationScreen: undefined;
 };
@@ -28,8 +28,8 @@ export function MainShopStack(): JSX.Element {
         component={ShopCategoryStacks}
       />
       <MainTabStackNavigator.Screen
-        name="ShopManageOrderScreen"
-        component={ShopManageOrderScreen}
+        name="ShopManageOrderStacks"
+        component={ShopManageOrderStacks}
       />
       <MainTabStackNavigator.Screen
         name="ShopNotificationScreen"
@@ -54,7 +54,7 @@ const MainTabScreenOptions = ({route}: any) => ({
         : (icon = (
             <Icon type="feather" name="inbox" size={size} color={color} />
           ));
-    } else if (route.name === 'ShopManageOrderScreen') {
+    } else if (route.name === 'ShopManageOrderStacks') {
       icon = focused
         ? (icon = (
             <Icon

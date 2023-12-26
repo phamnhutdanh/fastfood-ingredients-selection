@@ -6,11 +6,12 @@ import display from '../../../../utils/display';
 import fonts from '../../../../styles/fonts';
 
 type ThisProps = {
-  onPressButton: () => void;
   imageSource: any;
   title: string;
   body: string;
-  buttonTitle: string;
+  isDisplayButton: boolean;
+  buttonTitle?: string;
+  onPressButton?: () => void;
 };
 
 export default function GenericEmptyTab(props: ThisProps): JSX.Element {
@@ -23,15 +24,18 @@ export default function GenericEmptyTab(props: ThisProps): JSX.Element {
       />
       <Text style={styles.emptyCartText}>{props.title}</Text>
       <Text style={styles.emptyCartSubText}>{props.body}</Text>
-      <Button
-        onPress={props.onPressButton}
-        icon={
-          <Icon name="plus" color={colors.white} size={20} type="antdesign" />
-        }
-        buttonStyle={styles.addButtonEmpty}
-        titleStyle={styles.addButtonEmptyText}>
-        {props.buttonTitle}
-      </Button>
+
+      {props.isDisplayButton && (
+        <Button
+          onPress={props.onPressButton}
+          icon={
+            <Icon name="plus" color={colors.white} size={20} type="antdesign" />
+          }
+          buttonStyle={styles.addButtonEmpty}
+          titleStyle={styles.addButtonEmptyText}>
+          {props.buttonTitle}
+        </Button>
+      )}
 
       <Separator height={display.setHeight(15)} />
     </View>

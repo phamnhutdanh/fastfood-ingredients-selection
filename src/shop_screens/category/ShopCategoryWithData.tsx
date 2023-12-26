@@ -39,7 +39,6 @@ export default function ShopCategoryWithData(props: ThisProps): JSX.Element {
 
   useFocusEffect(() => {
     refetch();
-    console.log('REFETCH');
   });
 
   const memorizedValue = useCallback(

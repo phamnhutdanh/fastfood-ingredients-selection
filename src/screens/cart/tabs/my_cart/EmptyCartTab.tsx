@@ -16,8 +16,9 @@ export default function EmptyCartTab(props: ThisProps): JSX.Element {
       onPressButton={navigateToCartScreen}
       imageSource={images.EMPTY_CART}
       title={'Cart empty'}
-      body={' Go ahead and order some tasty food'}
+      body={'Go ahead and order some tasty food'}
       buttonTitle={'Add item'}
+      isDisplayButton={true}
     />
   );
 }

@@ -23,6 +23,7 @@ export default function VerticalListFood(props: ThisProps): JSX.Element {
   const memorizedValue = useCallback(
     ({item}: {item: any}) => (
       <ItemFoodVertical
+        key={item.id}
         imageUri={item.imageUri}
         onPressItem={() => navigateToFoodDetailsScreen(item)}
         id={item.id}

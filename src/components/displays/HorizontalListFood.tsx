@@ -18,6 +18,7 @@ export default function HorizontalListFood(props: ThisProps): JSX.Element {
   const memorizedValue = useCallback(
     ({item}: {item: any}) => (
       <ItemFoodHorizontal
+        key={item.id}
         imageUri={item.imageUri}
         onPressItem={() => navigateToFoodDetailsScreen(item)}
         id={item.id}
