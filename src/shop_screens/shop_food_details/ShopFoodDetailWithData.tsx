@@ -8,7 +8,6 @@ import {useState} from 'react';
 
 import {BigTitleText} from '../../components/texts/BigTitleText';
 
-import ImageFoodDetailsDisplay from '../../screens/food_details/display/ImageFoodDetailsDisplay';
 import ListSizeFoodDisplay from '../../screens/food_details/display/ListSizeFoodDisplay';
 import ListTagFoodDisplay from '../../screens/food_details/display/ListTagFoodDisplay';
 import {PriceText} from '../../components/texts/PriceText';

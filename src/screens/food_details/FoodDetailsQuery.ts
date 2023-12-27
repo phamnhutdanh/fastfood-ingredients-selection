@@ -58,7 +58,6 @@ export const CREATE_RATING_PRODUCT = gql`
 export const GET_RATINGS_OF_A_PRODUCT = gql`
   query GetAllRatingOfProduct($productId: ID!) {
     getAllRatingOfProduct(productId: $productId) {
-      id
       user {
         name
         imageUrl

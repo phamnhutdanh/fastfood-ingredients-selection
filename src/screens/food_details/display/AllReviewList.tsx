@@ -14,9 +14,11 @@ type ThisProps = {
 };
 
 export default function AllReviewList(props: ThisProps): JSX.Element {
+  console.log(props.data);
   const memorizedValue = useCallback(
-    ({item}: {item: any}) => (
+    ({item, index}: {item: any; index: number}) => (
       <ReviewItem
+        key={item.index}
         avatarUri={item.user.imageUrl}
         name={item.user.name}
         ratingScore={item.score}
