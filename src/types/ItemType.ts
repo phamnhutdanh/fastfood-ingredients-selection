@@ -130,3 +130,13 @@ export type CreateRatingProductInputType = {
   userId: string;
   productId: string;
 };
+
+export type CreateFavouriteInputType = {
+  userId: string;
+  productId: string;
+};
+
+export type RemoveFromFavouriteInputType = {
+  userId: string;
+  productId: string;
+};

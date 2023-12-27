@@ -23,7 +23,14 @@ export default function ShopAccountStacks(): JSX.Element {
       <AccountNavigators.Screen
         name="ShopAccountScreen"
         component={ShopAccountScreen}
-        options={{headerTransparent: true, headerShown: true, headerTitle: ''}}
+        options={{
+          headerTransparent: true,
+          headerShown: true,
+          headerTitle: '',
+          contentStyle: {
+            backgroundColor: colors.lightGrey,
+          },
+        }}
       />
       <AccountNavigators.Screen
         name="EditShopAccountScreen"

@@ -10,37 +10,6 @@ import {FIREBASE_AUTH} from '../../auth/firebaseConfig';
 import {useFocusEffect} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-const list = [
-  {
-    id: 1,
-    foodName: 'Name',
-    vendorName: 'Vendor',
-    priceValue: 30000,
-    rating: 3.4,
-  },
-  {
-    id: 2,
-    foodName: 'Name 2',
-    vendorName: 'Vendor 2',
-    priceValue: 20000,
-    rating: 3.1,
-  },
-  {
-    id: 3,
-    foodName: 'Name 3',
-    vendorName: 'Vendor 3',
-    priceValue: 10000,
-    rating: 4.4,
-  },
-  {
-    id: 4,
-    foodName: 'Name 4',
-    vendorName: 'Vendor 4',
-    priceValue: 3000,
-    rating: 2.4,
-  },
-];
-
 type ThisProps = {
   navigation: any;
   route: any;
@@ -81,7 +50,10 @@ export default function AccountScreen(props: ThisProps): JSX.Element {
           address={data?.getUserByFirebaseUID?.defaultAddress}
         />
       )}
-      <MyFavoriteDisplay data={list} navigation={props.navigation} />
+      <MyFavoriteDisplay
+        userId={data?.getUserByFirebaseUID?.id}
+        navigation={props.navigation}
+      />
       <SettingDisplay
         params={{
           userId: data?.getUserByFirebaseUID?.id,

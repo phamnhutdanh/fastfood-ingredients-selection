@@ -32,6 +32,43 @@ export const GET_USER_BY_FIREBASE_UID = gql`
   }
 `;
 
+export const GET_FAVOURITE_OF_USER = gql`
+  query Query($userId: ID!) {
+    getFavouriteProductsOfUser(userId: $userId) {
+      id
+      title
+      fullPrice
+      imageUri
+      description
+      productSubcategory {
+        productCategory {
+          shop {
+            shopName
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const GET_LIMIT_FAVOURITE_OF_USER = gql`
+  query GetLimitFavouriteProductsOfUser($userId: ID!, $takeNum: Float) {
+    getLimitFavouriteProductsOfUser(userId: $userId, takeNum: $takeNum) {
+      id
+      title
+      fullPrice
+      imageUri
+      productSubcategory {
+        productCategory {
+          shop {
+            shopName
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const UPDATE_USER = gql`
   mutation UpdateUser(
     $userId: String!
@@ -71,5 +108,23 @@ export const UPDATE_LOGIN_ROLE = gql`
 export const UPDATE_USER_LOGIN_ROLE = gql`
   mutation UpdateLoginRole($userId: String!, $role: Role) {
     updateLoginRole(userId: $userId, role: $role)
+  }
+`;
+
+export const ADD_TO_FAVOURITE = gql`
+  mutation AddToFavourite($favouriteInput: createFavouriteInput!) {
+    addToFavourite(favouriteInput: $favouriteInput)
+  }
+`;
+
+export const REMOVE_FROM_FAVOURITE = gql`
+  mutation RemoveFromFavourite($favouriteInput: removeFromFavouriteInput!) {
+    removeFromFavourite(favouriteInput: $favouriteInput)
+  }
+`;
+
+export const CHECK_FAVOURITE = gql`
+  query Query($favouriteInput: createFavouriteInput!) {
+    checkFavouriteInput(favouriteInput: $favouriteInput)
   }
 `;

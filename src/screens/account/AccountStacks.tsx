@@ -55,6 +55,9 @@ export default function AccountStacks(): JSX.Element {
         component={AccountScreen}
         options={{
           headerShown: false,
+          contentStyle: {
+            backgroundColor: colors.lightGrey,
+          },
         }}
       />
       <AccountNavigators.Screen

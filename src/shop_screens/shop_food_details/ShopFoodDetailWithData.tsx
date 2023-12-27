@@ -15,6 +15,7 @@ import {PriceText} from '../../components/texts/PriceText';
 import DeleteFoodDialog from './display/DeleteFoodDialog';
 import fonts from '../../styles/fonts';
 import AverageRatingScoreDisplay from '../../screens/food_details/display/AverageRatingScoreDisplay';
+import ShopImageFoodDisplay from './display/ShopImageFoodDisplay';
 
 type ThisProps = {
   data: any;
@@ -42,10 +43,7 @@ export default function ShopFoodDetailWithData(props: ThisProps): JSX.Element {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <ImageFoodDetailsDisplay
-        imageUri={props.data.getProductById.imageUri}
-        isVisibleFavorite={false}
-      />
+      <ShopImageFoodDisplay imageUri={props.data.getProductById.imageUri} />
 
       <ScrollView
         style={styles.mainInfoContainer}

@@ -27,17 +27,11 @@ export default function FoodDetailsWithData(props: ThisProps): JSX.Element {
   const [addProductToCart, {loading, error, data}] =
     useMutation(ADD_PRODUCT_TO_CART);
 
-  const [isFavorite, setFavorite] = useState<boolean>(true);
   const [amount, setAmount] = useState(1);
   const [chosen, setChosen] = useState('');
   const [fullPrice, setFullPrice] = useState(
     props.data.getProductById.fullPrice,
   );
-
-  const addToFavoriteFood = () => {
-    console.log('CALL API: add to favorite 3');
-    setFavorite(!isFavorite);
-  };
 
   const addToCart = async () => {
     if (chosen === null) console.log('please chose size');
@@ -63,10 +57,9 @@ export default function FoodDetailsWithData(props: ThisProps): JSX.Element {
   return (
     <SafeAreaView style={{flex: 1}}>
       <ImageFoodDetailsDisplay
-        isFavorite={isFavorite}
         imageUri={props.data.getProductById.imageUri}
-        onPressFavoriteButton={addToFavoriteFood}
-        isVisibleFavorite={true}
+        userId={props.userId}
+        productId={props.data.getProductById.id}
       />
 
       <ScrollView
