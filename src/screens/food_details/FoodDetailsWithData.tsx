@@ -11,11 +11,11 @@ import ItemVendorDisplay from './display/ItemVendorDisplay';
 import ListSizeFoodDisplay from './display/ListSizeFoodDisplay';
 import ListTagFoodDisplay from './display/ListTagFoodDisplay';
 import {BigTitleText} from '../../components/texts/BigTitleText';
-import RatingText from '../../components/texts/RatingText';
 import {useMutation} from '@apollo/client';
 import {ADD_PRODUCT_TO_CART} from './FoodDetailsQuery';
 import Snackbar from 'react-native-snackbar';
 import fonts from '../../styles/fonts';
+import AverageRatingScoreDisplay from './display/AverageRatingScoreDisplay';
 
 type ThisProps = {
   data: any;
@@ -115,10 +115,10 @@ export default function FoodDetailsWithData(props: ThisProps): JSX.Element {
           <View></View>
         )}
 
-        <View style={styles.ratings}>
-          <RatingText ratingScore={4.5} size={16} />
-          <GenericText style={{fontSize: 16}}>1000 ratings</GenericText>
-        </View>
+        <AverageRatingScoreDisplay
+          productId={props.data.getProductById.id}
+          isShowCount={true}
+        />
 
         <View>
           <SectionText style={{fontSize: 16}}>Description</SectionText>

@@ -1,4 +1,3 @@
-import {OnPressItem} from './GenericType';
 import {OrderStatus} from './constants';
 
 export type ItemOrderSizeType = {
@@ -50,9 +49,7 @@ export type FoodListItemType = {
   title: string;
   fullPrice: number;
   description: string;
-  averageRatingScores: number;
   shopName: any;
-  onPressItem: OnPressItem;
 };
 
 export type ItemFoodTagName = {
@@ -125,4 +122,11 @@ export type CreateSizeInputType = {
   title: string;
   productId: string;
   fullPrice: number;
+};
+
+export type CreateRatingProductInputType = {
+  score: number;
+  comment: string;
+  userId: string;
+  productId: string;
 };

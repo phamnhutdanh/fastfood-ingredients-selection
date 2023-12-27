@@ -1,36 +1,27 @@
 import {StyleSheet} from 'react-native';
 import {useCallback} from 'react';
-import GenericFlatList from './generics/GenericFlatList';
-import ItemFoodVertical from '../items/ItemFoodVertical';
-import {ComponentStyle, ItemComponent} from '../../types/GenericType';
+import ReviewItem from './ReviewItem';
+import GenericFlatList from '../../../components/displays/generics/GenericFlatList';
+import {ComponentStyle, ItemComponent} from '../../../types/GenericType';
+import {convertMillisecondsToDate} from '../../../utils/dateConvert';
 
 type ThisProps = {
   data: ArrayLike<any>;
-  navigation: any;
   listHeaderComponent?: ItemComponent | any;
   listFooterComponent?: ItemComponent | any;
   contentContainerStyle?: ComponentStyle;
   renderItem?: any;
 };
 
-export default function VerticalListFood(props: ThisProps): JSX.Element {
-  const navigateToFoodDetailsScreen = (item: any) => {
-    props.navigation.navigate('FoodDetailsScreen', {
-      foodId: item.id,
-    });
-  };
-
+export default function AllReviewList(props: ThisProps): JSX.Element {
   const memorizedValue = useCallback(
     ({item}: {item: any}) => (
-      <ItemFoodVertical
-        key={item.id}
-        imageUri={item.imageUri}
-        onPressItem={() => navigateToFoodDetailsScreen(item)}
-        id={item.id}
-        title={item.title}
-        fullPrice={item.fullPrice}
-        description={item.description}
-        shopName={item.productSubcategory?.productCategory?.shop?.shopName}
+      <ReviewItem
+        avatarUri={item.user.imageUrl}
+        name={item.user.name}
+        ratingScore={item.score}
+        comment={item.comment}
+        date={convertMillisecondsToDate(item.updatedAt)}
       />
     ),
     [props.data],

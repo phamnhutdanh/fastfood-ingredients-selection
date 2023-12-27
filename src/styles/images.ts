@@ -19,4 +19,5 @@ export default {
   AVATAR: require('../assets/images/user_avatar.png'),
   COMPLETE: require('../assets/images/complete.png'),
   HISTORY_ORDER: require('../assets/images/history_order.png'),
+  RATING: require('../assets/images/rating.png'),
 };

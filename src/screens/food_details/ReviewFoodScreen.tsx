@@ -1,7 +1,11 @@
 import {StyleSheet, View} from 'react-native';
-import {SectionText} from '../../components/texts/SectionText';
-import {GenericText} from '../../components/texts/generics/GenericText';
-import colors from '../../styles/colors';
+import {useQuery} from '@apollo/client';
+import {GET_RATINGS_OF_A_PRODUCT} from './FoodDetailsQuery';
+import CommentInputAndPost from './display/CommentInputAndPost';
+import AllReviewList from './display/AllReviewList';
+import {useFocusEffect} from '@react-navigation/native';
+import {ItemTitleText} from '../../components/texts/ItemTitleText';
+import EmptyReview from './display/EmptyReview';
 
 type ThisProps = {
   navigation: any;
@@ -9,25 +13,53 @@ type ThisProps = {
 };
 
 export default function ReviewFoodScreen(props: ThisProps): JSX.Element {
+  const productId = props.route.params.productId;
+  const userId = props.route.params.userId;
+
+  const {data, loading, refetch} = useQuery(GET_RATINGS_OF_A_PRODUCT, {
+    variables: {
+      productId: productId,
+    },
+  });
+
+  useFocusEffect(() => {
+    refetch();
+  });
+
   return (
-    <View>
-      <SectionText style={{fontSize: 16}}>Description</SectionText>
-      <GenericText>{props.route.params.userId}</GenericText>
-    </View>
+    <AllReviewList
+      contentContainerStyle={styles.container}
+      data={data?.getAllRatingOfProduct ? data.getAllRatingOfProduct : null}
+      listHeaderComponent={
+        <View style={{gap: 12}}>
+          {userId !== null && userId != '' && (
+            <CommentInputAndPost
+              refetch={refetch}
+              productId={productId}
+              userId={userId}
+            />
+          )}
+
+          <ItemTitleText>All reviews</ItemTitleText>
+        </View>
+      }
+      listFooterComponent={
+        <>
+          {data === null || data?.getAllRatingOfProduct?.length <= 0 ? (
+            <EmptyReview />
+          ) : (
+            <View></View>
+          )}
+        </>
+      }
+    />
   );
 }
 
 const styles = StyleSheet.create({
-  mainInfoContainer: {
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    backgroundColor: colors.white,
-    marginTop: -20,
-    flex: 1,
-  },
-  contentContainer: {
-    gap: 12,
-    paddingVertical: 32,
+  container: {
     paddingHorizontal: 28,
+    paddingVertical: 20,
+    gap: 20,
   },
 });

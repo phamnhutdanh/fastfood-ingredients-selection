@@ -10,11 +10,12 @@ import {OnPressItem} from '../../../types/GenericType';
 import {FoodListItemType} from '../../../types/ItemType';
 import fonts from '../../../styles/fonts';
 import display from '../../../utils/display';
-import RatingText from '../../texts/RatingText';
 import FavoriteButton from '../../buttons/FavoriteButton';
+import AverageRatingScoreDisplay from '../../../screens/food_details/display/AverageRatingScoreDisplay';
 
 type ThisProps = FoodListItemType & {
   isFavorite: boolean;
+  onPressItem: OnPressItem;
   onPressFavoriteButton?: OnPressItem;
 };
 
@@ -32,7 +33,11 @@ export default function GenericItemFoodVertical(props: ThisProps): JSX.Element {
       <View style={styles.info_container}>
         <View style={styles.name_and_rating}>
           <ItemTitleText style={styles.text}>{props.title}</ItemTitleText>
-          <RatingText ratingScore={props.averageRatingScores} />
+          <AverageRatingScoreDisplay
+            productId={props.id}
+            isShowCount={false}
+            size={12}
+          />
         </View>
         <ItemSubtitleText style={{marginBottom: 4}}>
           {props.shopName}

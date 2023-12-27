@@ -7,7 +7,6 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {useState} from 'react';
 
 import {BigTitleText} from '../../components/texts/BigTitleText';
-import RatingText from '../../components/texts/RatingText';
 
 import ImageFoodDetailsDisplay from '../../screens/food_details/display/ImageFoodDetailsDisplay';
 import ListSizeFoodDisplay from '../../screens/food_details/display/ListSizeFoodDisplay';
@@ -15,6 +14,7 @@ import ListTagFoodDisplay from '../../screens/food_details/display/ListTagFoodDi
 import {PriceText} from '../../components/texts/PriceText';
 import DeleteFoodDialog from './display/DeleteFoodDialog';
 import fonts from '../../styles/fonts';
+import AverageRatingScoreDisplay from '../../screens/food_details/display/AverageRatingScoreDisplay';
 
 type ThisProps = {
   data: any;
@@ -78,10 +78,10 @@ export default function ShopFoodDetailWithData(props: ThisProps): JSX.Element {
           <View></View>
         )}
 
-        <View style={styles.ratings}>
-          <RatingText ratingScore={4.5} size={16} />
-          <GenericText style={{fontSize: 16}}>1000 ratings</GenericText>
-        </View>
+        <AverageRatingScoreDisplay
+          productId={props.data.getProductById.id}
+          isShowCount={true}
+        />
 
         <View>
           <SectionText style={{fontSize: 16}}>Description</SectionText>

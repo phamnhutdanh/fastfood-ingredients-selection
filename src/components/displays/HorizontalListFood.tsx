@@ -25,7 +25,6 @@ export default function HorizontalListFood(props: ThisProps): JSX.Element {
         title={item.title}
         fullPrice={item.fullPrice}
         description={item.description}
-        averageRatingScores={item.averageRatingScores}
         shopName={item.productSubcategory?.productCategory?.shop?.shopName}
       />
     ),
