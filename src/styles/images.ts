@@ -20,4 +20,5 @@ export default {
   COMPLETE: require('../assets/images/complete.png'),
   HISTORY_ORDER: require('../assets/images/history_order.png'),
   RATING: require('../assets/images/rating.png'),
+  USER_NOT_FOUND: require('../assets/images/user-not-found.png'),
 };

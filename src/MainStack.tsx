@@ -10,6 +10,7 @@ import {MainUserStack} from './screens/MainUserStack';
 import {MainShopStack} from './shop_screens/MainShopStack';
 import {useFocusEffect} from '@react-navigation/native';
 import {UserRole} from './types/constants';
+import {MainAdminStack} from './admin_screen/MainAdminStack';
 
 export function MainStack(): JSX.Element {
   const {data, loading, refetch} = useQuery(GET_USER_BY_FIREBASE_UID, {
@@ -18,6 +19,7 @@ export function MainStack(): JSX.Element {
     },
   });
   let loginAs = data?.getUserByFirebaseUID?.loginAs;
+  let role = data?.getUserByFirebaseUID?.account?.role;
 
   useFocusEffect(() => {
     refetch();
@@ -36,12 +38,8 @@ export function MainStack(): JSX.Element {
   if (loginAs === UserRole.SHOP_OWNER) {
     return <MainShopStack />;
   }
-  if (loginAs === UserRole.ADMIN) {
-    return (
-      <SafeAreaView>
-        <Text>Admin stack</Text>
-      </SafeAreaView>
-    );
+  if (role === UserRole.ADMIN) {
+    return <MainAdminStack />;
   }
   return (
     <SafeAreaView>

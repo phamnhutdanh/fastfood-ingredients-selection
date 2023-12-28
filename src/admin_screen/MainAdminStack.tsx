@@ -3,12 +3,14 @@ import {Icon} from '@rneui/themed';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import colors from '../styles/colors';
-import AccountListScreen from './accounts/AccountListScreen';
 import AdminNotificationScreen from './notification/AdminNotificationScreen';
+import ReportScreen from './report_list/ReportScreen';
+import AccountListStacks from './accounts/AccountListStacks';
 
 type MainTabStackParams = {
-  AccountListScreen: undefined;
+  AccountListStacks: undefined;
   AdminNotificationScreen: undefined;
+  ReportScreen: undefined;
 };
 
 const MainTabStackNavigator = createBottomTabNavigator<MainTabStackParams>();
@@ -16,12 +18,16 @@ const MainTabStackNavigator = createBottomTabNavigator<MainTabStackParams>();
 export function MainAdminStack(): JSX.Element {
   return (
     <MainTabStackNavigator.Navigator
-      initialRouteName="AccountListScreen"
+      initialRouteName="AccountListStacks"
       sceneContainerStyle={{backgroundColor: colors.white}}
       screenOptions={MainTabScreenOptions}>
       <MainTabStackNavigator.Screen
-        name="AccountListScreen"
-        component={AccountListScreen}
+        name="AccountListStacks"
+        component={AccountListStacks}
+      />
+      <MainTabStackNavigator.Screen
+        name="ReportScreen"
+        component={ReportScreen}
       />
       <MainTabStackNavigator.Screen
         name="AdminNotificationScreen"
@@ -52,7 +58,7 @@ const MainTabScreenOptions = ({route}: any) => ({
               color={color}
             />
           ));
-    } else if (route.name === 'AccountListScreen') {
+    } else if (route.name === 'AccountListStacks') {
       icon = focused
         ? (icon = (
             <Icon
@@ -66,6 +72,24 @@ const MainTabScreenOptions = ({route}: any) => ({
             <Icon
               type="material-community"
               name="account-circle-outline"
+              size={size}
+              color={color}
+            />
+          ));
+    } else if (route.name === 'ReportScreen') {
+      icon = focused
+        ? (icon = (
+            <Icon
+              type="font-awesome"
+              name="file-text"
+              size={size}
+              color={color}
+            />
+          ))
+        : (icon = (
+            <Icon
+              type="font-awesome"
+              name="file-text-o"
               size={size}
               color={color}
             />

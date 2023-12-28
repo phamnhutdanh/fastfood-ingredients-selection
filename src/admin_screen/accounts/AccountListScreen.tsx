@@ -1,10 +1,16 @@
-import {Text} from '@rneui/themed';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {MainTabAccountListScreen} from './tab/MainTabAccountListScreen';
 
-export default function AccountListScreen(): JSX.Element {
+type ThisProps = {
+  navigation: any;
+  route: any;
+};
+
+export default function AccountListScreen(props: ThisProps): JSX.Element {
   return (
-    <SafeAreaView>
-      <Text>AccountListScreen</Text>
-    </SafeAreaView>
+    <>
+      <SafeAreaView></SafeAreaView>
+      <MainTabAccountListScreen navigation={props.navigation} />
+    </>
   );
 }
