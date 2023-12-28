@@ -90,6 +90,7 @@ export const GET_REPORT_DETAILS = gql`
       updatedAt
 
       reporter {
+        id
         user {
           imageUrl
           name
@@ -107,6 +108,7 @@ export const GET_REPORT_DETAILS = gql`
 
       reportAccount {
         accountReported {
+          id
           user {
             imageUrl
             name
@@ -125,40 +127,3 @@ export const GET_REPORT_DETAILS = gql`
     }
   }
 `;
-
-// account {
-//   email
-//   createdAt
-//   reportAccount {
-//     id
-//     createdAt
-//     reportAccountDetail {
-//       id
-//       title
-//       message
-//     }
-//   }
-//   reportAccountDetail {
-//     id
-//     title
-//     message
-//     createdAt
-//     reportAccount {
-//         accountReported {
-//           user {
-//             name
-//             account {
-//               email
-//             }
-//             shop {
-//               imageUri
-//               shopName
-//               shopPhoneNumber
-//               shopAddress
-//             }
-//           }
-
-//         }
-//     }
-//   }
-// }

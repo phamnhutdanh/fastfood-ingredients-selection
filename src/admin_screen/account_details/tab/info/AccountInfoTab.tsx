@@ -5,6 +5,9 @@ import {useQuery} from '@apollo/client';
 import AvatarUserInfoDisplay from '../../display/AvatarUserInfoDisplay';
 import AvatarShopInfoDisplay from '../../display/AvatarShopInfoDisplay';
 import {SectionText} from '../../../../components/texts/SectionText';
+import {Button} from '@rneui/themed';
+import DeleteAllCartDialog from '../../../../screens/cart/display/DeleteAllCartDialog';
+import BanButtonDialog from '../../display/BanButtonDialog';
 
 type ThisProps = {
   navigation: any;
@@ -23,6 +26,7 @@ export default function AccountInfoTab(props: ThisProps): JSX.Element {
   useFocusEffect(() => {
     refetch();
   });
+
   if (loading) {
     return <ActivityIndicator size={'small'} />;
   }
@@ -42,6 +46,8 @@ export default function AccountInfoTab(props: ThisProps): JSX.Element {
           <AvatarShopInfoDisplay data={data?.getAccountById?.user?.shop} />
         </View>
       )}
+
+      <BanButtonDialog />
     </ScrollView>
   );
 }

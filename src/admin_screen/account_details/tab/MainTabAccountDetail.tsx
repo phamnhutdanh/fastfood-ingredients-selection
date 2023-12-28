@@ -2,6 +2,8 @@ import {Tab, TabView} from '@rneui/themed';
 import React, {useState} from 'react';
 import EmptyAccountTab from '../../accounts/generic/EmptyAccountTab';
 import AccountInfoTab from './info/AccountInfoTab';
+import ReportedByTab from './reported_account/ReportedByTab';
+import ReportAccountTab from './account_report/ReportAccountTab';
 
 type ThisProps = {
   navigation: any;
@@ -23,10 +25,10 @@ export function MainTabAccountDetail(props: ThisProps): JSX.Element {
           <AccountInfoTab navigation={props.navigation} route={props.route} />
         </TabView.Item>
         <TabView.Item style={{width: '100%'}}>
-          <EmptyAccountTab />
+          <ReportedByTab navigation={props.navigation} route={props.route} />
         </TabView.Item>
         <TabView.Item style={{width: '100%'}}>
-          <EmptyAccountTab />
+          <ReportAccountTab navigation={props.navigation} route={props.route} />
         </TabView.Item>
       </TabView>
     </>
