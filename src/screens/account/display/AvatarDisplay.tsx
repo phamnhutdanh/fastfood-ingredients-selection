@@ -3,6 +3,7 @@ import {Avatar, Button, Icon} from '@rneui/themed';
 import {SectionText} from '../../../components/texts/SectionText';
 import {ItemSubtitleText} from '../../../components/texts/ItemSubtitleText';
 import colors from '../../../styles/colors';
+import {OnPressItem} from '../../../types/GenericType';
 
 type ThisProps = {
   avatarUri: string;
@@ -10,6 +11,8 @@ type ThisProps = {
   email: string;
   isEdit?: boolean;
   onPressImage?: () => void;
+  canReport?: boolean;
+  onPressReport?: OnPressItem;
 };
 
 export default function AvatarDisplay(props: ThisProps): JSX.Element {
@@ -41,6 +44,16 @@ export default function AvatarDisplay(props: ThisProps): JSX.Element {
           }
           onPress={props.onPressImage}
           buttonStyle={{backgroundColor: 'transparent'}}
+        />
+      )}
+
+      {props.canReport && (
+        <Button
+          onPress={props.onPressReport}
+          buttonStyle={{backgroundColor: 'transparent'}}
+          icon={
+            <Icon type="material" name="report" size={36} color={colors.red} />
+          }
         />
       )}
     </View>

@@ -54,6 +54,14 @@ function ReportVendorWithData(props: ReportWithDataProps): JSX.Element {
       setDisplayError(true);
       return;
     }
+
+    if (props.accountReportedId === props.reporterId) {
+      setErrorMessage('You cannot report yourself!');
+      setDisplayError(true);
+      return;
+    }
+
+    setDisplayError(false);
     let input: CreateReportInputType = {
       title: title,
       message: message,

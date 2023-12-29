@@ -40,6 +40,7 @@ export const GET_ORDER_BY_ID = gql`
         name
         imageUrl
         account {
+          id
           email
         }
         phoneNumber

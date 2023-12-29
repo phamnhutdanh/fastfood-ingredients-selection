@@ -9,6 +9,7 @@ import AddProductTagScreen from '../shop_food_details/AddProductTagScreen';
 import AddProductSizeScreen from '../shop_food_details/AddProductSizeScreen';
 import AllFoodInShopGridDisplay from '../../screens/vendor_details/AllFoodInShopGridDisplay';
 import ReviewFoodScreen from '../../screens/food_details/ReviewFoodScreen';
+import ReportVendorScreen from '../../screens/vendor_details/ReportVendorScreen';
 
 type AccountStackParams = {
   ShopCategoryScreen: undefined;
@@ -20,6 +21,7 @@ type AccountStackParams = {
   AddProductTagScreen: undefined;
   VendorFoodDetails: undefined;
   ReviewFoodScreen: undefined;
+  ReportVendorScreen: undefined;
 };
 
 const CategoriesNavigators = createNativeStackNavigator<AccountStackParams>();
@@ -78,6 +80,11 @@ export default function ShopCategoryStacks(): JSX.Element {
         name="ReviewFoodScreen"
         component={ReviewFoodScreen}
         options={{headerShown: true, title: 'List reviews'}}
+      />
+      <CategoriesNavigators.Screen
+        name="ReportVendorScreen"
+        component={ReportVendorScreen}
+        options={{headerShown: true, title: 'Report user'}}
       />
     </CategoriesNavigators.Navigator>
   );

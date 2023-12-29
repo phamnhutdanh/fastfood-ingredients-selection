@@ -52,6 +52,12 @@ export default function OrderDetailsWithData(props: ThisProps): JSX.Element {
   const updateAtTime = convertMillisecondsToDate(props.data.updatedAt);
   const updateAtString = convertDateTo_HM_DMY(updateAtTime);
 
+  const onPressReport = () => {
+    props.navigation.navigate('ReportVendorScreen', {
+      accountReportedId: props.data.user.account.id,
+    });
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View>
@@ -66,11 +72,24 @@ export default function OrderDetailsWithData(props: ThisProps): JSX.Element {
       <View>
         <ItemTitleText>Customer</ItemTitleText>
         <View style={styles.customer}>
-          <AvatarDisplay
-            avatarUri={avatarUri}
-            name={userName}
-            email={userEmail}
-          />
+          {loginAs !== UserRole.SHOP_OWNER && (
+            <AvatarDisplay
+              avatarUri={avatarUri}
+              name={userName}
+              email={userEmail}
+            />
+          )}
+
+          {loginAs === UserRole.SHOP_OWNER && (
+            <AvatarDisplay
+              avatarUri={avatarUri}
+              name={userName}
+              email={userEmail}
+              onPressReport={onPressReport}
+              canReport
+            />
+          )}
+
           <View>
             <ItemTitleText>Phone number</ItemTitleText>
             <GenericText style={styles.text}>{phoneNumber}</GenericText>
