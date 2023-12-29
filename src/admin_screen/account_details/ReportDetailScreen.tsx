@@ -30,6 +30,7 @@ export default function ReportDetailScreen(props: ThisProps): JSX.Element {
       <ReportDetailWithData
         navigation={props.navigation}
         data={data ? data.getReportDetails : null}
+        refetch={refetch}
       />
     </SafeAreaView>
   );

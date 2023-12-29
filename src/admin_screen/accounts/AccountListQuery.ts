@@ -65,6 +65,9 @@ export const GET_LIST_REPORTED_ACCOUNT = gql`
       message
       createdAt
       updatedAt
+      reportAccount {
+        mark
+      }
     }
   }
 `;
@@ -77,6 +80,9 @@ export const GET_LIST_ACCOUNT_REPORT = gql`
       message
       createdAt
       updatedAt
+      reportAccount {
+        mark
+      }
     }
   }
 `;
@@ -108,6 +114,8 @@ export const GET_REPORT_DETAILS = gql`
       }
 
       reportAccount {
+        id
+        mark
         accountReported {
           id
           user {

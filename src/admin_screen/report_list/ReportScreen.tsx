@@ -1,10 +1,15 @@
-import {Text} from '@rneui/themed';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {MainTabReportList} from './tab/MainTabReportList';
 
-export default function ReportScreen(): JSX.Element {
+type ThisProps = {
+  navigation: any;
+};
+
+export default function ReportScreen(props: ThisProps): JSX.Element {
   return (
-    <SafeAreaView>
-      <Text>ReportScreen</Text>
-    </SafeAreaView>
+    <>
+      <SafeAreaView></SafeAreaView>
+      <MainTabReportList navigation={props.navigation} />
+    </>
   );
 }

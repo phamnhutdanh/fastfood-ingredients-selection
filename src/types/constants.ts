@@ -16,3 +16,9 @@ export class AccountStatus {
   static NONE = 'NONE';
   static WARNING = 'WARNING';
 }
+
+export class ReportStatus {
+  static DONE = 'DONE';
+  static READ = 'READ';
+  static UN_READ = 'UN_READ';
+}

@@ -1,16 +1,15 @@
 import React from 'react';
 import {Icon} from '@rneui/themed';
-
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import colors from '../styles/colors';
 import AdminNotificationScreen from './notification/AdminNotificationScreen';
-import ReportScreen from './report_list/ReportScreen';
 import AccountListStacks from './accounts/AccountListStacks';
+import ReportListStacks from './report_list/ReportListStacks';
 
 type MainTabStackParams = {
   AccountListStacks: undefined;
   AdminNotificationScreen: undefined;
-  ReportScreen: undefined;
+  ReportListStacks: undefined;
 };
 
 const MainTabStackNavigator = createBottomTabNavigator<MainTabStackParams>();
@@ -26,8 +25,8 @@ export function MainAdminStack(): JSX.Element {
         component={AccountListStacks}
       />
       <MainTabStackNavigator.Screen
-        name="ReportScreen"
-        component={ReportScreen}
+        name="ReportListStacks"
+        component={ReportListStacks}
       />
       <MainTabStackNavigator.Screen
         name="AdminNotificationScreen"
@@ -76,7 +75,7 @@ const MainTabScreenOptions = ({route}: any) => ({
               color={color}
             />
           ));
-    } else if (route.name === 'ReportScreen') {
+    } else if (route.name === 'ReportListStacks') {
       icon = focused
         ? (icon = (
             <Icon
