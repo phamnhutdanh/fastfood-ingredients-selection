@@ -4,9 +4,13 @@ import {GenericText} from '../../components/texts/generics/GenericText';
 import {useQuery} from '@apollo/client';
 import {GET_SHOP_BY_ID} from '../../screens/vendor_details/VendorDetailsQuery';
 import ShopAvatarDisplay from './ShopAvatarDisplay';
+import {OnPressItem} from '../../types/GenericType';
 
 type ThisProps = {
   id: string;
+  canReport?: boolean;
+  onPressReport?: OnPressItem;
+  navigation?: any;
 };
 
 export default function ShopInfoDisplay(props: ThisProps): JSX.Element {
@@ -16,6 +20,12 @@ export default function ShopInfoDisplay(props: ThisProps): JSX.Element {
     },
   });
 
+  const onPressReport = () => {
+    props.navigation.navigate('ReportVendorScreen', {
+      accountReportedId: data?.getShopById?.user?.account?.id,
+    });
+  };
+
   if (loading) return <ActivityIndicator size={'small'} />;
   return (
     <View style={styles.container}>
@@ -23,6 +33,8 @@ export default function ShopInfoDisplay(props: ThisProps): JSX.Element {
         avatarUri={data?.getShopById?.imageUri}
         shopName={data?.getShopById?.shopName}
         shopPhoneNumber={data?.getShopById?.shopPhoneNumber}
+        canReport={props.canReport}
+        onPressReport={onPressReport}
       />
 
       <View>

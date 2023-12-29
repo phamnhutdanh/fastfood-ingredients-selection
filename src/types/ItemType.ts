@@ -140,3 +140,10 @@ export type RemoveFromFavouriteInputType = {
   userId: string;
   productId: string;
 };
+
+export type CreateReportInputType = {
+  accountReportedId: string;
+  title: string;
+  message: string;
+  reporterId: string;
+};

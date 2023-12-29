@@ -8,6 +8,11 @@ export const GET_SHOP_BY_ID = gql`
       shopAddress
       shopPhoneNumber
       imageUri
+      user {
+        account {
+          id
+        }
+      }
     }
   }
 `;
@@ -46,5 +51,11 @@ export const GET_ALL_SUBCATEGORY_OF_SHOP = gql`
         averageRatingScores
       }
     }
+  }
+`;
+
+export const CREATE_REPORT_ACCOUNT = gql`
+  mutation CreateReport($reportInput: createReportInput!) {
+    createReport(reportInput: $reportInput)
   }
 `;

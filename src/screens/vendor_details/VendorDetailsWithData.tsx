@@ -38,7 +38,13 @@ export default function VendorDetailsWithData(props: ThisProps): JSX.Element {
       navigation={props.navigation}
       contentContainerStyle={styles.container}
       renderItem={memorizedValue}
-      listHeaderComponent={<ShopInfoDisplay id={props.shopId} />}
+      listHeaderComponent={
+        <ShopInfoDisplay
+          canReport
+          navigation={props.navigation}
+          id={props.shopId}
+        />
+      }
       listFooterComponent={
         <Button buttonStyle={styles.button} onPress={navigateToAllFoodOfShop}>
           VIEW ALL FOODS

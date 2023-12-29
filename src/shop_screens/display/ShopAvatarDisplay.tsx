@@ -1,13 +1,17 @@
 import {StyleSheet, View} from 'react-native';
-import {Avatar} from '@rneui/themed';
+import {Avatar, Button, Icon} from '@rneui/themed';
 
 import {GenericText} from '../../components/texts/generics/GenericText';
 import {SectionText} from '../../components/texts/SectionText';
+import colors from '../../styles/colors';
+import {OnPressItem} from '../../types/GenericType';
 
 type ThisProps = {
   avatarUri: string;
   shopName: string;
   shopPhoneNumber: string;
+  canReport?: boolean;
+  onPressReport?: OnPressItem;
 };
 
 export default function ShopAvatarDisplay(props: ThisProps): JSX.Element {
@@ -26,6 +30,16 @@ export default function ShopAvatarDisplay(props: ThisProps): JSX.Element {
         <SectionText>{props.shopName}</SectionText>
         <GenericText>Hotline: {props.shopPhoneNumber}</GenericText>
       </View>
+
+      {props.canReport && (
+        <Button
+          onPress={props.onPressReport}
+          buttonStyle={{backgroundColor: 'transparent'}}
+          icon={
+            <Icon type="material" name="report" size={36} color={colors.red} />
+          }
+        />
+      )}
     </View>
   );
 }
