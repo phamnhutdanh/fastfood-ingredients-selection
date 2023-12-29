@@ -42,6 +42,7 @@ function GetUserIdInFoodDetails(props: GetUserIdType): JSX.Element {
     },
   });
 
+  if (loading) return <ActivityIndicator size={'large'} />;
   if (data?.getUserByFirebaseUID?.loginAs === UserRole.USER) {
     return (
       <FoodDetailsWithData

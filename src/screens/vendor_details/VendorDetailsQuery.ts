@@ -35,6 +35,7 @@ export const GET_ALL_PRODUCT_OF_SHOP = gql`
 export const GET_ALL_SUBCATEGORY_OF_SHOP = gql`
   query GetAllSubCategoryOfShop($getAllSubCategoryOfShopId: ID!) {
     getAllSubCategoryOfShop(id: $getAllSubCategoryOfShopId) {
+      id
       title
       products {
         id
