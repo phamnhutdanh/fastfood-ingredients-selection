@@ -10,3 +10,9 @@ export class OrderStatus {
   static DELIVERED = 'DELIVERED';
   static CANCELED = 'CANCELED';
 }
+
+export class AccountStatus {
+  static BANNED = 'BANNED';
+  static NONE = 'NONE';
+  static WARNING = 'WARNING';
+}

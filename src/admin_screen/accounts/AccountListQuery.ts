@@ -38,6 +38,7 @@ export const GET_ACCOUNT_BY_ID = gql`
       id
       email
       createdAt
+      status
       user {
         id
         name
@@ -125,5 +126,11 @@ export const GET_REPORT_DETAILS = gql`
         }
       }
     }
+  }
+`;
+
+export const CHANGE_ACCOUNT_STATUS = gql`
+  mutation ChangeStatusAccount($accountId: ID!, $status: AccountStatus!) {
+    changeStatusAccount(accountId: $accountId, status: $status)
   }
 `;

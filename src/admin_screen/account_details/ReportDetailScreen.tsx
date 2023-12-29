@@ -3,6 +3,7 @@ import {GET_REPORT_DETAILS} from '../accounts/AccountListQuery';
 import {useFocusEffect} from '@react-navigation/native';
 import {ActivityIndicator} from 'react-native';
 import ReportDetailWithData from './ReportDetailWithData';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 type ThisProps = {
   navigation: any;
@@ -25,9 +26,11 @@ export default function ReportDetailScreen(props: ThisProps): JSX.Element {
   if (loading) return <ActivityIndicator size={'small'} />;
 
   return (
-    <ReportDetailWithData
-      navigation={props.navigation}
-      data={data ? data.getReportDetails : null}
-    />
+    <SafeAreaView>
+      <ReportDetailWithData
+        navigation={props.navigation}
+        data={data ? data.getReportDetails : null}
+      />
+    </SafeAreaView>
   );
 }

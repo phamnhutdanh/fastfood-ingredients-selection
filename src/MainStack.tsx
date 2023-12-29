@@ -9,17 +9,25 @@ import {FIREBASE_AUTH} from './auth/firebaseConfig';
 import {MainUserStack} from './screens/MainUserStack';
 import {MainShopStack} from './shop_screens/MainShopStack';
 import {useFocusEffect} from '@react-navigation/native';
-import {UserRole} from './types/constants';
+import {AccountStatus, UserRole} from './types/constants';
 import {MainAdminStack} from './admin_screen/MainAdminStack';
+import BanScreen from './screens/BanScreen';
 
-export function MainStack(): JSX.Element {
+type ThisProps = {
+  navigation: any;
+  route: any;
+};
+
+export function MainStack(props: ThisProps): JSX.Element {
   const {data, loading, refetch} = useQuery(GET_USER_BY_FIREBASE_UID, {
     variables: {
       id: FIREBASE_AUTH.currentUser?.uid,
     },
   });
-  let loginAs = data?.getUserByFirebaseUID?.loginAs;
-  let role = data?.getUserByFirebaseUID?.account?.role;
+  const loginAs = data?.getUserByFirebaseUID?.loginAs;
+  const role = data?.getUserByFirebaseUID?.account?.role;
+  const accountId = data?.getUserByFirebaseUID?.account?.id;
+  const accountStatus = data?.getUserByFirebaseUID?.account?.status;
 
   useFocusEffect(() => {
     refetch();
@@ -31,6 +39,10 @@ export function MainStack(): JSX.Element {
         <ActivityIndicator size={'large'} />
       </SafeAreaView>
     );
+
+  if (accountStatus === AccountStatus.BANNED && role !== UserRole.ADMIN) {
+    return <BanScreen navigation={props.navigation} accountId={accountId} />;
+  }
 
   if (loginAs === UserRole.USER) {
     return <MainUserStack />;

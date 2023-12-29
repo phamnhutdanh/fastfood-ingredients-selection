@@ -5,9 +5,10 @@ import {useQuery} from '@apollo/client';
 import AvatarUserInfoDisplay from '../../display/AvatarUserInfoDisplay';
 import AvatarShopInfoDisplay from '../../display/AvatarShopInfoDisplay';
 import {SectionText} from '../../../../components/texts/SectionText';
-import {Button} from '@rneui/themed';
-import DeleteAllCartDialog from '../../../../screens/cart/display/DeleteAllCartDialog';
 import BanButtonDialog from '../../display/BanButtonDialog';
+import {AccountStatus} from '../../../../types/constants';
+import {GenericText} from '../../../../components/texts/generics/GenericText';
+import colors from '../../../../styles/colors';
 
 type ThisProps = {
   navigation: any;
@@ -47,7 +48,29 @@ export default function AccountInfoTab(props: ThisProps): JSX.Element {
         </View>
       )}
 
-      <BanButtonDialog />
+      {data?.getAccountById?.status !== AccountStatus.BANNED && (
+        <BanButtonDialog
+          refetch={refetch}
+          status={AccountStatus.BANNED}
+          accountId={accountId}
+          successText={'This account has been banned'}
+          titleTextButton={'Are you sure ban this account'}
+          titleButton={'BAN'}
+          color={colors.red}
+        />
+      )}
+
+      {data?.getAccountById?.status === AccountStatus.BANNED && (
+        <BanButtonDialog
+          refetch={refetch}
+          status={AccountStatus.NONE}
+          accountId={accountId}
+          successText={'This account has been unbanned'}
+          titleTextButton={'Are you sure unbanned this account'}
+          titleButton={'UNBANNED'}
+          color={colors.darkGrey}
+        />
+      )}
     </ScrollView>
   );
 }

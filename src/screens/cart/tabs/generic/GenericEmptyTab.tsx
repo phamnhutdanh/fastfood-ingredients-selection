@@ -4,6 +4,8 @@ import colors from '../../../../styles/colors';
 import Separator from '../../../../components/displays/Separator';
 import display from '../../../../utils/display';
 import fonts from '../../../../styles/fonts';
+import {ItemSubtitleText} from '../../../../components/texts/ItemSubtitleText';
+import {ItemComponent} from '../../../../types/GenericType';
 
 type ThisProps = {
   imageSource: any;
@@ -12,6 +14,8 @@ type ThisProps = {
   isDisplayButton: boolean;
   buttonTitle?: string;
   onPressButton?: () => void;
+
+  secondButton?: ItemComponent | any;
 };
 
 export default function GenericEmptyTab(props: ThisProps): JSX.Element {
@@ -23,18 +27,26 @@ export default function GenericEmptyTab(props: ThisProps): JSX.Element {
         resizeMode="contain"
       />
       <Text style={styles.emptyCartText}>{props.title}</Text>
-      <Text style={styles.emptyCartSubText}>{props.body}</Text>
+      <ItemSubtitleText>{props.body}</ItemSubtitleText>
 
       {props.isDisplayButton && (
-        <Button
-          onPress={props.onPressButton}
-          icon={
-            <Icon name="plus" color={colors.white} size={20} type="antdesign" />
-          }
-          buttonStyle={styles.addButtonEmpty}
-          titleStyle={styles.addButtonEmptyText}>
-          {props.buttonTitle}
-        </Button>
+        <View>
+          <Button
+            onPress={props.onPressButton}
+            icon={
+              <Icon
+                name="plus"
+                color={colors.white}
+                size={20}
+                type="antdesign"
+              />
+            }
+            buttonStyle={styles.addButtonEmpty}
+            titleStyle={styles.addButtonEmptyText}>
+            {props.buttonTitle}
+          </Button>
+          {props.secondButton}
+        </View>
       )}
 
       <Separator height={display.setHeight(15)} />

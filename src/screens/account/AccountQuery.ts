@@ -25,7 +25,9 @@ export const GET_USER_BY_FIREBASE_UID = gql`
       phoneNumber
       loginAs
       account {
+        id
         role
+        status
         email
       }
     }
