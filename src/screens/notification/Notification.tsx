@@ -1,11 +1,26 @@
-import {Text} from '@rneui/themed';
-import {View} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {ActivityIndicator} from 'react-native';
+import {useQuery} from '@apollo/client';
+import {GET_USER_BY_FIREBASE_UID} from '../account/AccountQuery';
+import {FIREBASE_AUTH} from '../../auth/firebaseConfig';
+import {useFocusEffect} from '@react-navigation/native';
+import NotificationWithData from './NotificationWithData';
 
-export default function Notification(): JSX.Element {
+type ThisProps = {
+  navigation: any;
+};
+
+export default function Notification(props: ThisProps): JSX.Element {
+  const {data, loading, refetch} = useQuery(GET_USER_BY_FIREBASE_UID, {
+    variables: {
+      id: FIREBASE_AUTH.currentUser?.uid,
+    },
+  });
+
+  if (loading) return <ActivityIndicator size={'small'} />;
   return (
-    <SafeAreaView>
-      <Text>Notification Screen</Text>
-    </SafeAreaView>
+    <NotificationWithData
+      navigation={props.navigation}
+      userId={data.getUserByFirebaseUID.id}
+    />
   );
 }

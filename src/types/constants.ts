@@ -22,3 +22,8 @@ export class ReportStatus {
   static READ = 'READ';
   static UN_READ = 'UN_READ';
 }
+
+export class NotiStatus {
+  static READ = 'READ';
+  static UN_READ = 'UN_READ';
+}

@@ -24,10 +24,6 @@ export function MainStack(props: ThisProps): JSX.Element {
       id: FIREBASE_AUTH.currentUser?.uid,
     },
   });
-  const loginAs = data?.getUserByFirebaseUID?.loginAs;
-  const role = data?.getUserByFirebaseUID?.account?.role;
-  const accountId = data?.getUserByFirebaseUID?.account?.id;
-  const accountStatus = data?.getUserByFirebaseUID?.account?.status;
 
   useFocusEffect(() => {
     refetch();
@@ -39,6 +35,12 @@ export function MainStack(props: ThisProps): JSX.Element {
         <ActivityIndicator size={'large'} />
       </SafeAreaView>
     );
+  console.log(FIREBASE_AUTH.currentUser?.uid);
+  const loginAs = data?.getUserByFirebaseUID?.loginAs;
+  const role = data?.getUserByFirebaseUID?.account?.role;
+  const accountId = data?.getUserByFirebaseUID?.account?.id;
+  const accountStatus = data?.getUserByFirebaseUID?.account?.status;
+  console.log('DATA: ', data?.getUserByFirebaseUID);
 
   if (accountStatus === AccountStatus.BANNED && role !== UserRole.ADMIN) {
     return <BanScreen navigation={props.navigation} accountId={accountId} />;
