@@ -11,7 +11,7 @@ type ThisProps = {
   imageSource: any;
   title: string;
   body: string;
-  isDisplayButton: boolean;
+  isDisplayButton?: boolean;
   buttonTitle?: string;
   onPressButton?: () => void;
 

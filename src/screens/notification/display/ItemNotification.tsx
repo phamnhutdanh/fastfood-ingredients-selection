@@ -20,12 +20,10 @@ export default function ItemNotification(props: ThisProps): JSX.Element {
   const dateString = convertDateTo_HM_DMY(props.updatedAt);
   return (
     <View style={styles.container}>
-      <View style={styles.info}>
-        <View>
-          <ItemTitleText>{props.title}</ItemTitleText>
-          <ItemSubtitleText>{props.message}</ItemSubtitleText>
-        </View>
+      <ItemTitleText>{props.title}</ItemTitleText>
 
+      <View style={{flexDirection: 'row'}}>
+        <ItemSubtitleText style={{flex: 1}}>{props.message}</ItemSubtitleText>
         <View style={{justifyContent: 'center', alignItems: 'flex-end'}}>
           <MarkViewButtonDialog
             notificationId={props.id}
@@ -43,20 +41,13 @@ export default function ItemNotification(props: ThisProps): JSX.Element {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     gap: 8,
-    paddingVertical: 4,
-  },
-  info: {
     backgroundColor: colors.lightGrey,
     paddingHorizontal: 20,
     paddingVertical: 12,
     borderRadius: 20,
-    flex: 1,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
   },
   image: {
     height: display.setWidth(6),

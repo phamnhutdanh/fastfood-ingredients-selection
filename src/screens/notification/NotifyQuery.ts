@@ -12,6 +12,18 @@ export const GET_USER_NOTIFICATION = gql`
   }
 `;
 
+export const GET_SHOP_NOTIFICATION = gql`
+  query GetAllNotificationOfShop($shopId: ID!, $status: NotiStatus!) {
+    getAllNotificationOfShop(shopId: $shopId, status: $status) {
+      id
+      title
+      message
+      updatedAt
+      status
+    }
+  }
+`;
+
 export const GET_ADMIN_NOTIFICATION = gql`
   query GetAllNotificationOfAdmin($status: NotiStatus!) {
     getAllNotificationOfAdmin(status: $status) {

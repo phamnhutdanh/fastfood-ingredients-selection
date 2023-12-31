@@ -8,7 +8,6 @@ export const GET_SHOP_INFO_BY_FIREBASE_UID = gql`
       shopName
       shopAddress
       imageUri
-      id
       userId
       user {
         loginAs
