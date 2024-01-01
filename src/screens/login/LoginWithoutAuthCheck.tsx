@@ -42,9 +42,13 @@ export function LoginWithoutAuthCheck(props: ThisProps): JSX.Element {
         })
         .catch(error => {
           const errorCode = error.code;
-          const errorMessage = error.message;
+          const errorMessage =
+            error.code === 'auth/invalid-credential'
+              ? 'Your email or password is incorrect!'
+              : error.message;
+
           setDisplayError(true);
-          setErrorMessage(`${errorCode} ${errorMessage}`);
+          setErrorMessage(`${errorMessage}`);
         });
     } finally {
       setIsLoading(false);

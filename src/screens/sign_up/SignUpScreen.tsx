@@ -36,10 +36,12 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
   const onPressButtonSignUp = async () => {
     if (email.length < 1 || password.length < 1 || reEnterPassword.length < 1) {
       setErrorMessage('Fields cannot be empty!');
-      return setDisplayError(true);
+      setDisplayError(true);
+      return;
     } else if (password !== reEnterPassword) {
       setErrorMessage('Re enter password is incorrect!');
-      return setDisplayError(true);
+      setDisplayError(true);
+      return;
     }
 
     const auth = FIREBASE_AUTH;
@@ -61,14 +63,22 @@ export default function SignUpScreen(props: ThisProps): JSX.Element {
             })
             .catch(error => {
               const errorCode = error.code;
-              const errorMessage = error.message;
-              setErrorMessage(`${errorCode} ${errorMessage}`);
+              const errorMessage =
+                error.code === 'auth/invalid-credential'
+                  ? 'Your email or password is incorrect!'
+                  : error.message;
+
+              setErrorMessage(`${errorMessage}`);
             });
         })
         .catch(error => {
           const errorCode = error.code;
-          const errorMessage = error.message;
-          setErrorMessage(`${errorCode} ${errorMessage}`);
+          const errorMessage =
+            error.code === 'auth/invalid-credential'
+              ? 'Your email or password is incorrect!'
+              : error.message;
+
+          setErrorMessage(`${errorMessage}`);
         });
     } finally {
     }

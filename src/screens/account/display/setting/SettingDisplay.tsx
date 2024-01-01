@@ -40,7 +40,10 @@ export default function SettingDisplay(props: ThisProps): JSX.Element {
       />
 
       {loginAs === UserRole.USER && (
-        <ItemChangePasswordDisplay navigation={props.navigation} />
+        <ItemChangePasswordDisplay
+          params={props.params}
+          navigation={props.navigation}
+        />
       )}
 
       <ItemLogoutDisplay navigation={props.navigation} />
