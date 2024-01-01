@@ -1,82 +1,78 @@
 import React from 'react';
 import {Icon} from '@rneui/themed';
-import colors from '../styles/colors';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Notification from './notification/Notification';
-import HomeStacks from './home/HomeStacks';
-import CartStacks from './cart/CartStacks';
 
-import AccountStacks from './account/AccountStacks';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import colors from '../styles/colors';
+import ShopNotificationScreen from './notification/ShopNotificationScreen';
+import ShopAccountStacks from './shop_account/ShopAccountStacks';
+import ShopCategoryStacks from './category/ShopCategoryStacks';
+import ShopManageOrderStacks from './manage_order/ShopManageOrderStacks';
 
 type MainTabStackParams = {
-  HomeStacks: undefined;
-  CartStacks: undefined;
-  OrderHistoryScreen: undefined;
-  Notification: undefined;
-  AccountStacks: undefined;
+  ShopCategoryStacks: undefined;
+  ShopManageOrderStacks: undefined;
+  ShopAccountStacks: undefined;
+  ShopNotificationScreen: undefined;
 };
 
 const MainTabStackNavigator = createBottomTabNavigator<MainTabStackParams>();
 
-export function MainStack(): JSX.Element {
+export function MainShopStack(): JSX.Element {
   return (
     <MainTabStackNavigator.Navigator
-      initialRouteName="HomeStacks"
+      initialRouteName="ShopCategoryStacks"
       sceneContainerStyle={{backgroundColor: colors.white}}
       screenOptions={MainTabScreenOptions}>
-      <MainTabStackNavigator.Screen name="HomeStacks" component={HomeStacks} />
-      <MainTabStackNavigator.Screen name="CartStacks" component={CartStacks} />
       <MainTabStackNavigator.Screen
-        name="Notification"
-        component={Notification}
+        name="ShopCategoryStacks"
+        component={ShopCategoryStacks}
       />
       <MainTabStackNavigator.Screen
-        name="AccountStacks"
-        component={AccountStacks}
+        name="ShopManageOrderStacks"
+        component={ShopManageOrderStacks}
+      />
+      <MainTabStackNavigator.Screen
+        name="ShopNotificationScreen"
+        component={ShopNotificationScreen}
+      />
+      <MainTabStackNavigator.Screen
+        name="ShopAccountStacks"
+        component={ShopAccountStacks}
       />
     </MainTabStackNavigator.Navigator>
   );
 }
+
 const MainTabScreenOptions = ({route}: any) => ({
   tabBarIcon: ({focused, color, size}: any) => {
     let icon;
-    if (route.name === 'HomeStacks') {
+    if (route.name === 'ShopCategoryStacks') {
+      icon = focused
+        ? (icon = (
+            <Icon type="font-awesome" name="inbox" size={size} color={color} />
+          ))
+        : (icon = (
+            <Icon type="feather" name="inbox" size={size} color={color} />
+          ));
+    } else if (route.name === 'ShopManageOrderStacks') {
       icon = focused
         ? (icon = (
             <Icon
-              type="material-community"
-              name="home-search"
+              type="font-awesome"
+              name="file-text"
               size={size}
               color={color}
             />
           ))
         : (icon = (
             <Icon
-              type="material-community"
-              name="home-search-outline"
+              type="font-awesome"
+              name="file-text-o"
               size={size}
               color={color}
             />
           ));
-    } else if (route.name === 'CartStacks') {
-      icon = focused
-        ? (icon = (
-            <Icon
-              type="material-community"
-              name="cart"
-              size={size}
-              color={color}
-            />
-          ))
-        : (icon = (
-            <Icon
-              type="material-community"
-              name="cart-outline"
-              size={size}
-              color={color}
-            />
-          ));
-    } else if (route.name === 'Notification') {
+    } else if (route.name === 'ShopNotificationScreen') {
       icon = focused
         ? (icon = (
             <Icon
@@ -94,7 +90,7 @@ const MainTabScreenOptions = ({route}: any) => ({
               color={color}
             />
           ));
-    } else if (route.name === 'AccountStacks') {
+    } else if (route.name === 'ShopAccountStacks') {
       icon = focused
         ? (icon = (
             <Icon
