@@ -29,3 +29,19 @@ export const CREATE_SIZE = gql`
     createProductSize(sizeInput: $sizeInput)
   }
 `;
+
+export const ADD_PRODUCT_INGREDIENTS = gql`
+  mutation AddProductIngredients(
+    $productIngredientsInput: addProductIngredientsInput!
+  ) {
+    addProductIngredients(productIngredientsInput: $productIngredientsInput)
+  }
+`;
+
+export const UPDATE_PRODUCT_INGREDIENTS = gql`
+  mutation UpdateProductIngredients(
+    $productIngredientsInput: updateProductIngredientsInput!
+  ) {
+    updateProductIngredients(productIngredientsInput: $productIngredientsInput)
+  }
+`;

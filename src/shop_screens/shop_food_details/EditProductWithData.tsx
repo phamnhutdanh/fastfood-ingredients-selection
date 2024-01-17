@@ -23,6 +23,7 @@ import ListTagFoodDisplay from '../../screens/food_details/display/ListTagFoodDi
 import {useMutation} from '@apollo/client';
 import {UPDATE_PRODUCT_WITH_IMAGE} from './ShopFoodDetailQuery';
 import Snackbar from 'react-native-snackbar';
+import ListIngredientsDisplay from './display/ListIngredientsDisplay';
 
 type ThisProps = {
   data: any;
@@ -40,6 +41,9 @@ export default function EditProductWithData(props: ThisProps): JSX.Element {
   const [imageFile, setImageFile] = useState<Asset>();
   const [shopId, setShopId] = useState(
     props.data.productSubcategory.productCategory.shop.id,
+  );
+  const [productIngredients, setProductIngredients] = useState(
+    props.data.productIngredients,
   );
   const [chosenSubCategoryId, setChosenSubCategoryId] = useState('');
 
@@ -139,6 +143,12 @@ export default function EditProductWithData(props: ThisProps): JSX.Element {
     });
   };
 
+  const navigateToAddIngredientsScreen = () => {
+    props.navigation.navigate('AddIngredientsScreen', {
+      productId: props.data.id,
+    });
+  };
+
   return (
     <ScrollView
       contentContainerStyle={styles.container}
@@ -190,6 +200,24 @@ export default function EditProductWithData(props: ThisProps): JSX.Element {
         </View>
 
         <ListTagFoodDisplay data={props.data.ProductTag} />
+      </View>
+
+      <View>
+        <View style={styles.title}>
+          <ItemTitleText>Ingredients</ItemTitleText>
+          <TextLink
+            style={styles.textLink}
+            onPress={navigateToAddIngredientsScreen}>
+            Add new
+          </TextLink>
+        </View>
+
+        <ListIngredientsDisplay
+          isPressable={true}
+          data={props.data.productIngredients}
+          navigation={props.navigation}
+          productId={props.data.id}
+        />
       </View>
 
       <ProductNameInputDisplay

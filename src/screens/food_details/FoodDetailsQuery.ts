@@ -21,6 +21,12 @@ export const GET_FOOD_BY_ID = gql`
       title
       description
       averageRatingScores
+      productIngredients {
+        id
+        name
+        imageUri
+        price
+      }
       productSubcategory {
         productCategory {
           shop {

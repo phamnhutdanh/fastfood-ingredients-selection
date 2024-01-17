@@ -179,3 +179,24 @@ export type CreateShopAccountWithImageInputType = {
   imageUri: string;
   userId: string;
 };
+
+export type AddProductIngredientsInputType = {
+  name: string;
+  imageUri: string;
+  price: number;
+  productId: string;
+};
+
+export type IngredientsType = {
+  id: string;
+  name: string;
+  imageUri: string;
+  price: number;
+};
+
+export type UpdateProductIngredientsInputType = {
+  name: string;
+  imageUri: string;
+  price: number;
+  id: string;
+};
