@@ -200,3 +200,7 @@ export type UpdateProductIngredientsInputType = {
   price: number;
   id: string;
 };
+
+export type CartIngredientsInputType = {
+  id: string;
+};

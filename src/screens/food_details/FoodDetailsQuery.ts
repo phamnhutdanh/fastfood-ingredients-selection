@@ -40,17 +40,19 @@ export const GET_FOOD_BY_ID = gql`
 `;
 
 export const ADD_PRODUCT_TO_CART = gql`
-  mutation Mutation(
+  mutation AddProductToCart(
     $productSizeId: ID!
     $userId: ID!
     $amount: Int
     $fullPrice: Float
+    $listIngredients: [cartIngredientsInput]
   ) {
     addProductToCart(
       productSizeId: $productSizeId
       userId: $userId
       amount: $amount
       fullPrice: $fullPrice
+      listIngredients: $listIngredients
     )
   }
 `;
