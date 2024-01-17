@@ -12,6 +12,12 @@ export const UPDATE_PRODUCT = gql`
   }
 `;
 
+export const UPDATE_PRODUCT_WITH_IMAGE = gql`
+  mutation UpdateProductWithImage($productInput: updateProductWithImageInput!) {
+    updateProductWithImage(productInput: $productInput)
+  }
+`;
+
 export const CREATE_TAG = gql`
   mutation CreateTag($tagInput: createTagInput!) {
     createTag(tagInput: $tagInput)

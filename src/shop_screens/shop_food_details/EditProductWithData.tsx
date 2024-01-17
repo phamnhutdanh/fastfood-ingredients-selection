@@ -12,7 +12,7 @@ import {
 } from 'react-native-image-picker';
 import {uploadImageToCloudinary} from '../../utils/updateImageToCloudinary';
 
-import {UpdateProductInputType} from '../../types/ItemType';
+import {UpdateProductWithImageInputType} from '../../types/ItemType';
 
 import {ErrorMessageText} from '../../components/texts/ErrorMessageText';
 import ProductAvatarDisplay from '../category/display/ProductAvatarDisplay';
@@ -21,7 +21,7 @@ import ProductNameInputDisplay from '../category/display/ProductNameInputDisplay
 import ProductDescriptionInputDisplay from '../category/display/ProductDescriptionInputDisplay';
 import ListTagFoodDisplay from '../../screens/food_details/display/ListTagFoodDisplay';
 import {useMutation} from '@apollo/client';
-import {UPDATE_PRODUCT} from './ShopFoodDetailQuery';
+import {UPDATE_PRODUCT_WITH_IMAGE} from './ShopFoodDetailQuery';
 import Snackbar from 'react-native-snackbar';
 
 type ThisProps = {
@@ -46,7 +46,9 @@ export default function EditProductWithData(props: ThisProps): JSX.Element {
   const [isDisplayError, setDisplayError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const [updateProduct, {data, loading}] = useMutation(UPDATE_PRODUCT);
+  const [updateProductWithImage, {data, loading}] = useMutation(
+    UPDATE_PRODUCT_WITH_IMAGE,
+  );
 
   const onSave = async () => {
     if (
@@ -66,15 +68,15 @@ export default function EditProductWithData(props: ThisProps): JSX.Element {
 
     if (imageFile) {
       try {
-        const publicId = await uploadImageToCloudinary(imageFile!);
-        let input: UpdateProductInputType = {
+        const url = await uploadImageToCloudinary(imageFile!);
+        let input: UpdateProductWithImageInputType = {
           title: productName,
           description: productDescription,
-          imagePublicId: publicId,
+          imageUri: url,
           subcategoryId: chosenSubCategoryId,
           productId: props.data.id,
         };
-        await updateProduct({
+        await updateProductWithImage({
           variables: {
             productInput: input,
           },
@@ -86,14 +88,14 @@ export default function EditProductWithData(props: ThisProps): JSX.Element {
         console.log('ShopCategoryScreen: ', error);
       }
     } else {
-      let input: UpdateProductInputType = {
+      let input: UpdateProductWithImageInputType = {
         title: productName,
         description: productDescription,
-        imagePublicId: '',
+        imageUri: '',
         subcategoryId: chosenSubCategoryId,
         productId: props.data.id,
       };
-      await updateProduct({
+      await updateProductWithImage({
         variables: {
           productInput: input,
         },

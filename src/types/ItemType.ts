@@ -147,3 +147,35 @@ export type CreateReportInputType = {
   message: string;
   reporterId: string;
 };
+
+export type UpdateShopAccountWithImageInputType = {
+  shopAddress: string;
+  shopPhoneNumber: string;
+  shopName: string;
+  imageUri: string;
+  shopId: string;
+};
+
+export type UpdateProductWithImageInputType = {
+  subcategoryId: string;
+  imageUri: string;
+  title: string;
+  description: string;
+  productId: string;
+};
+
+export type CreateProductWithImageInputType = {
+  subcategoryId: string;
+  imageUri: string;
+  title: string;
+  price: number;
+  sizeTitle: string;
+  description: string;
+};
+export type CreateShopAccountWithImageInputType = {
+  shopAddress: string;
+  shopPhoneNumber: string;
+  shopName: string;
+  imageUri: string;
+  userId: string;
+};
