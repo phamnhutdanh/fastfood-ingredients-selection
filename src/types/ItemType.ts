@@ -88,6 +88,7 @@ export type OrderProductInputType = {
   deliveredAt: string;
   userId: string;
   productSizeId: string;
+  listIngredients: CartIngredientsInputType[];
 };
 
 export type CreateProductInputType = {
